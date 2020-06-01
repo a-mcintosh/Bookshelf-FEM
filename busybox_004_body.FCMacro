@@ -43,6 +43,7 @@ this_support.UpToFace = None
 this_support.Reversed = 1
 this_support.Midplane = 0
 this_support.Offset = 0.000000
+Gui.activeDocument().hide(App.ActiveDocument.sk_support.Name)
 Gui.activeDocument().hide(this_support.Name)
 # -------------------------------
 # -- I accidentally included this in the bd_standard Part.
@@ -75,6 +76,7 @@ this_pad.UpToFace = None
 this_pad.Reversed = 0
 this_pad.Midplane = 0
 this_pad.Offset = 0.000000
+Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
 #
 this_sketch = App.ActiveDocument.sk_joist
@@ -89,10 +91,20 @@ this_pad_extension.UpToFace = None
 this_pad_extension.Reversed = 1
 this_pad_extension.Midplane = 0
 this_pad_extension.Offset = 0.000000
-this_pad.recompute()
+Gui.activeDocument().hide(this_sketch.Name)
+Gui.activeDocument().hide(this_pad_extension.Name)
 #
 # ----
 #
+this_loadcell = this_body.newObject("PartDesign::Pad","pd_joist_loadcell")
+this_loadcell.Profile = (this_pad_extension, ["Face31"])
+this_loadcell.setExpression('Length', u'sp_standard.length/2')
+this_loadcell.Reversed = 0
+this_loadcell.Length2 = 99.999800
+this_loadcell.Type = 0
+this_loadcell.UpToFace = None
+this_loadcell.Midplane = 0
+this_loadcell.Offset = 0.000000
 #App.activeDocument().bd_standard.Group = [App.activeDocument().sk_standard, ]
 #
 # ----
