@@ -11,7 +11,7 @@ this_body = group_bodies.newObject('PartDesign::Body','bd_standard')
 # --- ProfMac --- some magic might help below
 #
 this_sketch = App.ActiveDocument.sk_standard
-App.activeDocument().bd_standard.Group = [App.activeDocument().sk_standard, ]
+App.activeDocument().bd_standard.Group = [App.activeDocument().sk_standard, App.activeDocument().sk_support, App.activeDocument().sk_joist, ]
 #
 # --- ProfMac --- some magic might help above
 #
@@ -110,6 +110,8 @@ this_loadcell.Offset = 0.000000
 # ----
 #
 Gui.activeDocument().activeView().viewIsometric()
+Gui.SendMsgToActiveView("ViewFit")
+Gui.activeDocument().hide(this_loadcell.Name)
 
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_008_standard_body_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
