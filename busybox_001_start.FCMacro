@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: $HOME/Documents/FreeCAD/Busybox/busybox_001_start.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+import PartDesignGui
+import Sketcher
+#import Show.TempoVis
+import PartDesign
+
+# ----------------
+# -- Busybox
+# -- Goals:
+# -- Global sketch used in 3 bodies.
+# -- An example use for Rotation
+# --
+# -- Problems
+# -- 
+# ----------------
+
+App.newDocument('BusyBox_ver_1_0')
+
+# Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_001_start.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

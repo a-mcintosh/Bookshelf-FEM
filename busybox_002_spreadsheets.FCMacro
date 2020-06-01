@@ -1,0 +1,115 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: $HOME/Documents/FreeCAD/Busybox/busybox_002_spreadsheets.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+# ------------------------------------------------
+# -- Create a spreadsheet group with parametric
+# -- values used in the project
+# ------------------------------------------------
+import FreeCAD
+import Spreadsheet
+import PartDesign
+import PartDesignGui
+import Sketcher
+
+group_spreadsheets = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_spreadsheets')
+#
+# ----
+#
+group_spreadsheets.newObject('Spreadsheet::Sheet','sp_global')
+App.ActiveDocument.sp_global.setDisplayUnit('B2:B8', 'in')
+#
+App.ActiveDocument.sp_global.set('A2', 'elevation')
+App.ActiveDocument.sp_global.set('B2', '6"')
+App.ActiveDocument.sp_global.setAlias('B2', 'elevation')
+#
+# --------
+#
+group_spreadsheets.newObject('Spreadsheet::Sheet','sp_standard')
+App.ActiveDocument.sp_standard.setDisplayUnit('B2:B5', 'in')
+#
+App.ActiveDocument.sp_standard.set('A2', 'length')
+App.ActiveDocument.sp_standard.set('B2', '1.5"')
+App.ActiveDocument.sp_standard.setAlias('B2', 'length')
+#
+App.ActiveDocument.sp_standard.set('A3', 'width')
+App.ActiveDocument.sp_standard.set('B3', '0.75"')
+App.ActiveDocument.sp_standard.setAlias('B3', 'width')
+#
+App.ActiveDocument.sp_standard.set('A4', 'height')
+App.ActiveDocument.sp_standard.set('B4', '24"')
+App.ActiveDocument.sp_standard.setAlias('B4', 'height')
+#
+App.ActiveDocument.sp_standard.set('A5', 'notch depth')
+App.ActiveDocument.sp_standard.set('B5', '0.125"')
+App.ActiveDocument.sp_standard.setAlias('B5', 'notch_depth')
+#
+App.ActiveDocument.sp_standard.set('A6', 'item height')
+App.ActiveDocument.sp_standard.set('B6', '13.5"')
+App.ActiveDocument.sp_standard.setAlias('B6', 'item_height')
+#
+App.ActiveDocument.sp_standard.set('A7', 'shelf_count')
+App.ActiveDocument.sp_standard.set('B7', '6')
+App.ActiveDocument.sp_standard.setAlias('B7', 'shelf_count')
+#
+App.ActiveDocument.recompute()
+#
+# --------
+#
+#
+# --------
+#
+group_spreadsheets.newObject('Spreadsheet::Sheet','sp_support')
+App.ActiveDocument.sp_support.setDisplayUnit('B2:B5', 'in')
+#
+App.ActiveDocument.sp_support.set('A2', 'length')
+App.ActiveDocument.sp_support.set('B2', '18"')
+App.ActiveDocument.sp_support.setAlias('B2', 'length')
+#
+App.ActiveDocument.sp_support.set('A3', 'width')
+App.ActiveDocument.sp_support.set('B3', '1.5"')
+App.ActiveDocument.sp_support.setAlias('B3', 'width')
+#
+App.ActiveDocument.sp_support.set('A4', 'height')
+App.ActiveDocument.sp_support.set('B4', '1.5"')
+App.ActiveDocument.sp_support.setAlias('B4', 'height')
+#
+App.ActiveDocument.sp_support.set('A5', 'key_height')
+App.ActiveDocument.sp_support.set('B5', '0.125"')
+App.ActiveDocument.sp_support.setAlias('B5', 'key_height')
+#
+App.ActiveDocument.sp_support.set('A6', 'blade_cut')
+App.ActiveDocument.sp_support.set('B6', '0.125"')
+App.ActiveDocument.sp_support.setAlias('B6', 'blade_cut')
+#
+App.ActiveDocument.recompute()
+#
+# --------
+#
+group_spreadsheets.newObject('Spreadsheet::Sheet','sp_joist')
+App.ActiveDocument.sp_joist.setDisplayUnit('B2:B5', 'in')
+#
+App.ActiveDocument.sp_joist.set('A2', 'length')
+App.ActiveDocument.sp_joist.set('B2', '54"')
+App.ActiveDocument.sp_joist.setAlias('B2', 'length')
+#
+App.ActiveDocument.sp_joist.set('A3', 'width')
+App.ActiveDocument.sp_joist.set('B3', '0.75"')
+App.ActiveDocument.sp_joist.setAlias('B3', 'width')
+#
+App.ActiveDocument.sp_joist.set('A4', 'height')
+App.ActiveDocument.sp_joist.set('B4', '1.5"')
+App.ActiveDocument.sp_joist.setAlias('B4', 'height')
+#
+App.ActiveDocument.sp_joist.set('A5', 'notch depth')
+App.ActiveDocument.sp_joist.set('B5', '0.125"')
+App.ActiveDocument.sp_joist.setAlias('B5', 'notch_depth')
+#
+App.ActiveDocument.sp_joist.set('A6', 'spacer count')
+App.ActiveDocument.sp_joist.set('B6', '10')
+App.ActiveDocument.sp_joist.setAlias('B6', 'spacer_count')
+#
+App.ActiveDocument.recompute()
+#
+# --------------------------------
+#
+# Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_002_spreadsheets.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
