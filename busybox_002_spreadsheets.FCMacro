@@ -62,7 +62,7 @@ group_spreadsheets.newObject('Spreadsheet::Sheet','sp_support')
 App.ActiveDocument.sp_support.setDisplayUnit('B2:B5', 'in')
 #
 App.ActiveDocument.sp_support.set('A2', 'length')
-App.ActiveDocument.sp_support.set('B2', '18"')
+App.ActiveDocument.sp_support.set('B2', '6"')
 App.ActiveDocument.sp_support.setAlias('B2', 'length')
 #
 App.ActiveDocument.sp_support.set('A3', 'width')
@@ -89,7 +89,7 @@ group_spreadsheets.newObject('Spreadsheet::Sheet','sp_joist')
 App.ActiveDocument.sp_joist.setDisplayUnit('B2:B5', 'in')
 #
 App.ActiveDocument.sp_joist.set('A2', 'length')
-App.ActiveDocument.sp_joist.set('B2', '54"')
+App.ActiveDocument.sp_joist.set('B2', '12"')
 App.ActiveDocument.sp_joist.setAlias('B2', 'length')
 #
 App.ActiveDocument.sp_joist.set('A3', 'width')

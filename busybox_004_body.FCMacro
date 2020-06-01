@@ -10,10 +10,8 @@ this_body = group_bodies.newObject('PartDesign::Body','bd_standard')
 #
 # --- ProfMac --- some magic might help below
 #
-this_sketch_1=this_body.newObject('Sketcher::SketchObject','sk_standard001')
-this_sketch_1.restoreContent(App.ActiveDocument.sk_standard.dumpContent())
 this_sketch = App.ActiveDocument.sk_standard
-App.activeDocument().bd_standard.Group = [App.activeDocument().sk_standard, App.activeDocument().sk_standard001]
+App.activeDocument().bd_standard.Group = [App.activeDocument().sk_standard, ]
 #
 # --- ProfMac --- some magic might help above
 #
@@ -31,11 +29,28 @@ this_pad.UpToFace = None
 this_pad.Reversed = 0
 this_pad.Midplane = 0
 this_pad.Offset = 0.000000
-this_pad.recompute()
+Gui.activeDocument().hide(this_pad.Name)
 #
 # ----
 #
-this_pad_extension = this_body.newObject("PartDesign::Pad","pd_extend")
+this_support = this_body.newObject("PartDesign::Pad","pd_support")
+this_support.Profile = App.ActiveDocument.sk_support
+this_support.Length = 10.0
+this_support.setExpression('Length', u'sp_support.length')
+this_support.Length2 = 99.999800
+this_support.Type = 0
+this_support.UpToFace = None
+this_support.Reversed = 1
+this_support.Midplane = 0
+this_support.Offset = 0.000000
+Gui.activeDocument().hide(this_support.Name)
+# -------------------------------
+# -- I accidentally included this in the bd_standard Part.
+# -- The result makes one part for the FEM analysis.
+# -- The operations must be sequenced so that the solid formed is not disjoint.
+# --- This is very handy ---> Gui.Selection.getSelectionEx()[0].SubElementNames
+# -------------------------------
+this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend")
 #this_sketch.Support = (this_pad,["Face2"])
 this_pad_extension.Profile = this_sketch
 this_pad_extension.Length = 10.0
@@ -46,12 +61,43 @@ this_pad_extension.UpToFace = None
 this_pad_extension.Reversed = 1
 this_pad_extension.Midplane = 0
 this_pad_extension.Offset = 0.000000
-this_pad_extension.recompute()
+Gui.activeDocument().hide(this_pad_extension.Name)
+#
+# ----
+#
+this_pad = this_body.newObject("PartDesign::Pad","pd_joist")
+this_pad.Profile = App.ActiveDocument.sk_joist
+this_pad.Length = 10.0
+this_pad.setExpression('Length', u'sp_joist.length')
+this_pad.Length2 = 99.999800
+this_pad.Type = 0
+this_pad.UpToFace = None
+this_pad.Reversed = 0
+this_pad.Midplane = 0
+this_pad.Offset = 0.000000
+Gui.activeDocument().hide(this_pad.Name)
+#
+this_sketch = App.ActiveDocument.sk_joist
+this_pad_extension = this_body.newObject("PartDesign::Pad","pd_joist_extend")
+#this_sketch.Support = (this_pad,["Face2"])
+this_pad_extension.Profile = this_sketch
+this_pad_extension.Length = 10.0
+this_pad_extension.setExpression('Length', u'sp_standard.length')
+this_pad_extension.Length2 = 99.999800
+this_pad_extension.Type = 0
+this_pad_extension.UpToFace = None
+this_pad_extension.Reversed = 1
+this_pad_extension.Midplane = 0
+this_pad_extension.Offset = 0.000000
+this_pad.recompute()
+#
+# ----
+#
+#App.activeDocument().bd_standard.Group = [App.activeDocument().sk_standard, ]
 #
 # ----
 #
 Gui.activeDocument().activeView().viewIsometric()
-Gui.activeDocument().hide("sk_standard002")
 
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_008_standard_body_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 

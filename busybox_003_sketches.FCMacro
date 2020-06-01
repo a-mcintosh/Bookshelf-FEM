@@ -117,6 +117,7 @@ this_sketch.addConstraint(Sketcher.Constraint('Coincident',15,2,14,2))
 this_sketch.addGeometry(Part.LineSegment(App.Vector(12.700000,3.175000,0),App.Vector(0.000000,3.175000,0)),False)
 this_sketch.addConstraint(Sketcher.Constraint('Coincident',16,1,13,1)) 
 this_sketch.addConstraint(Sketcher.Constraint('Coincident',16,2,11,1)) 
+
 #
 # ---- sk_joist
 #
@@ -139,9 +140,10 @@ this_sketch.addConstraint(Sketcher.Constraint('Vertical',3))
 this_sketch.addConstraint(Sketcher.Constraint('DistanceX',-1,1,0,1,19.050000)) 
 this_sketch.setExpression('Constraints[9]', u'sp_standard.width')
 this_sketch.addConstraint(Sketcher.Constraint('DistanceX',0,1,0,2,19.050000)) 
-this_sketch.setExpression('Constraints[10]', u'sp_joist.width')
+this_sketch.setExpression('Constraints[10]', u'sp_joist.width/2')
 this_sketch.addConstraint(Sketcher.Constraint('DistanceY',0,2,1,2,38.100000)) 
 this_sketch.setExpression('Constraints[11]', u'sp_joist.height')
+this_sketch.setExpression('Placement.Base.y', u'sp_support.length-sp_standard.width-sp_joist.width/2')
 this_sketch.recompute()
 #
 # ----
