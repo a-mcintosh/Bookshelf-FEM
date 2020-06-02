@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 # Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/busybox_005_mirror.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+Gui.activeDocument().hide('pd_joist_loadcell')
+#
 this_mirror = App.activeDocument().bd_standard.newObject("PartDesign::Mirrored","Mirrored001")
 App.ActiveDocument.recompute()
 this_mirror.Originals = [App.activeDocument().pd_joist_loadcell,]

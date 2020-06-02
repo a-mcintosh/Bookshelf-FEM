@@ -18,7 +18,7 @@ Gui.activeDocument().hide("Mirrored001")
 #
 # ----
 #
-this_plane = App.activeDocument().bd_standard.newObject('PartDesign::Plane','DatumPlane_procedural')
+#this_plane = App.activeDocument().bd_standard.newObject('PartDesign::Plane','DatumPlane_procedural')
 
 #this_vec = App.Vector(1, -1, 0)
 #this_vec.Length = 1

@@ -111,7 +111,6 @@ this_loadcell.Offset = 0.000000
 #
 Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
-Gui.activeDocument().hide(this_loadcell.Name)
 
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_008_standard_body_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
