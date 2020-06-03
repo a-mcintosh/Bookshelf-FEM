@@ -1,0 +1,27 @@
+#BEGIN Handmade file $HOME/Documents/FreeCAD/Busybox/busybox_006_handmade_standard.FCMacro
+FreeCAD.Console.PrintMessage("busybox_006_handmade_standard starts.") 
+Gui.activeDocument().hide("pd_support_001")
+
+
+FreeCAD.Console.PrintMessage("busybox_006_handmade_standard starts standard001.\n") 
+
+#features_ = [App.ActiveDocument.sk_standard]
+#App.ActiveDocument.Footer.removeObjects(features_)
+this_sketch = App.ActiveDocument.sk_standard001
+this_body = App.ActiveDocument.bd_standard
+this_pad = this_body.newObject("PartDesign::Pad","pd_standard001")
+this_pad.Profile = this_sketch
+this_pad.Length = 10.0
+this_pad.setExpression('Length', u'sp_standard.height')
+FreeCAD.Console.PrintMessage("busybox_006_handmade_standard after line 16.\n") 
+this_pad.Length2 = 99.999800
+this_pad.Type = 0
+this_pad.UpToFace = None
+this_pad.Reversed = 1
+this_pad.Midplane = 0
+this_pad.Offset = 0.000000
+#Gui.activeDocument().hide(this_pad.Name)
+FreeCAD.Console.PrintMessage("busybox_006_handmade_standard is finished.\n") 
+
+#END Handmade file $HOME/Documents/FreeCAD/Busybox/busybox_006_handmade_standard.FCMacro
+

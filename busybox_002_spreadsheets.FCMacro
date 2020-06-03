@@ -25,7 +25,7 @@ App.ActiveDocument.sp_global.setAlias('B2', 'elevation')
 # --------
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_standard')
-App.ActiveDocument.sp_standard.setDisplayUnit('B2:B5', 'in')
+App.ActiveDocument.sp_standard.setDisplayUnit('B2:B6', 'in')
 #
 App.ActiveDocument.sp_standard.set('A2', 'length')
 App.ActiveDocument.sp_standard.set('B2', '1.5"')
@@ -36,7 +36,7 @@ App.ActiveDocument.sp_standard.set('B3', '0.75"')
 App.ActiveDocument.sp_standard.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_standard.set('A4', 'height')
-App.ActiveDocument.sp_standard.set('B4', '12"')
+App.ActiveDocument.sp_standard.set('B4', '15"')
 App.ActiveDocument.sp_standard.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_standard.set('A5', 'notch depth')
