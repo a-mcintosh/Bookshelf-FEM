@@ -121,7 +121,7 @@ this_sketch.addConstraint(Sketcher.Constraint('DistanceX',0,1,0,2,19.050000))
 this_sketch.setExpression('Constraints[10]', u'sp_joist.width/2')
 this_sketch.addConstraint(Sketcher.Constraint('DistanceY',0,2,1,2,38.100000)) 
 this_sketch.setExpression('Constraints[11]', u'sp_joist.height')
-this_sketch.setExpression('Placement.Base.y', u'sp_support.length-sp_standard.width-sp_joist.width/2')
+this_sketch.setExpression('Placement.Base.y', u'sp_support.length/2 - sp_standard.width - sp_joist.width/2')
 this_sketch.recompute()
 #
 # ----
@@ -156,7 +156,7 @@ this_sketch2.restoreContent(App.ActiveDocument.sk_standard.dumpContent())
 FreeCAD.Console.PrintMessage("busybox_003_sketches after line 155.\n") 
 aux_rotation = App.Rotation( App.Vector(1, 0, 0), 180)
 this_sketch2.Placement.Rotation = aux_rotation
-this_sketch2.setExpression('Placement.Base.y', u'2*sp_support.length')
+this_sketch2.setExpression('Placement.Base.y', u'sp_support.length')
 #
 Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")

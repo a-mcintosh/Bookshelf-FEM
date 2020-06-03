@@ -97,7 +97,7 @@ Gui.activeDocument().hide(this_pad_extension.Name)
 # ----
 #
 this_loadcell = this_body.newObject("PartDesign::Pad","pd_joist_loadcell")
-this_loadcell.Profile = (this_pad_extension, ["Face31"])
+this_loadcell.Profile = (this_pad_extension, ["Face32"])
 this_loadcell.setExpression('Length', u'sp_standard.length/2')
 this_loadcell.Reversed = 0
 this_loadcell.Length2 = 99.999800

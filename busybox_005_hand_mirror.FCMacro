@@ -4,8 +4,11 @@
 import FreeCAD
 import PartDesign
 
+#
+#  ----
+#
 App.activeDocument().bd_standard.newObject("PartDesign::Pad","pd_joist_extend002")
-App.activeDocument().pd_joist_extend002.Profile = (App.activeDocument().pd_joist_loadcell, ["Face21"])
+App.activeDocument().pd_joist_extend002.Profile = (App.activeDocument().pd_joist_loadcell, ["Face14"])
 App.activeDocument().pd_joist_extend002.Length = 10.0
 App.ActiveDocument.recompute()
 App.ActiveDocument.recompute()
@@ -24,14 +27,13 @@ App.ActiveDocument.pd_joist_extend002.UpToFace = None
 App.ActiveDocument.pd_joist_extend002.Reversed = 0
 App.ActiveDocument.pd_joist_extend002.Midplane = 0
 App.ActiveDocument.pd_joist_extend002.Offset = 0.000000
-#Gui.activeDocument().hide("pd_joist_loadcell")
 App.ActiveDocument.recompute()
 #Gui.activeDocument().resetEdit()
 #
 #  ----
 #
 App.activeDocument().bd_standard.newObject("PartDesign::Pad","pd_joist002")
-App.activeDocument().pd_joist002.Profile = (App.activeDocument().pd_joist_extend002, ["Face30"])
+App.activeDocument().pd_joist002.Profile = (App.activeDocument().pd_joist_loadcell, ["Face22"])
 App.activeDocument().pd_joist002.Length = 10.0
 App.ActiveDocument.recompute()
 App.ActiveDocument.recompute()
@@ -50,25 +52,16 @@ App.ActiveDocument.pd_joist002.UpToFace = None
 App.ActiveDocument.pd_joist002.Reversed = 0
 App.ActiveDocument.pd_joist002.Midplane = 0
 App.ActiveDocument.pd_joist002.Offset = 0.000000
-#Gui.activeDocument().hide("Pad")
 App.ActiveDocument.recompute()
 #Gui.activeDocument().resetEdit()
 #
 #  ----
 #
 App.activeDocument().bd_standard.newObject("PartDesign::Pad","pd_joist_loadcell002")
-App.activeDocument().pd_joist_loadcell002.Profile = (App.activeDocument().pd_joist002, ["Face45"])
+App.activeDocument().pd_joist_loadcell002.Profile = (App.activeDocument().pd_joist_loadcell, ["Face32"])
 App.activeDocument().pd_joist_loadcell002.Length = 10.0
 App.ActiveDocument.recompute()
 App.ActiveDocument.recompute()
-#Gui.ActiveDocument.pd_joist_loadcell002.ShapeColor=Gui.ActiveDocument.bd_standard.ShapeColor
-#Gui.ActiveDocument.pd_joist_loadcell002.LineColor=Gui.ActiveDocument.bd_standard.LineColor
-#Gui.ActiveDocument.pd_joist_loadcell002.PointColor=Gui.ActiveDocument.bd_standard.PointColor
-#Gui.ActiveDocument.pd_joist_loadcell002.Transparency=Gui.ActiveDocument.bd_standard.Transparency
-#Gui.ActiveDocument.pd_joist_loadcell002.DisplayMode=Gui.ActiveDocument.bd_standard.DisplayMode
-#Gui.activeDocument().setEdit('pd_joist_loadcell002', 0)
-#Gui.Selection.clearSelection()
-Gui.activeDocument().hide(App.activeDocument().pd_joist_loadcell002.Name)
 App.getDocument('BusyBox_ver_1_0').pd_joist_loadcell002.setExpression('Length', u'sp_joist.width / 2')
 App.ActiveDocument.pd_joist_loadcell002.Length2 = 99.999800
 App.ActiveDocument.pd_joist_loadcell002.Type = 0
@@ -79,30 +72,6 @@ App.ActiveDocument.pd_joist_loadcell002.Offset = 0.000000
 Gui.activeDocument().hide(App.activeDocument().pd_joist002.Name)
 App.ActiveDocument.recompute()
 #Gui.activeDocument().resetEdit()
-#
-#  ----
-#
-App.activeDocument().bd_standard.newObject("PartDesign::Pad","pd_support_001")
-App.activeDocument().pd_support_001.Profile = (App.activeDocument().pd_joist_loadcell002, ["Face12"])
-App.activeDocument().pd_support_001.Length = 10.0
-App.ActiveDocument.recompute()
-App.ActiveDocument.recompute()
-#Gui.ActiveDocument.pd_support_001.ShapeColor=Gui.ActiveDocument.bd_standard.ShapeColor
-#Gui.ActiveDocument.pd_support_001.LineColor=Gui.ActiveDocument.bd_standard.LineColor
-#Gui.ActiveDocument.pd_support_001.PointColor=Gui.ActiveDocument.bd_standard.PointColor
-#Gui.ActiveDocument.pd_support_001.Transparency=Gui.ActiveDocument.bd_standard.Transparency
-#Gui.ActiveDocument.pd_support_001.DisplayMode=Gui.ActiveDocument.bd_standard.DisplayMode
-#Gui.activeDocument().setEdit('pd_support_001', 0)
-#Gui.Selection.clearSelection()
-#Gui.activeDocument().hide(App.activeDocument().pd_joist002.Name)
-App.getDocument('BusyBox_ver_1_0').pd_support_001.setExpression('Length', u'sp_support.length')
-App.ActiveDocument.pd_support_001.Length2 = 99.999800
-App.ActiveDocument.pd_support_001.Type = 0
-App.ActiveDocument.pd_support_001.UpToFace = None
-App.ActiveDocument.pd_support_001.Reversed = 0
-App.ActiveDocument.pd_support_001.Midplane = 0
-App.ActiveDocument.pd_support_001.Offset = 0.000000
-#Gui.activeDocument().hide("pd_joist_loadcell002")
 
 this_rot = App.Rotation( App.Vector(0, 0, 1), 180)
 camera_rot = App.Rotation (0.4247081321999479, 0.1759200437218226, 0.339851090706265, 0.8204732639190053)
@@ -111,6 +80,6 @@ Gui.ActiveDocument.ActiveView.setCameraOrientation( \
     this_rot.multiply(camera_rot))
 
 App.ActiveDocument.recompute()
-#Gui.activeDocument().resetEdit()
+Gui.activeDocument().resetEdit()
 
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/busybox_005_hand_mirror.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
