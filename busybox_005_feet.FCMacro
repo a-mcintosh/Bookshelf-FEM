@@ -7,7 +7,7 @@
 # -------------------------------
 this_body = App.ActiveDocument.bd_standard
 #
-this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend")
+this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend002")
 this_pad_extension.Profile = App.ActiveDocument.sk_standard
 this_pad_extension.Length = 10.0
 this_pad_extension.setExpression('Length', u'sp_global.elevation - sp_joist.height')
@@ -33,9 +33,20 @@ this_pad_extension.Offset = 0.000000
 #
 #  ----
 #
+App.activeDocument().bd_standard.newObject("PartDesign::Mirrored","mr_foot")
+#
+App.activeDocument().bd_standard.Tip = App.activeDocument().mr_foot
+App.ActiveDocument.mr_foot.MirrorPlane = (App.ActiveDocument.pd_joist_loadcell, ["Face31"])
+App.ActiveDocument.mr_foot.Originals = [ \
+    App.ActiveDocument.pd_standard_extend002,\
+    App.ActiveDocument.pd_standard_extend001,]
+#
 Gui.activeDocument().hide(App.ActiveDocument.sk_standard.Name)
 Gui.activeDocument().hide(App.ActiveDocument.sk_standard001.Name)
 Gui.activeDocument().hide(App.ActiveDocument.pd_joist_loadcell.Name)
-Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend.Name)
+Gui.activeDocument().hide(App.ActiveDocument.mr_shelf.Name)
+Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend001.Name)
+Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend002.Name)
+App.ActiveDocument.recompute()
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_005_feet.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 

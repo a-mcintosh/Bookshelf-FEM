@@ -102,6 +102,24 @@ this_loadcell.Offset = 0.000000
 #
 # ----
 #
+App.activeDocument().bd_standard.newObject("PartDesign::Mirrored","mr_shelf")
+App.activeDocument().mr_shelf.Originals = [App.activeDocument().pd_joist_loadcell,]
+App.activeDocument().mr_shelf.MirrorPlane = (App.activeDocument().XY_Plane, [""])
+App.activeDocument().bd_standard.Tip = App.activeDocument().mr_shelf
+#Gui.activeDocument().show("mr_shelf")
+App.ActiveDocument.mr_shelf.MirrorPlane = (App.ActiveDocument.pd_joist_loadcell, ["Face31"])
+App.ActiveDocument.mr_shelf.Originals = [App.ActiveDocument.pd_joist_loadcell,\
+    App.ActiveDocument.pd_joist , \
+    App.ActiveDocument.pd_joist_extend , \
+    App.ActiveDocument.pd_support , \
+    App.ActiveDocument.pd_standard000 , \
+    App.ActiveDocument.pd_standard001 , \
+]
+Gui.activeDocument().hide(this_loadcell.Name)
+#
+# ----
+#
+App.ActiveDocument.recompute()
 Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
 
