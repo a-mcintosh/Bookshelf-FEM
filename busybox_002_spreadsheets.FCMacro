@@ -22,6 +22,21 @@ App.ActiveDocument.sp_global.set('A2', 'elevation')
 App.ActiveDocument.sp_global.set('B2', '6"')
 App.ActiveDocument.sp_global.setAlias('B2', 'elevation')
 #
+#  ----  Values for the sprue
+#
+App.ActiveDocument.sp_global.set('A3', 'length')
+App.ActiveDocument.sp_global.set('B3', '24"')
+App.ActiveDocument.sp_global.setAlias('B3', 'length')
+#
+App.ActiveDocument.sp_global.set('A4', 'width')
+App.ActiveDocument.sp_global.set('B4', '1"')
+App.ActiveDocument.sp_global.setAlias('B4', 'width')
+#
+App.ActiveDocument.sp_global.set('A5', 'height')
+App.ActiveDocument.sp_global.set('B5', '1"')
+App.ActiveDocument.sp_global.setAlias('B5', 'height')
+#
+#
 # --------
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_standard')

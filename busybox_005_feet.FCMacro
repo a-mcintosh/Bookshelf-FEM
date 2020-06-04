@@ -1,0 +1,41 @@
+# Macro Begin: $HOME/Documents/FreeCAD/Busybox/busybox_005_feet.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+# -------------------------------
+# -- I accidentally included this in the bd_standard Part.
+# -- The result makes one part for the FEM analysis.
+# -- The operations must be sequenced so that the solid formed is not disjoint.
+# --- This is very handy ---> Gui.Selection.getSelectionEx()[0].SubElementNames
+# -------------------------------
+this_body = App.ActiveDocument.bd_standard
+#
+this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend")
+this_pad_extension.Profile = App.ActiveDocument.sk_standard
+this_pad_extension.Length = 10.0
+this_pad_extension.setExpression('Length', u'sp_global.elevation - sp_joist.height')
+this_pad_extension.Length2 = 99.999800
+this_pad_extension.Type = 0
+this_pad_extension.UpToFace = None
+this_pad_extension.Reversed = 1
+this_pad_extension.Midplane = 0
+this_pad_extension.Offset = 0.000000
+#
+#
+#
+this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend001")
+this_pad_extension.Profile = App.ActiveDocument.sk_standard001
+this_pad_extension.Length = 10.0
+this_pad_extension.setExpression('Length', u'sp_global.elevation - sp_joist.height')
+this_pad_extension.Length2 = 99.999800
+this_pad_extension.Type = 0
+this_pad_extension.UpToFace = None
+this_pad_extension.Reversed = 0
+this_pad_extension.Midplane = 0
+this_pad_extension.Offset = 0.000000
+#
+#  ----
+#
+Gui.activeDocument().hide(App.ActiveDocument.sk_standard.Name)
+Gui.activeDocument().hide(App.ActiveDocument.sk_standard001.Name)
+Gui.activeDocument().hide(App.ActiveDocument.pd_joist_loadcell.Name)
+Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend.Name)
+# Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_005_feet.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+

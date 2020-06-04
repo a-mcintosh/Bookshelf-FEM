@@ -11,15 +11,27 @@ this_body = group_bodies.newObject('PartDesign::Body','bd_standard')
 # --- ProfMac --- some magic might help below
 #
 this_sketch = App.ActiveDocument.sk_standard
-App.activeDocument().bd_standard.Group = [App.activeDocument().sk_standard, App.activeDocument().sk_support, App.activeDocument().sk_joist, App.activeDocument().sk_standard001, ]
+App.activeDocument().bd_standard.Group += [App.activeDocument().sk_standard, App.activeDocument().sk_support, App.activeDocument().sk_joist, App.activeDocument().sk_standard001, ]
 #
 # --- ProfMac --- some magic might help above
 #
 App.ActiveDocument.recompute()
-#features_ = [App.ActiveDocument.sk_standard]
-#App.ActiveDocument.Footer.removeObjects(features_)
-#App.ActiveDocument.bd_standard.addObjects(features_)
-this_pad = this_body.newObject("PartDesign::Pad","pd_standard")
+this_support = this_body.newObject("PartDesign::Pad","pd_support")
+this_support.Profile = App.ActiveDocument.sk_support
+this_support.Length = 10.0
+this_support.setExpression('Length', u'sp_support.length')
+this_support.Length2 = 99.999800
+this_support.Type = 0
+this_support.UpToFace = None
+this_support.Reversed = 1
+this_support.Midplane = 0
+this_support.Offset = 0.000000
+Gui.activeDocument().hide(App.ActiveDocument.sk_support.Name)
+Gui.activeDocument().hide(this_support.Name)
+#
+# ----
+#
+this_pad = this_body.newObject("PartDesign::Pad","pd_standard000")
 this_pad.Profile = this_sketch
 this_pad.Length = 10.0
 this_pad.setExpression('Length', u'sp_standard.height')
@@ -33,36 +45,17 @@ Gui.activeDocument().hide(this_pad.Name)
 #
 # ----
 #
-this_support = this_body.newObject("PartDesign::Pad","pd_support")
-this_support.Profile = App.ActiveDocument.sk_support
-this_support.Length = 10.0
-this_support.setExpression('Length', u'sp_support.length')
-this_support.Length2 = 99.999800
-this_support.Type = 0
-this_support.UpToFace = None
-this_support.Reversed = 1
-this_support.Midplane = 0
-this_support.Offset = 0.000000
-Gui.activeDocument().hide(App.ActiveDocument.sk_support.Name)
-Gui.activeDocument().hide(this_support.Name)
-# -------------------------------
-# -- I accidentally included this in the bd_standard Part.
-# -- The result makes one part for the FEM analysis.
-# -- The operations must be sequenced so that the solid formed is not disjoint.
-# --- This is very handy ---> Gui.Selection.getSelectionEx()[0].SubElementNames
-# -------------------------------
-this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend")
-#this_sketch.Support = (this_pad,["Face2"])
-this_pad_extension.Profile = this_sketch
-this_pad_extension.Length = 10.0
-this_pad_extension.setExpression('Length', u'sp_global.elevation - sp_joist.height')
-this_pad_extension.Length2 = 99.999800
-this_pad_extension.Type = 0
-this_pad_extension.UpToFace = None
-this_pad_extension.Reversed = 1
-this_pad_extension.Midplane = 0
-this_pad_extension.Offset = 0.000000
-Gui.activeDocument().hide(this_pad_extension.Name)
+this_pad = this_body.newObject("PartDesign::Pad","pd_standard001")
+this_pad.Profile = App.ActiveDocument.sk_standard001
+this_pad.Length = 10.0
+this_pad.setExpression('Length', u'sp_standard.height')
+this_pad.Length2 = 99.999800
+this_pad.Type = 0
+this_pad.UpToFace = None
+this_pad.Reversed = 1
+this_pad.Midplane = 0
+this_pad.Offset = 0.000000
+Gui.activeDocument().hide(this_pad.Name)
 #
 # ----
 #
@@ -81,7 +74,7 @@ Gui.activeDocument().hide(this_pad.Name)
 #
 this_sketch = App.ActiveDocument.sk_joist
 this_pad_extension = this_body.newObject("PartDesign::Pad","pd_joist_extend")
-#this_sketch.Support = (this_pad,["Face2"])
+#this_sketch.Support = (this_pad,["Face16"])
 this_pad_extension.Profile = this_sketch
 this_pad_extension.Length = 10.0
 this_pad_extension.setExpression('Length', u'sp_standard.length')
@@ -97,7 +90,7 @@ Gui.activeDocument().hide(this_pad_extension.Name)
 # ----
 #
 this_loadcell = this_body.newObject("PartDesign::Pad","pd_joist_loadcell")
-this_loadcell.Profile = (this_pad_extension, ["Face32"])
+this_loadcell.Profile = (this_pad_extension, ["Face16"])
 this_loadcell.setExpression('Length', u'sp_standard.length/2')
 this_loadcell.Reversed = 0
 this_loadcell.Length2 = 99.999800
