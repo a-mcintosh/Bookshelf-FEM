@@ -4,19 +4,30 @@
 import FreeCAD
 import PartDesign
 
-group_bodies = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_bodies')
+# --------------------------------------------------------
+# --  Set the level of this shelf in the Python console.
+# --    e.g. level = 0
+# --------------------------------------------------------
+group_bodies = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_bodies_' + str(level))
+  
+  
 #
-this_body = group_bodies.newObject('PartDesign::Body','bd_standard')
+this_body = group_bodies.newObject('PartDesign::Body','bd_standard_' + str(level))
+this_body.Placement.Base.z = level * 25.4 * 15
 #
 # --- ProfMac --- some magic might help below
 #
 this_sketch = App.ActiveDocument.sk_standard
-App.activeDocument().bd_standard.Group += [App.activeDocument().sk_standard, App.activeDocument().sk_support, App.activeDocument().sk_joist, App.activeDocument().sk_standard001, ]
+#App.activeDocument().bd_standard_0.
+this_body.Group = [App.activeDocument().sk_standard, \
+  App.activeDocument().sk_support, \
+  App.activeDocument().sk_joist, \
+  App.activeDocument().sk_standard001, ]
 #
 # --- ProfMac --- some magic might help above
 #
 App.ActiveDocument.recompute()
-this_support = this_body.newObject("PartDesign::Pad","pd_support")
+this_support = this_body.newObject("PartDesign::Pad","pd_support_" + str(level) + '_001')
 this_support.Profile = App.ActiveDocument.sk_support
 this_support.Length = 10.0
 this_support.setExpression('Length', u'sp_support.length')
@@ -31,7 +42,7 @@ Gui.activeDocument().hide(this_support.Name)
 #
 # ----
 #
-this_pad = this_body.newObject("PartDesign::Pad","pd_standard000")
+this_pad = this_body.newObject("PartDesign::Pad","pd_standard_" + str(level) + "_000")
 this_pad.Profile = this_sketch
 this_pad.Length = 10.0
 this_pad.setExpression('Length', u'sp_standard.height')
@@ -45,7 +56,7 @@ Gui.activeDocument().hide(this_pad.Name)
 #
 # ----
 #
-this_pad = this_body.newObject("PartDesign::Pad","pd_standard001")
+this_pad = this_body.newObject("PartDesign::Pad","pd_standard_" + str(level) + '_001')
 this_pad.Profile = App.ActiveDocument.sk_standard001
 this_pad.Length = 10.0
 this_pad.setExpression('Length', u'sp_standard.height')
@@ -59,7 +70,7 @@ Gui.activeDocument().hide(this_pad.Name)
 #
 # ----
 #
-this_pad = this_body.newObject("PartDesign::Pad","pd_joist")
+this_pad = this_body.newObject("PartDesign::Pad","pd_joist_" + str(level) + '_001')
 this_pad.Profile = App.ActiveDocument.sk_joist
 this_pad.Length = 10.0
 this_pad.setExpression('Length', u'sp_joist.length')
@@ -73,7 +84,7 @@ Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
 #
 this_sketch = App.ActiveDocument.sk_joist
-this_pad_extension = this_body.newObject("PartDesign::Pad","pd_joist_extend")
+this_pad_extension = this_body.newObject("PartDesign::Pad","pd_joist_extend_" + str(level) + '_001')
 #this_sketch.Support = (this_pad,["Face16"])
 this_pad_extension.Profile = this_sketch
 this_pad_extension.Length = 10.0
@@ -89,7 +100,7 @@ Gui.activeDocument().hide(this_pad_extension.Name)
 #
 # ----
 #
-this_loadcell = this_body.newObject("PartDesign::Pad","pd_joist_loadcell")
+this_loadcell = this_body.newObject("PartDesign::Pad","pd_joist_loadcell_" + str(level) + '_001')
 this_loadcell.Profile = (this_pad_extension, ["Face16"])
 this_loadcell.setExpression('Length', u'sp_standard.length/2')
 this_loadcell.Reversed = 0
@@ -102,20 +113,48 @@ this_loadcell.Offset = 0.000000
 #
 # ----
 #
-App.activeDocument().bd_standard.newObject("PartDesign::Mirrored","mr_shelf")
-App.activeDocument().mr_shelf.Originals = [App.activeDocument().pd_joist_loadcell,]
-App.activeDocument().mr_shelf.MirrorPlane = (App.activeDocument().XY_Plane, [""])
-App.activeDocument().bd_standard.Tip = App.activeDocument().mr_shelf
+this_obj = this_body.newObject("PartDesign::Mirrored","mr_shelf_" + str(level) + '_001')
+this_obj.MirrorPlane = (App.activeDocument().XY_Plane, [""])
+this_body.Tip = this_obj
 #Gui.activeDocument().show("mr_shelf")
-App.ActiveDocument.mr_shelf.MirrorPlane = (App.ActiveDocument.pd_joist_loadcell, ["Face31"])
-App.ActiveDocument.mr_shelf.Originals = [App.ActiveDocument.pd_joist_loadcell,\
-    App.ActiveDocument.pd_joist , \
-    App.ActiveDocument.pd_joist_extend , \
-    App.ActiveDocument.pd_support , \
-    App.ActiveDocument.pd_standard000 , \
-    App.ActiveDocument.pd_standard001 , \
-]
-Gui.activeDocument().hide(this_loadcell.Name)
+item_name = "pd_joist_loadcell_" + str(level) + '_001'
+object_itself = App.ActiveDocument.getObject(item_name)
+this_obj.MirrorPlane = (object_itself, ["Face31"])
+
+this_obj.Originals = []
+
+item_name = "pd_joist_loadcell_" + str(level) + '_001'
+object_itself = App.ActiveDocument.getObject(item_name)
+FreeCAD.Console.PrintMessage("The constructed name is: " + item_name + "\n")
+this_obj.Originals += [object_itself]
+
+item_name = "pd_joist_" + str(level) + '_001'
+object_itself = App.ActiveDocument.getObject(item_name)
+FreeCAD.Console.PrintMessage("The constructed name is: " + item_name + "\n")
+this_obj.Originals += [object_itself]
+
+item_name = "pd_joist_extend_" + str(level) + '_001'
+object_itself = App.ActiveDocument.getObject(item_name)
+FreeCAD.Console.PrintMessage("The constructed name is: " + item_name + "\n")
+this_obj.Originals += [object_itself]
+
+item_name = "pd_support_" + str(level) + '_001'
+object_itself = App.ActiveDocument.getObject(item_name)
+FreeCAD.Console.PrintMessage("The constructed name is: " + item_name + "\n")
+this_obj.Originals += [object_itself]
+
+item_name = "pd_standard_" + str(level) + '_000'
+object_itself = App.ActiveDocument.getObject(item_name)
+FreeCAD.Console.PrintMessage("The constructed name is: " + item_name + "\n")
+this_obj.Originals += [object_itself]
+
+item_name = "pd_standard_" + str(level) + '_001'
+object_itself = App.ActiveDocument.getObject(item_name)
+FreeCAD.Console.PrintMessage("The constructed name is: " + item_name + "\n")
+this_obj.Originals += [object_itself]
+
+
+#Gui.activeDocument().hide(this_loadcell.Name)
 #
 # ----
 #
