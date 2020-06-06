@@ -44,7 +44,7 @@ App.ActiveDocument.mr_foot.Originals = [ \
 Gui.activeDocument().hide(App.ActiveDocument.sk_standard.Name)
 Gui.activeDocument().hide(App.ActiveDocument.sk_standard001.Name)
 Gui.activeDocument().hide(App.ActiveDocument.pd_joist_loadcell_0_001.Name)
-Gui.activeDocument().hide(App.ActiveDocument.mr_shelf.Name)
+Gui.activeDocument().hide(App.ActiveDocument.mr_shelf_0_001.Name)
 Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend001.Name)
 Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend002.Name)
 App.ActiveDocument.recompute()

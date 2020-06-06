@@ -16,11 +16,15 @@ group_spreadsheets = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'g
 # ----
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_global')
-App.ActiveDocument.sp_global.setDisplayUnit('B2:B8', 'in')
+App.ActiveDocument.sp_global.setDisplayUnit('B2:B2', 'in')
 #
 App.ActiveDocument.sp_global.set('A2', 'elevation')
 App.ActiveDocument.sp_global.set('B2', '6"')
 App.ActiveDocument.sp_global.setAlias('B2', 'elevation')
+#
+App.ActiveDocument.sp_global.set('A3', 'level')  #like stories of a building
+App.ActiveDocument.sp_global.set('B3', '0"')
+App.ActiveDocument.sp_global.setAlias('B3', 'level')
 #
 #  ----  Values for the sprue
 #

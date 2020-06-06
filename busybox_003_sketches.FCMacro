@@ -15,7 +15,7 @@ group_sketches = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group
 #
 # ---- sk_support
 #
-this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_support')
+this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_support_000')
 this_sketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
 this_sketch.MapMode = "Deactivated"
 
@@ -99,7 +99,7 @@ this_sketch.addConstraint(Sketcher.Constraint('Coincident',16,2,11,1))
 #
 # ---- sk_joist
 #
-this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_joist')
+this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_joist_000')
 this_sketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(0.500000,0.500000,0.500000,0.500000))
 this_sketch.MapMode = 'FlatFace'
 this_sketch.addGeometry(Part.LineSegment(App.Vector(19.050000,0.000000,0),App.Vector(38.100000,0.000000,0)),False)
@@ -126,7 +126,7 @@ this_sketch.recompute()
 #
 # ----
 #
-this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_standard')
+this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_standardF_000')
 this_sketch.MapMode = 'FlatFace'
 this_sketch.addGeometry(Part.LineSegment(App.Vector(-44.450000,47.625000,0),App.Vector(-6.350000,47.625000,0)),False)
 this_sketch.addConstraint(Sketcher.Constraint('Horizontal',0)) 
@@ -148,10 +148,36 @@ this_sketch.addConstraint(Sketcher.Constraint('Coincident',1,2,-1,1))
 this_sketch.setExpression('Constraints[5]', u'sp_standard.length')
 Gui.activeDocument().resetEdit()
 #
+# ----
+#
+this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_standardB_000')
+this_sketch.MapMode = 'FlatFace'
+this_sketch.addGeometry(Part.LineSegment(App.Vector(-44.450000,47.625000,0),App.Vector(-6.350000,47.625000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Horizontal',0)) 
+this_sketch.addGeometry(Part.LineSegment(App.Vector(-44.450000,6.350000,0),App.Vector(-6.350000,6.350000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Horizontal',1)) 
+this_sketch.addGeometry(Part.LineSegment(App.Vector(6.350000,3.175000,0),App.Vector(6.350000,22.225000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',2)) 
+this_sketch.addGeometry(Part.LineSegment(App.Vector(-60.325000,31.750000,0),App.Vector(-60.325000,12.700000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',3)) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',2,1,2,2,19.050000)) 
+this_sketch.setExpression('Constraints[4]', u'sp_standard.width')
+this_sketch.addConstraint(Sketcher.Constraint('DistanceX',1,1,1,2,38.100000)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 3, 1, 0, 1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 1, 1, 3, 2)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 0, 2, 2, 2)) 
+this_sketch.movePoint(0,0,App.Vector(2.002364,5.961937,0),1)
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',2,1,1,2)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',1,2,-1,1)) 
+this_sketch.setExpression('Constraints[5]', u'sp_standard.length')
+aux_rotation = App.Rotation( App.Vector(1, 0, 0), 180)
+this_sketch.Placement.Rotation = aux_rotation
+this_sketch.setExpression('Placement.Base.y', u'sp_support.length')
+Gui.activeDocument().resetEdit()
+#
 # ---- sk_sprue
 #
-this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_sprue')
-#App.activeDocument().addObject('Sketcher::SketchObject','sk_sprue')
+this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_sprue_000')
 this_sketch.Placement = App.Placement(App.Vector(12.700000,0, -12.70000), \
     App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
 this_sketch.MapMode = "Deactivated"
@@ -177,17 +203,6 @@ this_sketch.addConstraint(Sketcher.Constraint('DistanceX',-1,1,0,2,12.700000))
 this_sketch.setExpression('Constraints[11]', u'sp_global.width / 2')
 Gui.activeDocument().hide("sk_sprue")
 App.ActiveDocument.recompute()
-#
-# ----
-#
-this_sketch2 = group_sketches.newObject('Sketcher::SketchObject','sk_standard001')
-FreeCAD.Console.PrintMessage("busybox_003_sketches after line 153.\n") 
-this_sketch2.restoreContent(App.ActiveDocument.sk_standard.dumpContent())
-FreeCAD.Console.PrintMessage("busybox_003_sketches after line 155.\n") 
-aux_rotation = App.Rotation( App.Vector(1, 0, 0), 180)
-this_sketch2.Placement.Rotation = aux_rotation
-this_sketch2.setExpression('Placement.Base.y', u'sp_support.length')
-Gui.activeDocument().hide("sk_standard001")
 #
 Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
