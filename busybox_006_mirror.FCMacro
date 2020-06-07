@@ -17,4 +17,10 @@ App.activeDocument().bd_standard_1.newObject("PartDesign::Mirrored","mr_rightsid
 App.activeDocument().bd_standard_1.Tip = App.activeDocument().mr_rightside
 App.ActiveDocument.mr_rightside.MirrorPlane = (App.ActiveDocument.pd_joist_loadcell_001, ["Face31"])
 App.ActiveDocument.mr_rightside.Originals = Originals
+Gui.getDocument("BusyBox_ver_1_1_3").getObject("mr_rightside").ShapeColor=(0.87,0.72,0.53)
+Gui.activeDocument().show(App.ActiveDocument.mr_rightside.Name)
+
+rot = App.Rotation( App.Vector(0, 1, 0), -90)
+App.ActiveDocument.bd_standard_1.Placement.Rotation = rot.multiply(App.ActiveDocument.bd_standard_1.Placement.Rotation)
+
 
