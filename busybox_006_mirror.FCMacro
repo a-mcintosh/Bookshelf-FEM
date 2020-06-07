@@ -1,0 +1,20 @@
+Originals = []
+level = int(App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("level")))
+ix = 1
+while ix <= level:
+  FreeCAD.Console.PrintMessage( "level = " + str(ix) + "\n")
+  Originals += [App.ActiveDocument.getObject("pd_joist_loadcell_00" + str(ix)), ]
+  Originals += [App.ActiveDocument.getObject("pd_joist_00" + str(ix)), ]
+  Originals += [App.ActiveDocument.getObject("pd_joist_extend_00" + str(ix)), ]
+  Originals += [App.ActiveDocument.getObject("pd_support_00" + str(ix)), ]
+  Originals += [App.ActiveDocument.getObject("pd_standardF_00" + str(ix)), ]
+  Originals += [App.ActiveDocument.getObject("pd_standardB_00" + str(ix)), ]
+  ix += 1
+
+Originals += [App.ActiveDocument.getObject("pd_standard_extendF"), App.ActiveDocument.getObject("pd_standard_extendB"),]
+App.activeDocument().bd_standard_1.newObject("PartDesign::Mirrored","mr_rightside")
+
+App.activeDocument().bd_standard_1.Tip = App.activeDocument().mr_rightside
+App.ActiveDocument.mr_rightside.MirrorPlane = (App.ActiveDocument.pd_joist_loadcell_001, ["Face31"])
+App.ActiveDocument.mr_rightside.Originals = Originals
+
