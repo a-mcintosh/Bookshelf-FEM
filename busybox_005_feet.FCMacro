@@ -5,10 +5,10 @@
 # -- The operations must be sequenced so that the solid formed is not disjoint.
 # --- This is very handy ---> Gui.Selection.getSelectionEx()[0].SubElementNames
 # -------------------------------
-this_body = App.ActiveDocument.bd_standard_0
+this_body = App.ActiveDocument.bd_standard_1
 #
 this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend002")
-this_pad_extension.Profile = App.ActiveDocument.sk_standard
+this_pad_extension.Profile = App.ActiveDocument.sk_standardF_001
 this_pad_extension.Length = 10.0
 this_pad_extension.setExpression('Length', u'sp_global.elevation - sp_joist.height')
 this_pad_extension.Length2 = 99.999800
@@ -21,7 +21,7 @@ this_pad_extension.Offset = 0.000000
 #
 #
 this_pad_extension = this_body.newObject("PartDesign::Pad","pd_standard_extend001")
-this_pad_extension.Profile = App.ActiveDocument.sk_standard001
+this_pad_extension.Profile = App.ActiveDocument.sk_standardB_001
 this_pad_extension.Length = 10.0
 this_pad_extension.setExpression('Length', u'sp_global.elevation - sp_joist.height')
 this_pad_extension.Length2 = 99.999800
@@ -33,20 +33,18 @@ this_pad_extension.Offset = 0.000000
 #
 #  ----
 #
-App.activeDocument().bd_standard_0.newObject("PartDesign::Mirrored","mr_foot")
+for i in App.ActiveDocument.group_sketches.Group:
+ Gui.activeDocument().hide(i.Name)
+
+#App.activeDocument().bd_standard_0.newObject("PartDesign::Mirrored","mr_foot")
 #
-App.activeDocument().bd_standard_0.Tip = App.activeDocument().mr_foot
-App.ActiveDocument.mr_foot.MirrorPlane = (App.ActiveDocument.pd_joist_loadcell_0_001, ["Face31"])
-App.ActiveDocument.mr_foot.Originals = [ \
-    App.ActiveDocument.pd_standard_extend002,\
-    App.ActiveDocument.pd_standard_extend001,]
+#App.activeDocument().bd_standard_0.Tip = App.activeDocument().mr_foot
+#App.ActiveDocument.mr_foot.MirrorPlane = (App.ActiveDocument.pd_joist_loadcell_0_001, ["Face31"])
+#App.ActiveDocument.mr_foot.Originals = [ \
+#    App.ActiveDocument.pd_standard_extend002,\
+#    App.ActiveDocument.pd_standard_extend001,]
 #
-Gui.activeDocument().hide(App.ActiveDocument.sk_standard.Name)
-Gui.activeDocument().hide(App.ActiveDocument.sk_standard001.Name)
-Gui.activeDocument().hide(App.ActiveDocument.pd_joist_loadcell_0_001.Name)
-Gui.activeDocument().hide(App.ActiveDocument.mr_shelf_0_001.Name)
-Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend001.Name)
-Gui.activeDocument().hide(App.ActiveDocument.pd_standard_extend002.Name)
+Gui.activeDocument().show(App.ActiveDocument.pd_standard_extend001.Name)
 App.ActiveDocument.recompute()
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_005_feet.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
