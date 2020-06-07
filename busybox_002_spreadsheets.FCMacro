@@ -17,7 +17,7 @@ group_spreadsheets = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'g
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_global')
 App.ActiveDocument.sp_global.setDisplayUnit('B2', '')
-App.ActiveDocument.sp_global.setDisplayUnit('B2:B5', 'in')
+App.ActiveDocument.sp_global.setDisplayUnit('B3:B5', 'in')
 #
 App.ActiveDocument.sp_global.set('A2', 'level')  #like stories of a building
 App.ActiveDocument.sp_global.set('B2', '0')
