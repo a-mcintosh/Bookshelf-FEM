@@ -7,6 +7,7 @@ import PartDesign
 # --------------------------------------------------------
 # --  Set the level of this shelf in the Python console.
 # --    e.g. level = 0
+level = int(App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("level")))
 FreeCAD.Console.PrintMessage("Starting busybox_004_body with level " + str(level) + "\n")
 # --------------------------------------------------------
 # --- This is very handy ---> Gui.Selection.getSelectionEx()[0].SubElementNames
@@ -126,6 +127,8 @@ Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
 
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_008_standard_body_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+
+App.ActiveDocument.sp_global.set(App.ActiveDocument.sp_global.getCellFromAlias("level"), str(level+1))
 
 # hints
 #App.ActiveDocument.getObject("sk_support_002")
