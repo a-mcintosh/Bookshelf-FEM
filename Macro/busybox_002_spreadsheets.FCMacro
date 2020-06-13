@@ -90,7 +90,7 @@ App.ActiveDocument.sp_standard.set('B3', '0.75"')
 App.ActiveDocument.sp_standard.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_standard.set('A4', 'height')
-App.ActiveDocument.sp_standard.set('B4', '15"')
+App.ActiveDocument.sp_standard.set('B4', '84"')
 App.ActiveDocument.sp_standard.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_standard.set('A5', 'notch depth')
@@ -143,7 +143,7 @@ group_spreadsheets.newObject('Spreadsheet::Sheet','sp_joist')
 App.ActiveDocument.sp_joist.setDisplayUnit('B2:B5', 'in')
 #
 App.ActiveDocument.sp_joist.set('A2', 'length')
-App.ActiveDocument.sp_joist.set('B2', '12"')
+App.ActiveDocument.sp_joist.set('B2', '40"')
 App.ActiveDocument.sp_joist.setAlias('B2', 'length')
 #
 App.ActiveDocument.sp_joist.set('A3', 'width')
@@ -162,7 +162,30 @@ App.ActiveDocument.sp_joist.set('A6', 'spacer count')
 App.ActiveDocument.sp_joist.set('B6', '10')
 App.ActiveDocument.sp_joist.setAlias('B6', 'spacer_count')
 #
-App.ActiveDocument.recompute()
+# --------
+#
+group_spreadsheets.newObject('Spreadsheet::Sheet','sp_spacer')
+App.ActiveDocument.sp_spacer.setDisplayUnit('B2:B5', 'in')
+#
+App.ActiveDocument.sp_spacer.set('A2', 'length')
+#App.ActiveDocument.sp_spacer.set('B2', '54"')
+App.ActiveDocument.sp_spacer.setAlias('B2', 'length')
+#
+App.ActiveDocument.sp_spacer.set('A3', 'width')
+App.ActiveDocument.sp_spacer.set('B3', '0.75"')
+App.ActiveDocument.sp_spacer.setAlias('B3', 'width')
+#
+App.ActiveDocument.sp_spacer.set('A4', 'height')
+App.ActiveDocument.sp_spacer.set('B4', '0.75"')
+App.ActiveDocument.sp_spacer.setAlias('B4', 'height')
+#
+App.ActiveDocument.sp_spacer.set('A5', 'notch depth')
+#App.ActiveDocument.sp_spacer.set('B5', '0.125"')
+App.ActiveDocument.sp_spacer.setAlias('B5', 'notch_depth')
+#
+App.ActiveDocument.sp_spacer.set('A6', 'spacer count')
+App.ActiveDocument.sp_spacer.set('B6', '7')
+App.ActiveDocument.sp_spacer.setAlias('B6', 'spacer_count')
 #
 # --------------------------------
 #
