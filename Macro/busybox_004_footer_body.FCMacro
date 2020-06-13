@@ -1,0 +1,98 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_ver_10_5_footer.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+import PartDesign
+import PartDesignGui
+import Sketcher
+
+FreeCAD.Console.PrintMessage("Starting busybox_004_footer.\n")
+group_bodies = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_bodies_' + str(1))
+this_body = group_bodies.newObject("PartDesign::Body","bd_footer_00" + str(1))
+
+this_pad = this_body.newObject("PartDesign::Pad","pd_footer_00" + str(1))
+aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_footer_000)
+Gui.activeDocument().hide(App.ActiveDocument.sk_footer_000.Name)
+Gui.activeDocument().hide(aux_sketch.Name)
+this_body.Group += [aux_sketch ,]
+this_pad.Profile = aux_sketch
+this_pad.Length = 10.0
+this_pad.setExpression('Length', u'sp_footer.length')
+this_pad.Length2 = 99.999800
+this_pad.Type = 0
+this_pad.UpToFace = None
+this_pad.Reversed = 1
+this_pad.Midplane = 0
+this_pad.Offset = 0.000000
+#this_pad.Support = this_body.XZ_Plane, ['']
+#this_pad.MapMode = 'FlatFace'
+#
+#this_pad.setExpression('Placement.Base.z', u'(sp_global.elevation - sp_joist.height - sp_footer.height + sp_footer.notch_depth)')
+App.ActiveDocument.recompute()
+#Gui.activeDocument().resetEdit()
+#
+# --------
+#
+FreeCAD.Console.PrintMessage("Starting busybox_004_footer fencepost.\n")
+this_body.newObject("PartDesign::Pad","pd_footer_fencepost_001")
+App.activeDocument().pd_footer_fencepost_001.Profile = (App.activeDocument().pd_footer_001, ["Face6"])
+App.activeDocument().pd_footer_fencepost_001.Length = 10.0
+App.ActiveDocument.recompute()
+App.ActiveDocument.pd_footer_fencepost_001.setExpression('Length', u'sp_standard.width')
+App.ActiveDocument.pd_footer_fencepost_001.Length2 = 99.999800
+App.ActiveDocument.pd_footer_fencepost_001.Type = 0
+App.ActiveDocument.pd_footer_fencepost_001.UpToFace = App.activeDocument().pd_footer_001, ["Face6"]
+App.ActiveDocument.pd_footer_fencepost_001.Reversed = 0
+App.ActiveDocument.pd_footer_fencepost_001.Midplane = 0
+App.ActiveDocument.pd_footer_fencepost_001.Offset = 0.000000
+App.ActiveDocument.recompute()
+#Gui.activeDocument().resetEdit()
+Gui.activeDocument().hide("pd_footer_001")
+Gui.activeDocument().activeView().viewIsometric()
+Gui.SendMsgToActiveView("ViewFit")
+
+
+this_notch = this_body.newObject("PartDesign::Pocket","pk_standard_notch_001")
+aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_standardF_000)
+this_body.Group += [aux_sketch ,]
+this_notch.Profile = aux_sketch
+this_notch.Length = 5.0
+this_notch.Length = 0.000000
+this_notch.Length2 = 99.999800
+this_notch.Type = 3
+this_notch.UpToFace = (App.activeDocument().pd_footer_fencepost_001, ["Face1"])
+this_notch.Reversed = 0
+this_notch.Midplane = 0
+this_notch.setExpression('Offset', u'sp_footer.notch_depth')
+#Gui.activeDocument().hide("pd_footer_fencepost_001")
+App.ActiveDocument.recompute()
+#Gui.activeDocument().resetEdit()
+
+#Gui.getDocument("shelves_ver_10_5").getObject("pd_footer_fencepost_001").Visibility=False
+Gui.activeDocument().activeView().viewIsometric()
+Gui.SendMsgToActiveView("ViewFit")
+App.ActiveDocument.recompute()
+#
+# --------
+#
+#
+this_pocket = this_body.newObject("PartDesign::Pocket","pk_dowel_001")
+aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_dowel_000)
+Gui.activeDocument().hide(aux_sketch.Name)
+this_body.Group += [aux_sketch ,]
+this_pocket.Profile = aux_sketch
+this_pocket.Length = 5.0
+Gui.activeDocument().show("pk_dowel_001")
+App.ActiveDocument.recompute()
+#
+
+this_linearpattern = this_body.newObject("PartDesign::LinearPattern","lp_standard_001")
+this_linearpattern.Originals = [App.activeDocument().pk_dowel_001, this_notch,]
+this_linearpattern.Direction = (App.activeDocument().sk_dowel_001, ["V_Axis"])
+this_linearpattern.Length = 457.2
+this_linearpattern.Occurrences = 7
+this_linearpattern.Reversed = 0
+this_body.Tip = this_linearpattern
+Gui.activeDocument().show(this_linearpattern.Name)
+# Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_footer_linear.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++# Macro End: /home/amcintosh/.FreeCAD/Macro/footer_notches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+# Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_ver_10_5_footer.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

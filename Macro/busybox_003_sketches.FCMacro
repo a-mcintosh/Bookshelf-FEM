@@ -13,6 +13,51 @@ import Sketcher
 
 group_sketches = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_sketches')
 #
+# ---- sk_footer
+#
+this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_footer_000')
+this_sketch.Placement = App.Placement(App.Vector(0, 0, 0), \
+    App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
+this_sketch.setExpression('Placement.Base.z', \
+  u'-(sp_global.elevation-sp_joist.height-sp_footer.height+sp_footer.notch_depth)')
+this_sketch.addGeometry(Part.LineSegment(App.Vector(-3.175000,0.000000,0),App.Vector(-3.175000,3.175000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',0)) 
+this_sketch.addGeometry(Part.LineSegment(App.Vector(3.175000,6.350000,0),App.Vector(-34.925000,6.350000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Horizontal',1)) 
+this_sketch.addGeometry(Part.LineSegment(App.Vector(-38.100000,6.350000,0),App.Vector(-38.100000,-12.700000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',2)) 
+this_sketch.addGeometry(Part.LineSegment(App.Vector(-34.925000,-12.700000,0),App.Vector(3.175000,-12.700000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Horizontal',3)) 
+this_sketch.addGeometry(Part.LineSegment(App.Vector(6.350000,-12.700000,0),App.Vector(6.350000,6.350000,0)),False)
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',4)) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceX',3,1,3,2,38.100000)) 
+this_sketch.setExpression('Constraints[5]', u'sp_footer.width')
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',4,1,4,2,19.050000)) 
+this_sketch.setExpression('Constraints[6]', u'sp_footer.height')
+this_sketch.toggleConstruction(0) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',0,1,0,2,3.175000)) 
+this_sketch.setExpression('Constraints[7]', u'sp_footer.notch_depth')
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 3, 2, 4, 1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 1, 1, 4, 2)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 1, 2, 2, 1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 2, 2, 3, 1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 0, 1, -1, 1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident', 1, 1, 0, 2)) 
+#
+# ---- sk_dowel
+#
+this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_dowel_000')
+this_sketch.setExpression('Placement.Base.z', \
+  u'-(sp_global.elevation-sp_joist.height-sp_footer.height+sp_footer.notch_depth)')
+this_sketch.MapMode = 'FlatFace'
+this_sketch.addGeometry(Part.Circle(App.Vector(-17.876772,8.016674,0),App.Vector(0,0,1),4.487258),False)
+this_sketch.addConstraint(Sketcher.Constraint('DistanceX',0,3,-1,1,-17.876772)) 
+this_sketch.setExpression('Constraints[0]', u'sp_standard.length / 2')
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',-1,1,0,3,-8.016674)) 
+this_sketch.setExpression('Constraints[1]', u'sp_standard.width / 2')
+this_sketch.addConstraint(Sketcher.Constraint('Diameter',0,8.974516)) 
+this_sketch.setDatum(2,App.Units.Quantity('4.749800 mm'))
+#
 # ---- sk_support
 #
 this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_support_000')
@@ -173,37 +218,8 @@ this_sketch.setExpression('Constraints[5]', u'sp_standard.length')
 aux_rotation = App.Rotation( App.Vector(1, 0, 0), 180)
 this_sketch.Placement.Rotation = aux_rotation
 this_sketch.setExpression('Placement.Base.y', u'sp_support.length')
+#
 Gui.activeDocument().resetEdit()
-#
-# ---- sk_sprue
-#
-this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_sprue_000')
-this_sketch.Placement = App.Placement(App.Vector(12.700000,0, -12.70000), \
-    App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
-this_sketch.MapMode = "Deactivated"
-this_sketch.addGeometry(Part.LineSegment(App.Vector(-12.700000,-12.700000,0),App.Vector(12.700000,-12.700000,0)),False)
-this_sketch.addConstraint(Sketcher.Constraint('Horizontal',0)) 
-this_sketch.addGeometry(Part.LineSegment(App.Vector(12.700000,-12.700000,0),App.Vector(12.700000,12.700000,0)),False)
-this_sketch.addConstraint(Sketcher.Constraint('Coincident',1,1,0,2)) 
-this_sketch.addConstraint(Sketcher.Constraint('Vertical',1)) 
-this_sketch.addGeometry(Part.LineSegment(App.Vector(12.700000,12.700000,0),App.Vector(-12.700000,12.700000,0)),False)
-this_sketch.addConstraint(Sketcher.Constraint('Coincident',2,1,1,2)) 
-this_sketch.addConstraint(Sketcher.Constraint('Horizontal',2)) 
-this_sketch.addGeometry(Part.LineSegment(App.Vector(-12.700000,12.700000,0),App.Vector(-12.700000,-12.700000,0)),False)
-this_sketch.addConstraint(Sketcher.Constraint('Coincident',3,1,2,2)) 
-this_sketch.addConstraint(Sketcher.Constraint('Coincident',3,2,0,1)) 
-this_sketch.addConstraint(Sketcher.Constraint('Vertical',3)) 
-this_sketch.addConstraint(Sketcher.Constraint('DistanceX',2,2,2,1,25.400000)) 
-this_sketch.setExpression('Constraints[8]', u'sp_global.width')
-this_sketch.addConstraint(Sketcher.Constraint('DistanceY',1,1,1,2,25.400000)) 
-this_sketch.setExpression('Constraints[9]', u'sp_global.height')
-this_sketch.addConstraint(Sketcher.Constraint('DistanceY',-1,1,2,2,12.700000)) 
-this_sketch.setExpression('Constraints[10]', u'sp_global.height / 2')
-this_sketch.addConstraint(Sketcher.Constraint('DistanceX',-1,1,0,2,12.700000)) 
-this_sketch.setExpression('Constraints[11]', u'sp_global.width / 2')
-Gui.activeDocument().hide("sk_sprue")
-App.ActiveDocument.recompute()
-#
 Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_003_sketches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
