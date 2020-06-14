@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_010_spacer.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+import PartDesignGui
+import Sketcher
+
+group_bodies = App.ActiveDocument.group_bodies_1
+this_body = group_bodies.newObject("PartDesign::Body","bd_spacer_" + str(1))
+for i in [App.ActiveDocument.sk_spacer_body_000, \
+  App.ActiveDocument.sk_spacer_notch_000,  ]:
+ aux_sketch = App.ActiveDocument.copyObject(i)
+ this_body.Group += [aux_sketch ,]
+ Gui.activeDocument().hide(i.Name)
+ Gui.activeDocument().hide(aux_sketch.Name)
+
+#
+#
+# ----
+#
+#
+this_sketch = App.activeDocument().sk_spacer_body_001
+#this_sketch.Support = (App.activeDocument().XZ_Plane, [''])
+this_sketch.MapMode = 'FlatFace'
+#
+this_pad = this_body.newObject("PartDesign::Pad","pd_spacer")
+this_pad.Profile = this_sketch
+Gui.activeDocument().hide("sk_spacer_body_001")
+this_pad.setExpression('Length', u'sp_footer.length + sp_standard.width')
+this_pad.Length2 = 99.999800
+this_pad.Type = 0
+this_pad.UpToFace = None
+this_pad.Reversed = 1
+this_pad.Midplane = 0
+this_pad.Offset = 0.000000
+#
+this_notch = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notch")
+this_sketch = App.activeDocument().sk_spacer_notch_002
+this_notch.Profile = this_sketch
+this_notch.Length = 20.0
+this_notch.Length = 0.000000
+this_notch.Length2 = 99.999800
+this_notch.Type = 'ThroughAll'
+#this_notch.UpToFace = (App.activeDocument().pk_support_002, ["Face8"])
+this_notch.Reversed = 0
+this_notch.Midplane = 0
+this_notch.Offset = -50.800000
+Gui.activeDocument().hide(this_sketch.Name)
+Gui.activeDocument().hide(this_pad.Name)
+#
+this_linear = this_body.newObject("PartDesign::LinearPattern","lp_for_joist")
+this_linear.Originals = [this_notch,]
+this_linear.Direction = (this_sketch, ["V_Axis"])
+this_linear.setExpression('Length', u'sp_footer.length')
+this_linear.setExpression('Occurrences', u'sp_spacer.spacer_count')
+this_linear.Reversed = 0
+this_body.Tip = this_linear
+Gui.activeDocument().show("lp_for_joist")
+Gui.activeDocument().hide("pk_joist_notch")
+App.ActiveDocument.recompute()
+#
+

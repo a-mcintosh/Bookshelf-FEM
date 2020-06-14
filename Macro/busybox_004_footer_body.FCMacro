@@ -54,6 +54,7 @@ Gui.SendMsgToActiveView("ViewFit")
 
 this_notch = this_body.newObject("PartDesign::Pocket","pk_standard_notch_001")
 aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_standardF_000)
+Gui.activeDocument().hide(aux_sketch.Name)
 this_body.Group += [aux_sketch ,]
 this_notch.Profile = aux_sketch
 this_notch.Length = 5.0
