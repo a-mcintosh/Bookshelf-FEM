@@ -5,10 +5,10 @@ import FreeCAD
 import PartDesignGui
 import Sketcher
 
-group_bodies = App.ActiveDocument.group_bodies_1
-this_body = group_bodies.newObject("PartDesign::Body","bd_spacer_" + str(1))
+part_bodies = App.ActiveDocument.part_bodies_1
+this_body = part_bodies.newObject("PartDesign::Body","bd_spacer_" + str(1))
 for i in [App.ActiveDocument.sk_spacer_body_000, \
-  App.ActiveDocument.sk_spacer_notch_000,  ]:
+  App.ActiveDocument.sk_spacer_notch_000, App.ActiveDocument.sk_spacer_notch_000,  ]:
  aux_sketch = App.ActiveDocument.copyObject(i)
  this_body.Group += [aux_sketch ,]
  Gui.activeDocument().hide(i.Name)
@@ -34,7 +34,7 @@ this_pad.Reversed = 1
 this_pad.Midplane = 0
 this_pad.Offset = 0.000000
 #
-this_notch = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notch")
+this_notch = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notchE")
 this_sketch = App.activeDocument().sk_spacer_notch_002
 this_notch.Profile = this_sketch
 this_notch.Length = 20.0
@@ -48,8 +48,23 @@ this_notch.Offset = -50.800000
 Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
 #
+this_notchO = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notchO")
+this_sketch = App.activeDocument().sk_spacer_notch_003
+this_sketch.Placement.Base.y += 25.4 * 2.5
+this_notchO.Profile = this_sketch
+this_notchO.Length = 20.0
+this_notchO.Length = 0.000000
+this_notchO.Length2 = 99.999800
+this_notchO.Type = 'ThroughAll'
+#this_notchO.UpToFace = (App.activeDocument().pk_support_003, ["Face8"])
+this_notchO.Reversed = 0
+this_notchO.Midplane = 0
+this_notchO.Offset = -50.800000
+Gui.activeDocument().hide(this_sketch.Name)
+Gui.activeDocument().hide(this_pad.Name)
+#
 this_linear = this_body.newObject("PartDesign::LinearPattern","lp_for_joist")
-this_linear.Originals = [this_notch,]
+this_linear.Originals = [this_notch, this_notchO]
 this_linear.Direction = (this_sketch, ["V_Axis"])
 this_linear.setExpression('Length', u'sp_footer.length')
 this_linear.setExpression('Occurrences', u'sp_spacer.spacer_count')

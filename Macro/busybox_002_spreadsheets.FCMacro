@@ -33,7 +33,7 @@ group_spreadsheets.newObject('Spreadsheet::Sheet','sp_footer')
 App.ActiveDocument.sp_footer.setDisplayUnit('B3:B8', 'in')
 #
 App.ActiveDocument.sp_footer.set('A2', 'count')
-App.ActiveDocument.sp_footer.set('B2', '7')
+App.ActiveDocument.sp_footer.set('B2', '6')
 App.ActiveDocument.sp_footer.setAlias('B2', 'count')
 #
 App.ActiveDocument.sp_footer.set('A3', 'hight')
@@ -45,7 +45,7 @@ App.ActiveDocument.sp_footer.set('B4', '1.5"')
 App.ActiveDocument.sp_footer.setAlias('B4', 'width')
 #
 App.ActiveDocument.sp_footer.set('A5', 'length')
-App.ActiveDocument.sp_footer.set('B5', '18"')
+App.ActiveDocument.sp_footer.set('B5', '20"')
 App.ActiveDocument.sp_footer.setAlias('B5', 'length')
 #
 App.ActiveDocument.sp_footer.set('A6', 'notch depth')
@@ -92,16 +92,13 @@ App.ActiveDocument.sp_standard.setAlias('B7', 'shelf_count')
 #
 App.ActiveDocument.recompute()
 #
-# --------
-#
-#
-# --------
+# --------  support
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_support')
 App.ActiveDocument.sp_support.setDisplayUnit('B2:B5', 'in')
 #
 App.ActiveDocument.sp_support.set('A2', 'length')
-App.ActiveDocument.sp_support.set('B2', '18"')
+App.ActiveDocument.sp_support.set('B2', '20"')
 App.ActiveDocument.sp_support.setAlias('B2', 'length')
 #
 App.ActiveDocument.sp_support.set('A3', 'width')
@@ -122,7 +119,7 @@ App.ActiveDocument.sp_support.setAlias('B6', 'blade_cut')
 #
 App.ActiveDocument.recompute()
 #
-# --------
+# --------  joist
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_joist')
 App.ActiveDocument.sp_joist.setDisplayUnit('B2:B5', 'in')
@@ -147,7 +144,7 @@ App.ActiveDocument.sp_joist.set('A6', 'spacer count')
 App.ActiveDocument.sp_joist.set('B6', '9')
 App.ActiveDocument.sp_joist.setAlias('B6', 'spacer_count')
 #
-# --------
+# --------  spacer
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_spacer')
 App.ActiveDocument.sp_spacer.setDisplayUnit('B2:B5', 'in')
@@ -169,7 +166,7 @@ App.ActiveDocument.sp_spacer.set('B5', '0.125"')
 App.ActiveDocument.sp_spacer.setAlias('B5', 'notch_depth')
 #
 App.ActiveDocument.sp_spacer.set('A6', 'spacer count')
-App.ActiveDocument.sp_spacer.set('B6', '7')
+App.ActiveDocument.sp_spacer.set('B6', '6')
 App.ActiveDocument.sp_spacer.setAlias('B6', 'spacer_count')
 #
 # --------------------------------

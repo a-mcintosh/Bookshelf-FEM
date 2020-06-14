@@ -7,8 +7,8 @@ import PartDesignGui
 import Sketcher
 
 FreeCAD.Console.PrintMessage("Starting busybox_004_footer.\n")
-group_bodies = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_bodies_' + str(1))
-this_body = group_bodies.newObject("PartDesign::Body","bd_footer_00" + str(1))
+part_bodies = App.ActiveDocument.addObject('App::Part', 'part_bodies_' + str(1))
+this_body = part_bodies.newObject("PartDesign::Body","bd_footer_00" + str(1))
 
 this_pad = this_body.newObject("PartDesign::Pad","pd_footer_00" + str(1))
 aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_footer_000)
@@ -91,7 +91,9 @@ this_linearpattern = this_body.newObject("PartDesign::LinearPattern","lp_standar
 this_linearpattern.Originals = [App.activeDocument().pk_dowel_001, this_notch,]
 this_linearpattern.Direction = (App.activeDocument().sk_dowel_001, ["V_Axis"])
 this_linearpattern.Length = 457.2
-this_linearpattern.Occurrences = 7
+this_linearpattern.setExpression('Length', u'sp_footer.length')
+this_linearpattern.setExpression('Occurrences', u'sp_footer.count')
+this_linearpattern.setExpression('Length', u'sp_footer.length')
 this_linearpattern.Reversed = 0
 this_body.Tip = this_linearpattern
 Gui.activeDocument().show(this_linearpattern.Name)
