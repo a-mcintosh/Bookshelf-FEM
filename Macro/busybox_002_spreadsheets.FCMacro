@@ -27,22 +27,7 @@ App.ActiveDocument.sp_global.set('A3', 'elevation')
 App.ActiveDocument.sp_global.set('B3', '6"')
 App.ActiveDocument.sp_global.setAlias('B3', 'elevation')
 #
-#  ----  Values for the sprue
-#
-App.ActiveDocument.sp_global.set('A4', 'length')
-App.ActiveDocument.sp_global.set('B4', '24"')
-App.ActiveDocument.sp_global.setAlias('B4', 'length')
-#
-App.ActiveDocument.sp_global.set('A5', 'width')
-App.ActiveDocument.sp_global.set('B5', '1"')
-App.ActiveDocument.sp_global.setAlias('B5', 'width')
-#
-App.ActiveDocument.sp_global.set('A6', 'height')
-App.ActiveDocument.sp_global.set('B6', '1"')
-App.ActiveDocument.sp_global.setAlias('B6', 'height')
-#
-#
-# ----
+# ---- footer
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_footer')
 App.ActiveDocument.sp_footer.setDisplayUnit('B3:B8', 'in')
@@ -143,7 +128,7 @@ group_spreadsheets.newObject('Spreadsheet::Sheet','sp_joist')
 App.ActiveDocument.sp_joist.setDisplayUnit('B2:B5', 'in')
 #
 App.ActiveDocument.sp_joist.set('A2', 'length')
-App.ActiveDocument.sp_joist.set('B2', '40"')
+App.ActiveDocument.sp_joist.set('B2', '48"')
 App.ActiveDocument.sp_joist.setAlias('B2', 'length')
 #
 App.ActiveDocument.sp_joist.set('A3', 'width')
@@ -159,7 +144,7 @@ App.ActiveDocument.sp_joist.set('B5', '0.125"')
 App.ActiveDocument.sp_joist.setAlias('B5', 'notch_depth')
 #
 App.ActiveDocument.sp_joist.set('A6', 'spacer count')
-App.ActiveDocument.sp_joist.set('B6', '10')
+App.ActiveDocument.sp_joist.set('B6', '9')
 App.ActiveDocument.sp_joist.setAlias('B6', 'spacer_count')
 #
 # --------

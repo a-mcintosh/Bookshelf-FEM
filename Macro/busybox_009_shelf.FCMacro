@@ -1,0 +1,55 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+
+App.activeDocument().Tip = App.activeDocument().addObject('App::Part','Shelf_')
+this_part = App.activeDocument().Tip
+ix = 0
+for i in [ \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  App.ActiveDocument.lp_for_joist,  \
+  ]:
+ aux_body = App.ActiveDocument.copyObject(i)
+ this_part.Group += [aux_body ,]
+ aux_body.Placement.Base.x += ix * 25.4 * 6
+ ix += 1
+
+ix = 0
+for i in [ \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  ]:
+ aux_body = App.ActiveDocument.copyObject(i)
+ this_part.Group += [aux_body ,]
+ aux_body.Placement.Base.y += ix * 25.4 * 3
+ ix += 1
+
+ix = 0
+for i in [ \
+  App.ActiveDocument.pd_support,  \
+  App.ActiveDocument.pd_support,  \
+  ]:
+ aux_body = App.ActiveDocument.copyObject(i)
+ this_part.Group += [aux_body ,]
+ aux_body.Placement.Base.y += ix * 25.4 * 24
+ ix += 1
+
+this_obj_9 = App.ActiveDocument.pd_support002
+this_obj_9.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
+
+this_rot = App.Rotation(App.Vector(0, 0, 1), 180)
+this_obj_9.Placement.Rotation = this_rot.multiply(this_obj_9.Placement.Rotation)
+
+# Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
