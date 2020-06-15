@@ -68,14 +68,15 @@ this_notchO.Offset = -50.800000
 Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
 #
-this_linear = this_body.newObject("PartDesign::LinearPattern","lp_for_joist")
+this_linear = this_body.newObject("PartDesign::LinearPattern","lp_for_joistB")
+FreeCAD.Console.PrintMessage("Internal name " + this_linear.Name + ".\n")
 this_linear.Originals = [this_notch, this_notchO]
 this_linear.Direction = (this_sketch, ["V_Axis"])
 this_linear.setExpression('Length', u'sp_footer.length')
 this_linear.setExpression('Occurrences', u'sp_spacer.spacer_count')
 this_linear.Reversed = 0
 this_body.Tip = this_linear
-Gui.activeDocument().show("lp_for_joist")
+Gui.activeDocument().show("lp_for_joistB")
 Gui.activeDocument().hide("pk_joist_notch")
 App.ActiveDocument.recompute()
 #

@@ -5,22 +5,6 @@ import FreeCAD
 
 App.activeDocument().Tip = App.activeDocument().addObject('App::Part','Shelf_')
 this_part = App.activeDocument().Tip
-ix = 0
-for i in [ \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  App.ActiveDocument.lp_for_joist,  \
-  ]:
- aux_body = App.ActiveDocument.copyObject(i)
- this_part.Group += [aux_body ,]
- aux_body.Placement.Base.x += ix * 25.4 * 6
- ix += 1
 
 ix = 0
 for i in [ \
@@ -30,10 +14,35 @@ for i in [ \
   App.ActiveDocument.lp_spacer_notch,  \
   App.ActiveDocument.lp_spacer_notch,  \
   App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_spacer_notch,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
- this_part.Group += [aux_body ,]
- aux_body.Placement.Base.y += ix * 25.4 * 3
+ aux_part = App.activeDocument().addObject('App::Part','pt_joist_00'+str(2+ix))
+ aux_part.Placement.Base.y = 25.4 * (ix * 2 + (ix%2 * 0.5))
+ aux_part.Group += [aux_body ,]
+ this_part.Group += [aux_part, ]
+ ix += 1
+
+ix = 0
+for i in [ \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_for_joistB,  \
+  ]:
+ aux_body = App.ActiveDocument.copyObject(i)
+ aux_part = App.activeDocument().addObject('App::Part','pt_spacer_00'+str(2+ix))
+ aux_part.Placement.Base.x = ix * 25.4 * 6
+ aux_part.Group += [aux_body ,]
+ this_part.Group += [aux_part ,]
  ix += 1
 
 ix = 0
@@ -42,14 +51,16 @@ for i in [ \
   App.ActiveDocument.pd_support,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
- this_part.Group += [aux_body ,]
+ aux_part = App.activeDocument().addObject('App::Part','pt_support_00'+str(2+ix))
  aux_body.Placement.Base.y += ix * 25.4 * 24
+ aux_part.Group += [aux_body ,]
+ this_part.Group += [aux_part ,]
  ix += 1
 
-this_obj_9 = App.ActiveDocument.pd_support002
-this_obj_9.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
+aux_part.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
+aux_part.setExpression('Placement.Base.y', u'sp_footer.length+sp_joist.width')
 
 this_rot = App.Rotation(App.Vector(0, 0, 1), 180)
-this_obj_9.Placement.Rotation = this_rot.multiply(this_obj_9.Placement.Rotation)
+aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
 
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

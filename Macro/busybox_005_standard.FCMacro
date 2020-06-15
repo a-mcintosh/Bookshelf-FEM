@@ -58,10 +58,13 @@ Gui.activeDocument().hide(this_pocket.Name)
 #
 # ----
 #
-FreeCAD.Console.PrintMessage("busybox_005_standard, line 55\n")
+FreeCAD.Console.PrintMessage("busybox_005_standard, line 61\n")
 this_sketch=App.ActiveDocument.sk_dowel_003
+this_sketch.setExpression('Placement.Base.z', u'sp_standard.height')
+FreeCAD.Console.PrintMessage("busybox_005_standard, line 64\n")
 this_sketch.MapMode = 'FlatFace'
-this_sketch.Support = (this_pocket, ["Face5"])
+#this_sketch.Support = (this_pocket, ["Face5"])
+FreeCAD.Console.PrintMessage("busybox_005_standard, line 67\n")
 this_pocket = this_body.newObject("PartDesign::Pocket","pk_dowel_003")
 this_pocket.Profile = this_sketch
 this_pocket.setExpression('Length', u'sp_footer.dowel_length/2')
@@ -69,7 +72,6 @@ this_pocket.Reversed = 0
 #
 this_sketch=App.ActiveDocument.sk_support_001
 #
-FreeCAD.Console.PrintMessage("busybox_005_standard, line 66\n")
 this_pocket = this_body.newObject("PartDesign::Pocket","pk_support_notch")
 this_pocket.Profile = App.activeDocument().sk_support_001
 this_pocket.Length = 5.0
@@ -101,7 +103,7 @@ App.ActiveDocument.recompute()
 #
 # ----
 #
-FreeCAD.Console.PrintMessage("busybox_005_standard, line 66\n")
+FreeCAD.Console.PrintMessage("busybox_005_standard, line 105\n")
 this_ch = this_body.newObject("PartDesign::Chamfer","ch_standard")
 this_ch.Base = (this_linearpattern,["Edge90", "Edge24","Edge30","Edge79",\
   "Edge35","Edge43","Edge51","Edge59","Edge67","Edge75",])

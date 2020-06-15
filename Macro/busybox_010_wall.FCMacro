@@ -13,11 +13,33 @@ for i in [ \
   App.ActiveDocument.lp_support,  \
   App.ActiveDocument.lp_support,  \
   App.ActiveDocument.lp_support,  \
-  App.ActiveDocument.lp_support,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
- this_part.Group += [aux_body ,]
- aux_body.Placement.Base.y += ix * 25.4 * 3
+ Gui.activeDocument().show(aux_body.Name)
+ aux_part = App.activeDocument().addObject('App::Part','pt_joist_00'+str(2+ix))
+ aux_part.Placement.Base.y = ix * 25.4 * 4
+ aux_part.Group += [aux_body ,]
+ this_part.Group += [aux_part ,]
  ix += 1
 
+ix = 0
+for i in [ \
+  App.ActiveDocument.lp_standard_001,  \
+  App.ActiveDocument.lp_standard_001,  \
+  ]:
+ aux_body = App.ActiveDocument.copyObject(i)
+ Gui.activeDocument().show(aux_body.Name)
+ aux_part = App.activeDocument().addObject('App::Part','pt_footer_00'+str(2+ix))
+ aux_part.Group += [aux_body ,]
+ this_part.Group += [aux_part ,]
+ Gui.activeDocument().show(aux_body.Name)
+ ix += 1
+
+this_rot = App.Rotation(App.Vector(0, 1, 0), 180)
+aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
+aux_part.setExpression('Placement.Base.x', u'-sp_standard.length')
+aux_part.setExpression('Placement.Base.z', \
+  u'sp_standard.height-(sp_global.elevation-sp_joist.height-sp_footer.height+sp_footer.notch_depth)')
+
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+
