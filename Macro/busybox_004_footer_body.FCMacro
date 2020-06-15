@@ -7,8 +7,11 @@ import PartDesignGui
 import Sketcher
 
 FreeCAD.Console.PrintMessage("Starting busybox_004_footer.\n")
-part_bodies = App.ActiveDocument.addObject('App::Part', 'part_bodies_' + str(1))
+part_bodies = App.ActiveDocument.addObject('App::Part', 'part_of_bodies_' + str(1))
+this_part = App.ActiveDocument.addObject('App::Part', 'pt_footer_00' + str(1))
+part_bodies.Group += [this_part, ]
 this_body = part_bodies.newObject("PartDesign::Body","bd_footer_00" + str(1))
+this_part.addObject(this_body)
 
 this_pad = this_body.newObject("PartDesign::Pad","pd_footer_00" + str(1))
 aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_footer_000)

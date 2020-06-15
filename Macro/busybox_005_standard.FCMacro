@@ -2,8 +2,13 @@
 
 # Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_007_standard_body.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
  
-part_bodies = App.ActiveDocument.part_bodies_1
+FreeCAD.Console.PrintMessage("Starting busybox_005_standard.\n")
+part_bodies = App.ActiveDocument.part_of_bodies_1
+this_part = App.ActiveDocument.addObject('App::Part', 'pt_standard_00' + str(1))
+part_bodies.Group += [this_part, ]
 this_body = part_bodies.newObject("PartDesign::Body","bd_standard_" + str(1))
+this_part.addObject(this_body)
+
 for i in [App.ActiveDocument.sk_standardF_000, App.ActiveDocument.sk_dowel_000, \
   App.ActiveDocument.sk_dowel_000, App.ActiveDocument.sk_support_000,]:
  aux_sketch = App.ActiveDocument.copyObject(i)

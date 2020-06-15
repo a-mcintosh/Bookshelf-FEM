@@ -2,8 +2,13 @@
 
 # Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_007_support_base_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
-part_bodies = App.ActiveDocument.part_bodies_1
+FreeCAD.Console.PrintMessage("Starting busybox_006_support.\n")
+part_bodies = App.ActiveDocument.part_of_bodies_1
+this_part = App.ActiveDocument.addObject('App::Part', 'pt_support_00' + str(1))
+part_bodies.Group += [this_part, ]
 this_body = part_bodies.newObject("PartDesign::Body","bd_support_" + str(1))
+this_part.addObject(this_body)
+
 for i in [ \
    App.ActiveDocument.sk_support_000,]:
  aux_sketch = App.ActiveDocument.copyObject(i)

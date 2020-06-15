@@ -5,8 +5,13 @@ import FreeCAD
 import PartDesignGui
 import Sketcher
 
-part_bodies = App.ActiveDocument.part_bodies_1
-this_body = part_bodies.newObject("PartDesign::Body","bd_spacer_" + str(1))
+FreeCAD.Console.PrintMessage("Starting busybox_008_spacer.\n")
+part_bodies = App.ActiveDocument.part_of_bodies_1
+this_part = App.ActiveDocument.addObject('App::Part', 'pt_spacer_00' + str(1))
+part_bodies.Group += [this_part, ]
+this_body = part_bodies.newObject("PartDesign::Body","bd_spacer_00" + str(1))
+this_part.addObject(this_body)
+
 for i in [App.ActiveDocument.sk_spacer_body_000, \
   App.ActiveDocument.sk_spacer_notch_000, App.ActiveDocument.sk_spacer_notch_000,  ]:
  aux_sketch = App.ActiveDocument.copyObject(i)
