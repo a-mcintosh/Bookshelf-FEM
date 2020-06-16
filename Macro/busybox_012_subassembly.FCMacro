@@ -1,0 +1,18 @@
+this_wall_assembly = App.activeDocument().addObject('App::Part','Wall_assembly')
+this_wall_assembly.Group += [
+    App.ActiveDocument.Wall_, \
+    App.ActiveDocument.Wall_001, \
+    ]
+#
+#  ----
+#
+this_shelf_assembly = App.activeDocument().addObject('App::Part','Shelf_assembly')
+this_shelf_assembly.Group += [
+    App.ActiveDocument.Shelf_, \
+    App.ActiveDocument.Shelf_001, \
+    App.ActiveDocument.Shelf_002, \
+    App.ActiveDocument.Shelf_003, \
+    App.ActiveDocument.Shelf_004, \
+    App.ActiveDocument.Shelf_005, \
+    ]
+

@@ -5,7 +5,7 @@ import FreeCAD
 FreeCAD.Console.PrintMessage("Starting busybox_009_shelf.\n")
 
 App.activeDocument().Tip = App.activeDocument().addObject('App::Part','Shelf_')
-this_part = App.activeDocument().Tip
+this_shelf = App.activeDocument().Tip
 
 ix = 0
 for i in [ \
@@ -24,7 +24,7 @@ for i in [ \
  aux_part = App.activeDocument().addObject('App::Part','pt_joist_00'+str(2+ix))
  aux_part.Placement.Base.y = 25.4 * (ix * 2 + (ix%2 * 0.5))
  aux_part.Group += [aux_body ,]
- this_part.Group += [aux_part, ]
+ this_shelf.Group += [aux_part, ]
  ix += 1
 
 ix = 0
@@ -43,10 +43,10 @@ for i in [ \
  aux_part = App.activeDocument().addObject('App::Part','pt_spacer_00'+str(2+ix))
  aux_part.Placement.Base.x = ix * 25.4 * 6
  aux_part.Group += [aux_body ,]
- this_part.Group += [aux_part ,]
+ this_shelf.Group += [aux_part ,]
  ix += 1
 
-FreeCAD.Console.PrintMessage(" busybox_009_shelf, support" + this_part.Name + ".\n")
+FreeCAD.Console.PrintMessage(" busybox_009_shelf, support" + this_shelf.Name + ".\n")
 ix = 0
 for i in [ \
   App.ActiveDocument.pd_support,  \
@@ -56,7 +56,7 @@ for i in [ \
  aux_part = App.activeDocument().addObject('App::Part','pt_support_00'+str(2+ix))
  aux_body.Placement.Base.y += ix * 25.4 * 24
  aux_part.Group += [aux_body ,]
- this_part.Group += [aux_part ,]
+ this_shelf.Group += [aux_part ,]
  ix += 1
 
 aux_part.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
@@ -70,8 +70,8 @@ aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
 level = int(App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("level")))
 height1 = float(App.ActiveDocument.sp_standard.get(App.ActiveDocument.sp_standard.getCellFromAlias("item_height")))
 height2 = float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height")))
-FreeCAD.Console.PrintMessage("finishing busybox_009_shelf, " + this_part.Name + ".level = " + str(level) + ".\n")
-this_part.Placement.Base.z = level*(height1 + height2)
+FreeCAD.Console.PrintMessage("finishing busybox_009_shelf, " + this_shelf.Name + ".level = " + str(level) + ".\n")
+this_shelf.Placement.Base.z = level*(height1 + height2)
 
 App.ActiveDocument.sp_global.set('B2', str(level+1))
 FreeCAD.Console.PrintMessage(" Finished busybox_009_shelf.\n")
