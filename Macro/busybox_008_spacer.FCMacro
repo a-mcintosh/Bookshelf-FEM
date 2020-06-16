@@ -6,7 +6,7 @@ import PartDesignGui
 import Sketcher
 
 FreeCAD.Console.PrintMessage("Starting busybox_008_spacer.\n")
-part_bodies = App.ActiveDocument.part_of_bodies_1
+part_bodies = App.ActiveDocument.prototypes_of_bodies_1
 this_part = App.ActiveDocument.addObject('App::Part', 'pt_spacer_00' + str(1))
 part_bodies.Group += [this_part, ]
 this_body = part_bodies.newObject("PartDesign::Body","bd_spacer_00" + str(1))

@@ -3,7 +3,7 @@
 # Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_009_joist_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
 FreeCAD.Console.PrintMessage("Starting busybox_007_joist.\n")
-part_bodies = App.ActiveDocument.part_of_bodies_1
+part_bodies = App.ActiveDocument.prototypes_of_bodies_1
 this_part = App.ActiveDocument.addObject('App::Part', 'pt_joist_00' + str(1))
 part_bodies.Group += [this_part, ]
 this_body = part_bodies.newObject("PartDesign::Body","bd_joist_00" + str(1))

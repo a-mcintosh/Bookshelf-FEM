@@ -26,6 +26,8 @@ for i in [ \
  aux_part.Group += [aux_body ,]
  this_shelf.Group += [aux_part, ]
  ix += 1
+App.ActiveDocument.recompute()
+FreeCAD.Console.PrintMessage(" busybox_012_shelf. 30\n")
 
 ix = 0
 for i in [ \
@@ -45,6 +47,8 @@ for i in [ \
  aux_part.Group += [aux_body ,]
  this_shelf.Group += [aux_part ,]
  ix += 1
+App.ActiveDocument.recompute()
+FreeCAD.Console.PrintMessage(" busybox_012_shelf. 51\n")
 
 FreeCAD.Console.PrintMessage(" busybox_012_shelf, support" + this_shelf.Name + ".\n")
 ix = 0
@@ -58,6 +62,8 @@ for i in [ \
  aux_part.Group += [aux_body ,]
  this_shelf.Group += [aux_part ,]
  ix += 1
+App.ActiveDocument.recompute()
+FreeCAD.Console.PrintMessage(" busybox_012_shelf. 66\n")
 
 aux_part.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
 aux_part.setExpression('Placement.Base.y', u'sp_footer.length+sp_joist.width')
@@ -74,6 +80,7 @@ FreeCAD.Console.PrintMessage("finishing busybox_012_shelf, " + this_shelf.Name +
 this_shelf.Placement.Base.z = level*(height1 + height2)
 
 App.ActiveDocument.sp_global.set('B2', str(level+1))
+App.ActiveDocument.recompute()
 FreeCAD.Console.PrintMessage(" Finished busybox_012_shelf.\n")
 
 

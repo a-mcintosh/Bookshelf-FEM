@@ -3,7 +3,7 @@
 # Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_007_support_base_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
 FreeCAD.Console.PrintMessage("Starting busybox_006_support.\n")
-part_bodies = App.ActiveDocument.part_of_bodies_1
+part_bodies = App.ActiveDocument.prototypes_of_bodies_1
 this_part = App.ActiveDocument.addObject('App::Part', 'pt_support_00' + str(1))
 part_bodies.Group += [this_part, ]
 this_body = part_bodies.newObject("PartDesign::Body","bd_support_" + str(1))
