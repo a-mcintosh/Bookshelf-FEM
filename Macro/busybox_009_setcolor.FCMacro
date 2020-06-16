@@ -1,11 +1,11 @@
 #
 #  ----
 #
-Gui.getDocument("BusyBox_ver_1_1_3_2").getObject("lp_standard_001").ShapeColor=(102/255, 14/255, 20/255)
-Gui.getDocument("BusyBox_ver_1_1_3_2").getObject("lp_support").ShapeColor=(240/255, 180/255, 140/255)
-Gui.getDocument("BusyBox_ver_1_1_3_2").getObject("lp_spacer_notch").ShapeColor=(240/255, 230/255, 140/255)
-Gui.getDocument("BusyBox_ver_1_1_3_2").getObject("lp_for_joistB").ShapeColor=(0.098, 0.859, 0.631)
-Gui.getDocument("BusyBox_ver_1_1_3_2").getObject("pd_support").ShapeColor=(51/255, 26/255, 7/255)
+Gui.ActiveDocument.getObject("lp_standard_001").ShapeColor=(102/255, 14/255, 20/255)
+Gui.ActiveDocument.getObject("lp_support").ShapeColor=(240/255, 180/255, 140/255)
+Gui.ActiveDocument.getObject("lp_spacer_notch").ShapeColor=(240/255, 230/255, 140/255)
+Gui.ActiveDocument.getObject("lp_for_joistB").ShapeColor=(0.098, 0.859, 0.631)
+Gui.ActiveDocument.getObject("pd_support").ShapeColor=(51/255, 26/255, 7/255)
 
 #240/255, 230/255, 140/255
 #152/255, 20/255, 28/255
