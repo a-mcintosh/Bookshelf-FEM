@@ -61,7 +61,7 @@ App.ActiveDocument.sp_footer.set('A8', 'dowel dia')
 App.ActiveDocument.sp_footer.setAlias('B8', 'dowel_dia')
 App.ActiveDocument.sp_footer.set('B8', '=(0.125in+0.0625in)')
 #
-# --------
+# --------  standard
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_standard')
 App.ActiveDocument.sp_standard.setDisplayUnit('B2:B6', 'in')

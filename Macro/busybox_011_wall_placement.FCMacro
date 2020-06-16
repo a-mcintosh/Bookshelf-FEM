@@ -1,0 +1,7 @@
+aux_part = App.activeDocument().Wall_
+aux_part.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
+aux_part.setExpression('Placement.Base.y', u'sp_footer.length+sp_joist.width')
+
+this_rot = App.Rotation(App.Vector(0, 0, 1), 180)
+aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
+
