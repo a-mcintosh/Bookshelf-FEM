@@ -1,0 +1,24 @@
+#
+#  ----
+#
+Gui.ActiveDocument.getObject("lp_standard_001").ShapeColor=(102/255, 14/255, 20/255)
+Gui.ActiveDocument.getObject("lp_support").ShapeColor=(240/255, 180/255, 140/255)
+Gui.ActiveDocument.getObject("lp_spacer_notch").ShapeColor=(240/255, 230/255, 140/255)
+Gui.ActiveDocument.getObject("lp_for_joistB").ShapeColor=(0.098, 0.859, 0.631)
+Gui.ActiveDocument.getObject("pd_support").ShapeColor=(51/255, 26/255, 7/255)
+
+this_wall_assembly = App.activeDocument().addObject('App::Part','Wall_assembly')
+this_shelf_assembly = App.activeDocument().addObject('App::Part','Shelf_assembly')
+this_support_assembly = App.activeDocument().addObject('App::Part','Support_assembly')
+
+#240/255, 230/255, 140/255
+#152/255, 20/255, 28/255
+#Mandy's Pink	240/255, 180/255, 140/255
+busybox_009_assembly_setup.FCMacro
+### '#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1516.5215 -599.82977 1530.6117\n  orientation 0.7939657 0.32640815 0.51290995  1.4185356\n  nearDistance 306.57416\n  farDistance 2381.9192\n  aspectRatio 1\n  focalDistance 1343.21\n  height 2686.4199\n\n}\n'
+# ---- Gui.activeDocument().activeView().getCamera()
+# this_vector = App.Vector(1, 1,  0)
+# this_vector.Length = 1
+# this_rotation_2 = App.Rotation( this_vector, -15)
+# App.ActiveDocument.Part.Placement.Rotation = this_rotation_2
+

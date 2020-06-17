@@ -5,6 +5,9 @@ import FreeCAD
 
 App.activeDocument().Tip = App.activeDocument().addObject('App::Part','Wall_')
 this_part = App.activeDocument().Tip
+this_assembly = App.activeDocument().Wall_assembly
+this_assembly.Group += [this_part, ]
+
 ix = 0
 for i in [ \
   App.ActiveDocument.lp_support,  \
