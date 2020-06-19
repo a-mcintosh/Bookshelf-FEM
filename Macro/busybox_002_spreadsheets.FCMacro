@@ -95,7 +95,7 @@ App.ActiveDocument.recompute()
 # --------  support
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_support')
-App.ActiveDocument.sp_support.setDisplayUnit('B2:B5', 'in')
+App.ActiveDocument.sp_support.setDisplayUnit('B2:B8', 'in')
 #
 App.ActiveDocument.sp_support.set('A2', 'length')
 App.ActiveDocument.sp_support.set('B2', '20"')
@@ -116,6 +116,14 @@ App.ActiveDocument.sp_support.setAlias('B5', 'key_height')
 App.ActiveDocument.sp_support.set('A6', 'blade_cut')
 App.ActiveDocument.sp_support.set('B6', '0.125"')
 App.ActiveDocument.sp_support.setAlias('B6', 'blade_cut')
+#
+App.ActiveDocument.sp_support.set('A7', 'dia_router')
+App.ActiveDocument.sp_support.set('B7', '0.1825"')
+App.ActiveDocument.sp_support.setAlias('B7', 'dia_router')
+#
+App.ActiveDocument.sp_support.set('A8', 'recess')
+App.ActiveDocument.sp_support.set('B8', '0.375"')
+App.ActiveDocument.sp_support.setAlias('B8', 'recess')
 #
 App.ActiveDocument.recompute()
 #
