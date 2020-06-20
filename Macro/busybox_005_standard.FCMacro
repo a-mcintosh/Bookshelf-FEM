@@ -110,9 +110,10 @@ this_ch.Base = (this_linearpattern,["Edge90", "Edge24","Edge30","Edge79",\
 Gui.activeDocument().hide(this_pocket.Name)
 this_ch.Size = 1.270000
 Gui.activeDocument().hide("pd_standard_extendF")
-Gui.activeDocument().hide(this_linearpattern.Name)
+Gui.activeDocument().show(this_linearpattern.Name)
 
 Gui.activeDocument().activeView().viewIsometric()
 Gui.activeDocument().resetEdit()
 App.activeDocument().recompute()
+Gui.activeDocument().show(this_linearpattern.Name)
 
