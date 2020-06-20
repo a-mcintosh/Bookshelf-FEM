@@ -4,8 +4,8 @@
 import FreeCAD
 import Sketcher
 
-App.activeDocument().addObject('Sketcher::SketchObject','Sketch001')
-ActiveSketch = App.ActiveDocument.getObject('Sketch001')
+App.activeDocument().addObject('Sketcher::SketchObject','sk_support_000')
+ActiveSketch = App.ActiveDocument.getObject('sk_support_000')
 ActiveSketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
 ActiveSketch.MapMode = "Deactivated"
 ActiveSketch.addGeometry(Part.Point(App.Vector(19.050000,0.836061,0)))

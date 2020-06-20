@@ -63,7 +63,7 @@ this_sketch.setDatum(2,App.Units.Quantity('4.749800 mm'))
 # ---- sk_support
 #
 FreeCAD.Console.PrintMessage("Starting busybox_003_sketches --- support.\n")
-this_sketch = this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_support_000')
+this_sketch = this_sketch = group_sketches.newObject('Sketcher::SketchObject','sk_support_old')
 this_sketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
 this_sketch.MapMode = "Deactivated"
 

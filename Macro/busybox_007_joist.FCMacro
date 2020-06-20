@@ -106,9 +106,9 @@ Gui.activeDocument().hide(this_sketch.Name)
 App.ActiveDocument.recompute()
 App.ActiveDocument.pk_spacer_notch.Length = 0.000000
 App.ActiveDocument.pk_spacer_notch.Length2 = 99.999800
-App.ActiveDocument.pk_spacer_notch.Type = 3
+App.ActiveDocument.pk_spacer_notch.Type = 'ThroughAll'
 App.ActiveDocument.pk_spacer_notch.UpToFace = (App.activeDocument().pk_support_002, ["Face8"])
-App.ActiveDocument.pk_spacer_notch.Reversed = 0
+App.ActiveDocument.pk_spacer_notch.Reversed = 1
 App.ActiveDocument.pk_spacer_notch.Midplane = 0
 App.ActiveDocument.pk_spacer_notch.Offset = -50.800000
 Gui.activeDocument().hide("pk_support_002")
