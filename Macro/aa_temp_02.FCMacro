@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_02.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+import Sketcher
+
+ActiveSketch.addConstraint(Sketcher.Constraint('Horizontal',15,1,21,1)) 
+ActiveSketch.addConstraint(Sketcher.Constraint('DistanceX',21,1,15,1,37.777501)) 
+ActiveSketch.setExpression('Constraints[1]', u'sp_support.width')
+ActiveSketch.addConstraint(Sketcher.Constraint('Vertical',21,1,13,1)) 
+ActiveSketch.addConstraint(Sketcher.Constraint('DistanceY',13,1,21,1,38.100000)) 
+ActiveSketch.setExpression('Constraints[3]', u'sp_support.height')
+# Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_02.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

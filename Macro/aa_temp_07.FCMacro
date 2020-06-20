@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_07.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+import Sketcher
+
+ActiveSketch.movePoint(13,1,App.Vector(-10.783943,-32.877792,0),0)
+ActiveSketch.addConstraint(Sketcher.Constraint('Coincident',22,1,-1,1)) 
+# Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_07.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
