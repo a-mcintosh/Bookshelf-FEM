@@ -17,16 +17,16 @@ this_shelf.Placement.Base.z = level*(height1 + height2)
 
 ix = 0
 for i in [ \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
-  App.ActiveDocument.lp_spacer_notch,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
+  App.ActiveDocument.lp_notch_for_spacer,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
  aux_part = App.activeDocument().addObject('App::Part','pt_joist_00'+str(2+ix))
@@ -35,20 +35,19 @@ for i in [ \
  this_shelf.Group += [aux_part, ]
  ix += 1
 
-App.ActiveDocument.recompute()
 FreeCAD.Console.PrintMessage(" busybox_012_shelf. 30\n")
 
 ix = 0
 for i in [ \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
-  App.ActiveDocument.lp_for_joistB,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.lp_notch_for_joist,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
  aux_part = App.activeDocument().addObject('App::Part','pt_spacer_00'+str(2+ix))
@@ -58,7 +57,6 @@ for i in [ \
  ix += 1
 
 this_shelf_assembly.Group += [this_shelf, ]
-App.ActiveDocument.recompute()
 FreeCAD.Console.PrintMessage(" busybox_012_shelf. 62\n")
 
 this_support = App.activeDocument().addObject('App::Part','Support_')
@@ -76,7 +74,6 @@ for i in [ \
  ix += 1
 
 this_support_assembly.Group += [this_support, ]
-App.ActiveDocument.recompute()
 FreeCAD.Console.PrintMessage(" busybox_012_shelf. 80\n")
 
 aux_part.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
@@ -89,7 +86,6 @@ aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
 FreeCAD.Console.PrintMessage("finishing busybox_012_shelf, " + this_shelf.Name + ".level = " + str(level) + ".\n")
 
 App.ActiveDocument.sp_global.set('B2', str(level+1))
-App.ActiveDocument.recompute()
 FreeCAD.Console.PrintMessage(" Finished busybox_012_shelf.\n")
 
 

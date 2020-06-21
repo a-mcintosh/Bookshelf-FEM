@@ -32,8 +32,6 @@ this_pad.Offset = 0.000000
 #this_pad.MapMode = 'FlatFace'
 #
 #this_pad.setExpression('Placement.Base.z', u'(sp_global.elevation - sp_joist.height - sp_footer.height + sp_footer.notch_depth)')
-App.ActiveDocument.recompute()
-#Gui.activeDocument().resetEdit()
 #
 # --------
 #
@@ -41,7 +39,6 @@ FreeCAD.Console.PrintMessage("Starting busybox_004_footer fencepost.\n")
 this_body.newObject("PartDesign::Pad","pd_footer_fencepost_001")
 App.activeDocument().pd_footer_fencepost_001.Profile = (App.activeDocument().pd_footer_001, ["Face6"])
 App.activeDocument().pd_footer_fencepost_001.Length = 10.0
-App.ActiveDocument.recompute()
 App.ActiveDocument.pd_footer_fencepost_001.setExpression('Length', u'sp_standard.width')
 App.ActiveDocument.pd_footer_fencepost_001.Length2 = 99.999800
 App.ActiveDocument.pd_footer_fencepost_001.Type = 0
@@ -49,10 +46,8 @@ App.ActiveDocument.pd_footer_fencepost_001.UpToFace = App.activeDocument().pd_fo
 App.ActiveDocument.pd_footer_fencepost_001.Reversed = 0
 App.ActiveDocument.pd_footer_fencepost_001.Midplane = 0
 App.ActiveDocument.pd_footer_fencepost_001.Offset = 0.000000
-App.ActiveDocument.recompute()
 #Gui.activeDocument().resetEdit()
 Gui.activeDocument().hide("pd_footer_001")
-Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
 
 
@@ -70,13 +65,10 @@ this_notch.Reversed = 0
 this_notch.Midplane = 0
 this_notch.setExpression('Offset', u'sp_footer.notch_depth')
 #Gui.activeDocument().hide("pd_footer_fencepost_001")
-App.ActiveDocument.recompute()
 #Gui.activeDocument().resetEdit()
 
 #Gui.getDocument("shelves_ver_10_5").getObject("pd_footer_fencepost_001").Visibility=False
-Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
-App.ActiveDocument.recompute()
 #
 # --------
 #
@@ -88,7 +80,6 @@ this_body.Group += [aux_sketch ,]
 this_pocket.Profile = aux_sketch
 this_pocket.Length = 5.0
 Gui.activeDocument().show("pk_dowel_001")
-App.ActiveDocument.recompute()
 #
 
 this_linearpattern = this_body.newObject("PartDesign::LinearPattern","lp_standard_001")
@@ -101,5 +92,6 @@ this_linearpattern.setExpression('Length', u'sp_footer.length')
 this_linearpattern.Reversed = 0
 this_body.Tip = this_linearpattern
 Gui.activeDocument().show(this_linearpattern.Name)
-# Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_footer_linear.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++# Macro End: /home/amcintosh/.FreeCAD/Macro/footer_notches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+# Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_footer_linear.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+# Macro End: /home/amcintosh/.FreeCAD/Macro/footer_notches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_ver_10_5_footer.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

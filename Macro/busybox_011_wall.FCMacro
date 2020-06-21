@@ -10,12 +10,12 @@ this_assembly.Group += [this_part, ]
 
 ix = 0
 for i in [ \
-  App.ActiveDocument.lp_support,  \
-  App.ActiveDocument.lp_support,  \
-  App.ActiveDocument.lp_support,  \
-  App.ActiveDocument.lp_support,  \
-  App.ActiveDocument.lp_support,  \
-  App.ActiveDocument.lp_support,  \
+  App.ActiveDocument.ch_standard,  \
+  App.ActiveDocument.ch_standard,  \
+  App.ActiveDocument.ch_standard,  \
+  App.ActiveDocument.ch_standard,  \
+  App.ActiveDocument.ch_standard,  \
+  App.ActiveDocument.ch_standard,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
  Gui.activeDocument().show(aux_body.Name)

@@ -82,8 +82,6 @@ this_pocket.Type = 'ThroughAll'
 this_pocket.Reversed = 0
 this_pocket.Midplane = 0
 Gui.activeDocument().hide("sk_support_001")
-App.ActiveDocument.recompute()
-#Gui.activeDocument().resetEdit()
 Gui.activeDocument().show(this_pocket.Name)
 
 
@@ -94,26 +92,23 @@ this_linearpattern.setExpression('Length', u'(sp_standard.shelf_count-1)*(sp_sta
 this_linearpattern.Occurrences = 12
 this_linearpattern.setExpression('Occurrences', u'sp_standard.shelf_count')
 this_linearpattern.Reversed = 0
-App.ActiveDocument.recompute()
 this_body.Tip = this_linearpattern
 Gui.activeDocument().show(this_linearpattern.Name)
 Gui.activeDocument().hide("pk_support_notch")
-App.ActiveDocument.recompute()
 #Gui.activeDocument().resetEdit()
 #
 # ----
 #
 FreeCAD.Console.PrintMessage("busybox_005_standard, line 105\n")
 this_ch = this_body.newObject("PartDesign::Chamfer","ch_standard")
-this_ch.Base = (this_linearpattern,["Edge90", "Edge24","Edge30","Edge79",\
-  "Edge35","Edge43","Edge51","Edge59","Edge67","Edge75",])
+this_ch.Base = (this_linearpattern,["Edge41", "Edge131", \
+  "Edge48", "Edge144",])
 Gui.activeDocument().hide(this_pocket.Name)
 this_ch.Size = 1.270000
 Gui.activeDocument().hide("pd_standard_extendF")
 Gui.activeDocument().show(this_linearpattern.Name)
 
-Gui.activeDocument().activeView().viewIsometric()
 Gui.activeDocument().resetEdit()
 App.activeDocument().recompute()
-Gui.activeDocument().show(this_linearpattern.Name)
+Gui.activeDocument().show(this_ch.Name)
 

@@ -17,7 +17,5 @@ import PartDesign
 # -- 
 # ----------------
 
-App.newDocument('BusyBox_ver_1_1_3')
-level = 0
-#App.getDocument("BusyBox_ver_1_1_3").saveAs(u"/home/amcintosh/Documents/FreeCAD/Busybox/BusyBox_ver_1_1_3.FCStd")
+App.newDocument('BusyBox_ver_1_2')
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_001_start.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

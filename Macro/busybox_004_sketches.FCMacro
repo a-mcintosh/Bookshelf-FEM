@@ -67,7 +67,6 @@ ActiveSketch.addConstraint(Sketcher.Constraint('Coincident',14,1,25,2))
 ActiveSketch.addConstraint(Sketcher.Constraint('Coincident',14,1,24,1)) 
 ActiveSketch.addConstraint(Sketcher.Constraint('Distance',25,2.272879)) 
 ActiveSketch.setExpression('Constraints[12]', u'sp_support.blade_cut / 2')
-App.ActiveDocument.recompute()
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_03.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 # -*- coding: utf-8 -*-
 
@@ -283,7 +282,6 @@ ActiveSketch.toggleConstruction(48)
 ActiveSketch.toggleConstruction(45) 
 ActiveSketch.toggleConstruction(49) 
 ActiveSketch.toggleConstruction(50) 
-App.ActiveDocument.recompute()
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_06.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 # -*- coding: utf-8 -*-
 
@@ -296,4 +294,6 @@ ActiveSketch.movePoint(13,1,App.Vector(-10.783943,-32.877792,0),0)
 ActiveSketch.addConstraint(Sketcher.Constraint('Coincident',22,1,-1,1)) 
 group_sketches = App.ActiveDocument.getObject('group_sketches')
 group_sketches.Group += [ActiveSketch, ]
+App.ActiveDocument.recompute()
+
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_07.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

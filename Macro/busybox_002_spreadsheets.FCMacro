@@ -125,8 +125,6 @@ App.ActiveDocument.sp_support.set('A8', 'recess')
 App.ActiveDocument.sp_support.set('B8', '0.375"')
 App.ActiveDocument.sp_support.setAlias('B8', 'recess')
 #
-App.ActiveDocument.recompute()
-#
 # --------  joist
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_joist')
