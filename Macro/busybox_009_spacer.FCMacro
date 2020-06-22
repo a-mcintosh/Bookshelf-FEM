@@ -21,13 +21,13 @@ for i in [App.ActiveDocument.sk_spacer_body_000, \
 # ----
 #
 #
-this_sketch = App.activeDocument().sk_spacer_body_001
+this_sketch = App.activeDocument().sk_spacer_body_002
 #this_sketch.Support = (App.activeDocument().XZ_Plane, [''])
 this_sketch.MapMode = 'FlatFace'
 #
 this_pad = this_body.newObject("PartDesign::Pad","pd_spacer")
 this_pad.Profile = this_sketch
-Gui.activeDocument().hide("sk_spacer_body_001")
+Gui.activeDocument().hide("sk_spacer_body_002")
 this_pad.setExpression('Length', u'sp_footer.length + sp_standard.width')
 this_pad.Length2 = 99.999800
 this_pad.Type = 0

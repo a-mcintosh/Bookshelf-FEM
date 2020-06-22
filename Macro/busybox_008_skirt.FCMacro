@@ -1,0 +1,85 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_009_skirt_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+
+FreeCAD.Console.PrintMessage("Starting busybox_007_skirt.\n")
+part_bodies = App.ActiveDocument.prototypes_of_bodies_1
+this_body = part_bodies.newObject("PartDesign::Body","bd_skirt_00" + str(1))
+
+for i in [App.ActiveDocument.sk_joist_000, App.ActiveDocument.sk_spacer_body_000, \
+  App.ActiveDocument.sk_support_000, App.ActiveDocument.sk_support_000, ]:
+ aux_sketch = App.ActiveDocument.copyObject(i)
+ this_body.Group += [aux_sketch ,]
+ Gui.activeDocument().hide(i.Name)
+# Gui.activeDocument().hide(aux_sketch.Name)
+
+#
+# ----
+#
+this_sketch = App.ActiveDocument.sk_joist_002
+this_sketch.setExpression('Placement.Base.y', u'-sp_joist.width')
+this_pad = this_body.newObject("PartDesign::Pad","pd_skirt_")
+this_pad.Profile = this_sketch
+#this_body_.Length = 10.0
+this_pad.setExpression('Length', u'sp_joist.length+sp_spacer.width')
+Gui.activeDocument().hide(this_pad.Name)
+aux_pad = this_pad
+
+this_pocket = this_body.newObject("PartDesign::Pocket","pk_support_005")
+this_sketch = App.ActiveDocument.sk_support_005
+this_pocket.Profile = this_sketch
+this_pocket.Length = 5.0
+this_pocket.Length = 5.003800
+this_pocket.Length2 = 99.999800
+this_pocket.Type = 1
+this_pocket.UpToFace = None
+this_pocket.Reversed = 0
+this_pocket.Midplane = 0
+this_pocket.Offset = 0.000000
+
+App.ActiveDocument.recompute()	# -- workaround line
+this_obj_9 = App.ActiveDocument.sk_support_006
+this_obj_9.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
+
+this_rot = App.Rotation(App.Vector(0, 0, 1), 180)
+this_obj_9.Placement.Rotation = this_rot.multiply(this_obj_9.Placement.Rotation)
+
+this_support_pocket = this_body.newObject("PartDesign::Pocket","pk_support_006")
+this_support_pocket.Profile = this_obj_9
+this_support_pocket.Length = 5.0
+App.ActiveDocument.pk_support_006.Length = 5.003800
+App.ActiveDocument.pk_support_006.Length2 = 99.999800
+App.ActiveDocument.pk_support_006.Type = 'ThroughAll'
+App.ActiveDocument.pk_support_006.UpToFace = None
+App.ActiveDocument.pk_support_006.Reversed = 1
+App.ActiveDocument.pk_support_006.Midplane = 0
+App.ActiveDocument.pk_support_006.Offset = 0.000000
+
+Gui.activeDocument().hide(this_obj_9.Name)
+#App.activeDocument().sk_spacer_notch_002.MapMode = "Deactivated"
+#
+this_pocket = App.activeDocument().bd_skirt_001.newObject("PartDesign::Pocket","pk_notch_for_spacer_002")
+this_pocket.Profile = App.activeDocument().sk_spacer_body_001
+this_pocket.Length = 5.0
+#Gui.activeDocument().hide("sk_spacer_body_001")
+App.ActiveDocument.recompute()
+this_pocket.Length = 5.003800
+this_pocket.Length2 = 99.999800
+this_pocket.Type = 1
+this_pocket.UpToFace = None
+this_pocket.Reversed = 0
+this_pocket.Midplane = 0
+this_pocket.Offset = 0.000000
+#Gui.activeDocument().hide("pk_support_006")
+
+this_lp = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_spacer_002")
+this_lp.Originals = [App.activeDocument().pk_notch_for_spacer_002,]
+this_lp.Direction = (App.activeDocument().sk_spacer_body_001, ["H_Axis"])
+this_lp.setExpression('Length', u'sp_joist.length')
+this_lp.setExpression('Occurrences', u'sp_joist.spacer_count')
+this_lp.Reversed = 0
+this_body.Tip = this_lp
+Gui.activeDocument().show(this_lp.Name)
+App.ActiveDocument.recompute()
+#Gui.activeDocument().resetEdit()
+# Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_bd_skirt_linear.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

@@ -11,6 +11,9 @@ Gui.ActiveDocument.getObject("pd_support").ShapeColor= (51/255, 26/255, 7/255)
 Gui.ActiveDocument.getObject("pd_support").Transparency=20
 Gui.ActiveDocument.getObject("ch_standard").ShapeColor=(0.8818247318267822, 0.4056229293346405, 0.4606013298034668, 0.0) #(0.0014737504534423351, 0.5847077369689941, 0.919508695602417, 0.5)
 Gui.ActiveDocument.getObject("ch_standard").Transparency=75
+Gui.ActiveDocument.getObject("lp_notch_for_spacer_002").ShapeColor=(0.6270631551742554, 0.3856086730957031, 0.053490329533815384, 0.0)
+Gui.ActiveDocument.getObject("lp_notch_for_spacer_002").Transparency=25
+
 this_wall_assembly = App.activeDocument().addObject('App::Part','Wall_assembly')
 
 group_staging_shelf = App.activeDocument().addObject('App::Part','Shelf_assembly')
