@@ -7,12 +7,8 @@ import PartDesignGui
 import Sketcher
 
 FreeCAD.Console.PrintMessage("Starting busybox_004_footer.\n")
-part_bodies = App.ActiveDocument.addObject('App::Part', 'prototypes_of_bodies_' + str(1))
-part_bodies.Placement.Base.y = 25.4 * 30 
-this_part = App.ActiveDocument.addObject('App::Part', 'pt_footer_00' + str(1))
-part_bodies.Group += [this_part, ]
+part_bodies = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'prototypes_of_bodies_' + str(1))
 this_body = part_bodies.newObject("PartDesign::Body","bd_footer_00" + str(1))
-this_part.addObject(this_body)
 
 this_pad = this_body.newObject("PartDesign::Pad","pd_footer_00" + str(1))
 aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_footer_000)
@@ -68,7 +64,6 @@ this_notch.setExpression('Offset', u'sp_footer.notch_depth')
 #Gui.activeDocument().resetEdit()
 
 #Gui.getDocument("shelves_ver_10_5").getObject("pd_footer_fencepost_001").Visibility=False
-Gui.SendMsgToActiveView("ViewFit")
 #
 # --------
 #
@@ -82,7 +77,7 @@ this_pocket.Length = 5.0
 Gui.activeDocument().show("pk_dowel_001")
 #
 
-this_linearpattern = this_body.newObject("PartDesign::LinearPattern","lp_standard_001")
+this_linearpattern = this_body.newObject("PartDesign::LinearPattern","lp_footer_001")
 this_linearpattern.Originals = [App.activeDocument().pk_dowel_001, this_notch,]
 this_linearpattern.Direction = (App.activeDocument().sk_dowel_001, ["V_Axis"])
 this_linearpattern.Length = 457.2
@@ -92,6 +87,7 @@ this_linearpattern.setExpression('Length', u'sp_footer.length')
 this_linearpattern.Reversed = 0
 this_body.Tip = this_linearpattern
 Gui.activeDocument().show(this_linearpattern.Name)
+Gui.SendMsgToActiveView("ViewFit")
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_footer_linear.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 # Macro End: /home/amcintosh/.FreeCAD/Macro/footer_notches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_ver_10_5_footer.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

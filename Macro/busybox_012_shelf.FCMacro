@@ -2,18 +2,17 @@
 
 # Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 import FreeCAD
-FreeCAD.Console.PrintMessage("Starting busybox_012_shelf.\n")
 
-level = int(App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("level")))
+#
+#level = int(App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("level")))
 height1 = float(App.ActiveDocument.sp_standard.get(App.ActiveDocument.sp_standard.getCellFromAlias("item_height")))
 height2 = float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height")))
+FreeCAD.Console.PrintMessage(" busybox_012_shelf. level " + str(level) + "\n")
 #
-this_support_assembly = App.activeDocument().Support_assembly
-this_shelf_assembly = App.activeDocument().Shelf_assembly
-
-App.activeDocument().Tip = App.activeDocument().addObject('App::Part','Shelf_')
-this_shelf = App.activeDocument().Tip
-this_shelf.Placement.Base.z = level*(height1 + height2)
+this_part_shelf = App.activeDocument().addObject('App::Part','Shelf_')
+this_part_shelf.Placement.Base.z = level*(height1 + height2)
+this_assembly = App.activeDocument().Shelf_assembly
+this_assembly.Group += [this_part_shelf, ]
 
 ix = 0
 for i in [ \
@@ -29,13 +28,12 @@ for i in [ \
   App.ActiveDocument.lp_notch_for_spacer,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
- aux_part = App.activeDocument().addObject('App::Part','pt_joist_00'+str(2+ix))
+ Gui.activeDocument().show(aux_body.Name)
+ aux_part = App.activeDocument().addObject('PartDesign::Body','bd_joist_00'+str(2+ix))
  aux_part.Placement.Base.y = 25.4 * (ix * 2 + (ix%2 * 0.5))
  aux_part.Group += [aux_body ,]
- this_shelf.Group += [aux_part, ]
+ this_part_shelf.Group += [aux_part ,]
  ix += 1
-
-FreeCAD.Console.PrintMessage(" busybox_012_shelf. 30\n")
 
 ix = 0
 for i in [ \
@@ -50,43 +48,38 @@ for i in [ \
   App.ActiveDocument.lp_notch_for_joist,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
- aux_part = App.activeDocument().addObject('App::Part','pt_spacer_00'+str(2+ix))
+ aux_part = App.activeDocument().addObject('PartDesign::Body','bd_spacer_00'+str(2+ix))
  aux_part.Placement.Base.x = ix * 25.4 * 6
  aux_part.Group += [aux_body ,]
- this_shelf.Group += [aux_part ,]
+ this_part_shelf.Group += [aux_part ,]
  ix += 1
 
-this_shelf_assembly.Group += [this_shelf, ]
-FreeCAD.Console.PrintMessage(" busybox_012_shelf. 62\n")
-
-this_support = App.activeDocument().addObject('App::Part','Support_')
-this_support.Placement.Base.z = level*(height1 + height2)
+#  ----
+this_part_support = App.activeDocument().addObject('App::Part','Support_')
+this_part_support.Placement.Base.z = level*(height1 + height2)
 ix = 0
 for i in [ \
   App.ActiveDocument.pd_support,  \
   App.ActiveDocument.pd_support,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
- aux_part = App.activeDocument().addObject('App::Part','pt_support_00'+str(2+ix))
+ aux_part = App.activeDocument().addObject('PartDesign::Body','bd_support_00'+str(2+ix))
  aux_part.Placement.Base.y += ix * 25.4 * 24
  aux_part.Group += [aux_body ,]
- this_support.Group += [aux_part ,]
+ this_part_support.Group += [aux_part ,]
  ix += 1
 
-this_support_assembly.Group += [this_support, ]
+this_support_assembly = App.activeDocument().Support_assembly
+this_support_assembly.Group += [this_part_support, ]
 FreeCAD.Console.PrintMessage(" busybox_012_shelf. 80\n")
 
 aux_part.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
 aux_part.setExpression('Placement.Base.y', u'sp_footer.length+sp_joist.width')
 this_rot = App.Rotation(App.Vector(0, 0, 1), 180)
 aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
-#
-#  ----
-#
-FreeCAD.Console.PrintMessage("finishing busybox_012_shelf, " + this_shelf.Name + ".level = " + str(level) + ".\n")
 
-App.ActiveDocument.sp_global.set('B2', str(level+1))
-FreeCAD.Console.PrintMessage(" Finished busybox_012_shelf.\n")
-
+#The set stataement, following, produces errors.  As a workaround, set level=... from the console.
+#App.ActiveDocument.sp_global.set(App.ActiveDocument.sp_global.getCellFromAlias("level"), str(int(level+1)))
 
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+

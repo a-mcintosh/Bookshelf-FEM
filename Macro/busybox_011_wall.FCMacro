@@ -3,8 +3,7 @@
 # Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 import FreeCAD
 
-App.activeDocument().Tip = App.activeDocument().addObject('App::Part','Wall_')
-this_part = App.activeDocument().Tip
+this_part = App.ActiveDocument.addObject('App::Part', 'Wall_')
 this_assembly = App.activeDocument().Wall_assembly
 this_assembly.Group += [this_part, ]
 
@@ -19,7 +18,7 @@ for i in [ \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
  Gui.activeDocument().show(aux_body.Name)
- aux_part = App.activeDocument().addObject('App::Part','pt_joist_00'+str(2+ix))
+ aux_part = App.activeDocument().addObject('PartDesign::Body','bd_standard_00'+str(2+ix))
  aux_part.Placement.Base.y = ix * 25.4 * 4
  aux_part.Group += [aux_body ,]
  this_part.Group += [aux_part ,]
@@ -27,12 +26,12 @@ for i in [ \
 
 ix = 0
 for i in [ \
-  App.ActiveDocument.lp_standard_001,  \
-  App.ActiveDocument.lp_standard_001,  \
+  App.ActiveDocument.lp_footer_001,  \
+  App.ActiveDocument.lp_footer_001,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
  Gui.activeDocument().show(aux_body.Name)
- aux_part = App.activeDocument().addObject('App::Part','pt_footer_00'+str(2+ix))
+ aux_part = App.activeDocument().addObject('PartDesign::Body','bd_footer_00'+str(2+ix))
  aux_part.Group += [aux_body ,]
  this_part.Group += [aux_part ,]
  Gui.activeDocument().show(aux_body.Name)

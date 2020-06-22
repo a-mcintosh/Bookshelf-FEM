@@ -1,8 +1,8 @@
 #
 #  ----
 #
-Gui.ActiveDocument.getObject("lp_standard_001").ShapeColor=(102/255, 14/255, 20/255)
-Gui.ActiveDocument.getObject("lp_standard_001").Transparency=20
+Gui.ActiveDocument.getObject("lp_footer_001").ShapeColor=(102/255, 14/255, 20/255)
+Gui.ActiveDocument.getObject("lp_footer_001").Transparency=50
 Gui.ActiveDocument.getObject("lp_notch_for_spacer").ShapeColor=(240/255, 230/255, 140/255)
 Gui.ActiveDocument.getObject("lp_notch_for_spacer").Transparency=25
 Gui.ActiveDocument.getObject("lp_notch_for_joist").ShapeColor=(0.098, 0.859, 0.631)
@@ -12,29 +12,17 @@ Gui.ActiveDocument.getObject("pd_support").Transparency=20
 Gui.ActiveDocument.getObject("ch_standard").ShapeColor=(0.8818247318267822, 0.4056229293346405, 0.4606013298034668, 0.0) #(0.0014737504534423351, 0.5847077369689941, 0.919508695602417, 0.5)
 Gui.ActiveDocument.getObject("ch_standard").Transparency=75
 this_wall_assembly = App.activeDocument().addObject('App::Part','Wall_assembly')
-this_shelf_assembly = App.activeDocument().addObject('App::Part','Shelf_assembly')
+
+group_staging_shelf = App.activeDocument().addObject('App::Part','Shelf_assembly')
 this_support_assembly = App.activeDocument().addObject('App::Part','Support_assembly')
+this_shelf_assembly = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_staging_shelf')
 
-#240/255, 230/255, 140/255
-#152/255, 20/255, 28/255
-#Mandy's Pink	240/255, 180/255, 140/255
-### '#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1516.5215 -599.82977 1530.6117\n  orientation 0.7939657 0.32640815 0.51290995  1.4185356\n  nearDistance 306.57416\n  farDistance 2381.9192\n  aspectRatio 1\n  focalDistance 1343.21\n  height 2686.4199\n\n}\n'
-
-
-# ---- Gui.activeDocument().activeView().getCamera()
-# -- part --
-# this_vector_1 = App.Vector(1, 1,  0)
-# this_vector.Length = 1
-# this_rotation_1 = App.Rotation( this_vector, -15)
-# App.ActiveDocument.Part.Placement.Rotation = this_rotation_1
-#
-# -- camera --
-# this_vector_2 = App.Vector(0.7939657, 0.32640815, 0.51290995)  #From camera view.
-# this_vector_2.Length = 1
-# this_rotation_2 = App.Rotation(this_vector_2, 1.4185356) #From camera view.
-#
-# this_rotation_1.multiply(this_rotation_2)
-# this_rotation_2.multiply(this_rotation_1)
-
-# (0.8818247318267822, 0.4056229293346405, 0.4606013298034668, 0.0)	#salmon
+this_total_assembly = App.activeDocument().addObject('App::Part','Total_assembly')
+this_total_assembly.setExpression('Placement.Base.y', u'-2*(sp_footer.length+sp_joist.width)')
+this_total_assembly.Group += [
+    App.activeDocument().Wall_assembly, \
+    App.activeDocument().Shelf_assembly, \
+    App.activeDocument().Support_assembly, \
+    ]
+    
 
