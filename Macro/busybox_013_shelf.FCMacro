@@ -62,10 +62,11 @@ for i in [ \
  aux_body = App.ActiveDocument.copyObject(i)
  aux_part = App.activeDocument().addObject('PartDesign::Body','bd_skirt_00'+str(2+ix))
  this_y = float(App.ActiveDocument.sp_footer.get(App.ActiveDocument.sp_footer.getCellFromAlias("length"))) \
-   + float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("width")))
+   + 0*float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("width")))
  aux_part.Placement.Base.y = ix * this_y
  aux_part.Group += [aux_body ,]
  this_part_shelf.Group += [aux_part ,]
+ Gui.activeDocument().show(aux_body.Name)
  ix += 1
 
 #  ----

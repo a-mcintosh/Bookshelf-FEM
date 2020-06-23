@@ -10,6 +10,7 @@ import Spreadsheet
 import PartDesign
 import PartDesignGui
 import Sketcher
+import math
 
 group_sketches = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_sketches')
 #
@@ -176,12 +177,16 @@ Gui.activeDocument().activeView().viewIsometric()
 Gui.SendMsgToActiveView("ViewFit")
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_003_sketches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
+#
+#  ----  sk_support_body
+#
 # -*- coding: utf-8 -*-
 
 # Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp8.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 import FreeCAD
 import Sketcher
 
+FreeCAD.Console.PrintMessage("Starting busybox_003_sketches --- support.\n")
 App.activeDocument().addObject('Sketcher::SketchObject','sk_support_000')
 ActiveSketch = App.ActiveDocument.getObject('sk_support_000')
 ActiveSketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
@@ -472,6 +477,97 @@ ActiveSketch.movePoint(13,1,App.Vector(-10.783943,-32.877792,0),0)
 ActiveSketch.addConstraint(Sketcher.Constraint('Coincident',22,1,-1,1)) 
 group_sketches = App.ActiveDocument.getObject('group_sketches')
 group_sketches.Group += [ActiveSketch, ]
-App.ActiveDocument.recompute()
+#
+#  ---- dovetail top
+#
+# -*- coding: utf-8 -*-
 
-# Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_temp_07.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+# Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_dovetail_2.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+import Sketcher
+import math
+
+FreeCAD.Console.PrintMessage("Starting busybox_003_sketches --- dovetail_top.\n")
+offset = \
+  float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height"))) \
+  -float(App.ActiveDocument.sp_spacer.get(App.ActiveDocument.sp_spacer.getCellFromAlias("height")))
+aux_v1 = App.Vector(0, 0, 0)
+aux_v1.x = float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("width")))
+aux_v1.y = math.tan(20 * math.pi / 180) * aux_v1.x
+
+aux_v2 = App.Vector(0, 0, 0)
+aux_v2.x = float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("width")))
+aux_v2.y = float(App.ActiveDocument.sp_spacer.get(App.ActiveDocument.sp_spacer.getCellFromAlias("height")))
+
+p1 = App.Vector(aux_v1.x, aux_v1.y + offset, 0)
+p2 = App.Vector(aux_v1.x, aux_v2.y + offset, 0)
+p3 = App.Vector(0, aux_v2.y + offset, 0)
+p4 = App.Vector(0, 0 + offset, 0)
+
+this_sketch = App.activeDocument().addObject('Sketcher::SketchObject','sk_dovetail_top_000')
+this_sketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(0.500000,0.500000,0.500000,0.500000))
+this_sketch.MapMode = "Deactivated"
+this_sketch.addGeometry(Part.LineSegment(p1,p2),False)
+this_sketch.addGeometry(Part.LineSegment(p2,p3),False)
+this_sketch.addGeometry(Part.LineSegment(p3,p4),False)
+this_sketch.addGeometry(Part.LineSegment(p4,p1),False)
+
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',0)) 
+this_sketch.addConstraint(Sketcher.Constraint('Horizontal',1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',2)) 
+
+FreeCAD.Console.PrintMessage("Starting busybox_003_sketches --- dovetail_top. line 519\n")
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',0,2,1,1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',1,2,2,1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',2,2,3,1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',3,2,0,1)) 
+
+this_sketch.addConstraint(Sketcher.Constraint('Angle',3,2,2,1,math.pi/2 - 20 * math.pi / 180)) 
+this_sketch.addConstraint(Sketcher.Constraint('PointOnObject',2,2,-2)) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',-1,1,2,2,offset)) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceX',1,2,1,1,aux_v1.x)) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',2,2,2,1,aux_v2.y))
+
+App.ActiveDocument.group_sketches.Group += [this_sketch, ]
+#
+#  ---- dovetail bottom
+#
+# Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_dovetail_2.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_dovetail_2.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+FreeCAD.Console.PrintMessage("Starting busybox_003_sketches --- dovetail_bottom.\n")
+import FreeCAD
+import Sketcher
+import math
+
+offset = \
+  float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height"))) \
+  -float(App.ActiveDocument.sp_spacer.get(App.ActiveDocument.sp_spacer.getCellFromAlias("height")))
+aux_v = App.Vector(0, 0, 0)
+aux_v.x = float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("width")))
+aux_v.y = math.tan(20 * math.pi / 180) * aux_v.x
+
+p1 = App.Vector(aux_v.x, 0 + offset, 0)
+p2 = App.Vector(aux_v.x, aux_v.y + offset, 0)
+p3 = App.Vector(0, 0 + offset, 0)
+
+this_sketch = App.activeDocument().addObject('Sketcher::SketchObject','sk_dovetail_bottom_000')
+this_sketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(0.500000,0.500000,0.500000,0.500000))
+this_sketch.MapMode = "Deactivated"
+this_sketch.addGeometry(Part.LineSegment(p1,p2),False)
+this_sketch.addConstraint(Sketcher.Constraint('Vertical',0)) 
+this_sketch.addGeometry(Part.LineSegment(p2,p3),False)
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',0,2,1,1)) 
+this_sketch.addGeometry(Part.LineSegment(p3,p1),False)
+this_sketch.addConstraint(Sketcher.Constraint('DistanceX',2,1,0,1,aux_v.x)) 
+this_sketch.addConstraint(Sketcher.Constraint('Horizontal',2)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',1,2,2,1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Coincident',2,2,0,1)) 
+this_sketch.addConstraint(Sketcher.Constraint('Angle',2,2,1,1,0.349066)) 
+this_sketch.addConstraint(Sketcher.Constraint('PointOnObject',2,1,-2)) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',-1,1,1,2,offset)) 
+
+App.ActiveDocument.group_sketches.Group += [this_sketch, ]
+# Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_dovetail_2.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+
+

@@ -7,7 +7,8 @@ part_bodies = App.ActiveDocument.prototypes_of_bodies_1
 this_body = part_bodies.newObject("PartDesign::Body","bd_skirt_00" + str(1))
 
 for i in [App.ActiveDocument.sk_joist_000, App.ActiveDocument.sk_spacer_body_000, \
-  App.ActiveDocument.sk_support_000, App.ActiveDocument.sk_support_000, ]:
+  App.ActiveDocument.sk_support_000, App.ActiveDocument.sk_support_000, \
+  App.ActiveDocument.sk_dovetail_top_000, ]:
  aux_sketch = App.ActiveDocument.copyObject(i)
  this_body.Group += [aux_sketch ,]
  Gui.activeDocument().hide(i.Name)
@@ -23,6 +24,7 @@ this_pad.Profile = this_sketch
 #this_body_.Length = 10.0
 this_pad.setExpression('Length', u'sp_joist.length+sp_spacer.width')
 Gui.activeDocument().hide(this_pad.Name)
+Gui.activeDocument().hide(this_sketch.Name)
 aux_pad = this_pad
 
 this_pocket = this_body.newObject("PartDesign::Pocket","pk_support_005")
@@ -31,7 +33,9 @@ this_pocket.Profile = this_sketch
 this_pocket.Length = 5.0
 this_pocket.Length = 5.003800
 this_pocket.Length2 = 99.999800
-this_pocket.Type = 1
+this_pocket.setExpression('Length', u'sp_standard.width')
+this_pocket.Length2 = 99.999800
+this_pocket.Type = 0
 this_pocket.UpToFace = None
 this_pocket.Reversed = 0
 this_pocket.Midplane = 0
@@ -59,18 +63,19 @@ Gui.activeDocument().hide(this_obj_9.Name)
 #App.activeDocument().sk_spacer_notch_002.MapMode = "Deactivated"
 #
 this_pocket = App.activeDocument().bd_skirt_001.newObject("PartDesign::Pocket","pk_notch_for_spacer_002")
-this_pocket.Profile = App.activeDocument().sk_spacer_body_001
+this_pocket.Profile = App.activeDocument().sk_dovetail_top_001
 this_pocket.Length = 5.0
-#Gui.activeDocument().hide("sk_spacer_body_001")
 App.ActiveDocument.recompute()
 this_pocket.Length = 5.003800
 this_pocket.Length2 = 99.999800
-this_pocket.Type = 1
+this_pocket.Type = 0
+this_pocket.setExpression('Length', u'sp_spacer.width')
 this_pocket.UpToFace = None
-this_pocket.Reversed = 0
+this_pocket.Reversed = 1
 this_pocket.Midplane = 0
 this_pocket.Offset = 0.000000
 #Gui.activeDocument().hide("pk_support_006")
+Gui.activeDocument().hide("sk_spacer_body_001")
 
 this_lp = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_spacer_002")
 this_lp.Originals = [App.activeDocument().pk_notch_for_spacer_002,]
