@@ -1,0 +1,29 @@
+# ----------------------------
+Gui.activeDocument().activeView().setCameraOrientation (App.Rotation(0.5522949050278869, 0.1638847425863517, 0.22704641318463395, 0.7852146555481724))
+Gui.activeDocument().show(App.ActiveDocument.prototypes_of_bodies_1.Name)
+Gui.activeDocument().hide(App.ActiveDocument.prototypes_of_bodies_1.Name)
+
+this_doc = App.ActiveDocument
+# -- Shelf
+this_doc.Shelf_002.Placement.Base.x = -25.4 * (60 + 1.5)
+this_doc.Shelf_002.Placement.Base.y = -25.4 * (20.75)
+this_doc.Support_002.Placement.Base.x = -25.4 * (60 + 1.5)
+this_doc.Support_002.Placement.Base.y = -25.4 * (20.75)
+
+
+this_doc.Support_002.Placement.Base.z = this_doc.Shelf_002.Placement.Base.z
+this_doc.explode_skirt_002.Placement.Base.z = 0 + 25.4 * 12
+this_doc.explode_joist_002.Placement.Base.z = 25.4 * 24
+this_doc.explode_spacer_002.Placement.Base.z = 25.4 * 36
+# ----------------------------
+# -- Wall
+this_doc.Wall_001.Placement.Base.x = -25.4 * (60 + 1.5 + 24)
+this_doc.Wall_001.Placement.Base.y = -25.4 * (2*20.75)
+this_doc.bd_footer_003001.Placement.Base.z = (80.875 + 15) * 25.4
+this_doc.bd_footer_002001.Placement.Base.z = -25.4 * 15
+# -- Wall
+this_doc.Wall_.Placement.Base.x = 25.4 * (48.75 + 24)
+this_doc.Wall_.Placement.Base.y = 25.4 * (20.75 + 20.75)
+this_doc.bd_footer_003001.Placement.Base.z = (80.875 + 15) * 25.4
+this_doc.bd_footer_002001.Placement.Base.z = -25.4 * 15
+# ----------------------------

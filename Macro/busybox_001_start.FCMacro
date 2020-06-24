@@ -16,6 +16,14 @@ import PartDesign
 # -- Problems
 # -- 
 # ----------------
+Name = 'BusyBox_ver_1_2'
+App.newDocument(Name)
+FreeCAD.Console.PrintMessage(Name + "\n")
+FreeCAD.Console.PrintMessage("Execute the macros in their numbered sequence.\n")
+FreeCAD.Console.PrintMessage("Execute the wall macro two times.  You can execute the placement macro between times.\n")
+FreeCAD.Console.PrintMessage("You have to manage the variable 'level.'\n")
+FreeCAD.Console.PrintMessage("set level=-1 now\n")
+FreeCAD.Console.PrintMessage("set level += 1 before making each shelf.\n")
+FreeCAD.Console.PrintMessage("\n------------------------\n\n")
 
-App.newDocument('BusyBox_ver_1_2')
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_001_start.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
