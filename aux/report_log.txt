@@ -1,0 +1,48 @@
+
+Copyright (c) 2020-06-24 by Aubrey McIntosh, PhD
+
+BusyBox_ver_1_3
+Execute the macros in their numbered sequence.
+Execute the wall macro two times.  You can execute the placement macro between times.
+You have to manage the variable 'level.'
+set level=-1 now
+set level += 1 before making each shelf.
+
+------------------------
+
+Starting busybox_003_sketches --- footer.
+Starting busybox_003_sketches --- dowel.
+Starting busybox_003_sketches --- joist.
+Starting busybox_003_sketches --- standardF.
+Starting busybox_003_sketches --- spacer_notch.
+Starting busybox_003_sketches --- spacer_body.
+Starting busybox_003_sketches --- support.
+Starting busybox_003_sketches --- dovetail_top.
+Starting busybox_003_sketches --- dovetail_top. line 519
+Starting busybox_003_sketches --- dovetail_bottom.
+Starting busybox_004_footer.
+Starting busybox_004_footer fencepost.
+Starting busybox_005_standard.
+busybox_005_standard, line 61
+busybox_005_standard, line 64
+busybox_005_standard, line 67
+busybox_005_standard, line 105
+Starting busybox_006_support.
+Starting busybox_007_joist.
+busybox_007_joist, line 84
+Starting busybox_007_skirt.
+Starting busybox_008_spacer.
+Internal name lp_notch_for_joist.
+ busybox_012_shelf. level 0
+ busybox_012_shelf. 80
+ busybox_012_shelf. level 1
+ busybox_012_shelf. 80
+ busybox_012_shelf. level 2
+ busybox_012_shelf. 80
+ busybox_012_shelf. level 3
+ busybox_012_shelf. 80
+ busybox_012_shelf. level 4
+ busybox_012_shelf. 80
+ busybox_012_shelf. level 5
+ busybox_012_shelf. 80
+

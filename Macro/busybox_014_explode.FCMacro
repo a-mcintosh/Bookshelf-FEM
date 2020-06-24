@@ -5,7 +5,7 @@
 #  --------------------------------------------------------
 
 # ----------------------------
-Gui.activeDocument().activeView().setCameraOrientation (App.Rotation(0.5522949050278869, 0.1638847425863517, 0.22704641318463395, 0.7852146555481724))
+Gui.activeDocument().activeView().setCamera('#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 276.51953 -1670.4697 1319.3772\n  orientation 0.89191508 0.26466164 0.36666301  1.3355073\n  nearDistance -1576.964\n  farDistance 3201.3433\n  aspectRatio 1\n  focalDistance 1343.21\n  height 4007.6709\n\n}\n')
 Gui.activeDocument().show(App.ActiveDocument.prototypes_of_bodies_1.Name)
 Gui.activeDocument().hide(App.ActiveDocument.prototypes_of_bodies_1.Name)
 
