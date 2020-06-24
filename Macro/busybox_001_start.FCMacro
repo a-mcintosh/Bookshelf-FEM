@@ -1,3 +1,10 @@
+#  --------------------------------------------------------
+#  -- Copyright (c) 2020-06-24 by Aubrey McIntosh, PhD   --
+#  -- Permission granted for use in educational settings --
+#  -- and personal study with this notice left intact.   --
+#  --------------------------------------------------------
+FreeCAD.Console.PrintMessage("\nCopyright (c) 2020-06-24 by Aubrey McIntosh, PhD\n\n")
+
 # -*- coding: utf-8 -*-
 
 # Macro Begin: $HOME/Documents/FreeCAD/Busybox/busybox_001_start.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -16,7 +23,7 @@ import PartDesign
 # -- Problems
 # -- 
 # ----------------
-Name = 'BusyBox_ver_1_2'
+Name = 'BusyBox_ver_1_3'
 App.newDocument(Name)
 FreeCAD.Console.PrintMessage(Name + "\n")
 FreeCAD.Console.PrintMessage("Execute the macros in their numbered sequence.\n")

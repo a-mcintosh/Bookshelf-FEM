@@ -1,3 +1,9 @@
+#  --------------------------------------------------------
+#  -- Copyright (c) 2020-06-24 by Aubrey McIntosh, PhD   --
+#  -- Permission granted for use in educational settings --
+#  -- and personal study with this notice left intact.   --
+#  --------------------------------------------------------
+
 # ----------------------------
 Gui.activeDocument().activeView().setCameraOrientation (App.Rotation(0.5522949050278869, 0.1638847425863517, 0.22704641318463395, 0.7852146555481724))
 Gui.activeDocument().show(App.ActiveDocument.prototypes_of_bodies_1.Name)

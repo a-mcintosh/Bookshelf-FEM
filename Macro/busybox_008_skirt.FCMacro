@@ -1,3 +1,9 @@
+#  --------------------------------------------------------
+#  -- Copyright (c) 2020-06-24 by Aubrey McIntosh, PhD   --
+#  -- Permission granted for use in educational settings --
+#  -- and personal study with this notice left intact.   --
+#  --------------------------------------------------------
+
 # -*- coding: utf-8 -*-
 
 # Macro Begin: /home/amcintosh/.FreeCAD/Macro/shelves_009_skirt_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -74,8 +80,8 @@ this_pocket.UpToFace = None
 this_pocket.Reversed = 1
 this_pocket.Midplane = 0
 this_pocket.Offset = 0.000000
-#Gui.activeDocument().hide("pk_support_006")
 Gui.activeDocument().hide("sk_spacer_body_001")
+Gui.activeDocument().hide(App.activeDocument().sk_dovetail_top_001.Name)
 
 this_lp = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_spacer_002")
 this_lp.Originals = [App.activeDocument().pk_notch_for_spacer_002,]
