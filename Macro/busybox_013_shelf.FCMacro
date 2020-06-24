@@ -14,6 +14,14 @@ this_part_shelf.Placement.Base.z = level*(height1 + height2)
 this_assembly = App.activeDocument().Shelf_assembly
 this_assembly.Group += [this_part_shelf, ]
 
+joist_staging_shelf = App.activeDocument().addObject('App::Part','explode_joist_00' + str(level))
+spacer_staging_shelf = App.activeDocument().addObject('App::Part','explode_spacer_00' + str(level))
+skirt_staging_shelf = App.activeDocument().addObject('App::Part','explode_skirt_00' + str(level))
+
+this_part_shelf.Group += [ \
+  joist_staging_shelf, spacer_staging_shelf, skirt_staging_shelf,
+  ]
+  
 ix = 0
 for i in [ \
   App.ActiveDocument.lp_notch_for_spacer,  \
@@ -32,7 +40,7 @@ for i in [ \
  aux_part = App.activeDocument().addObject('PartDesign::Body','bd_joist_00'+str(2+ix))
  aux_part.Placement.Base.y = 25.4 * (ix * 2 + (ix%2 * 0.5))
  aux_part.Group += [aux_body ,]
- this_part_shelf.Group += [aux_part ,]
+ joist_staging_shelf.Group += [aux_part ,]
  ix += 1
 
 ix = 0
@@ -51,7 +59,7 @@ for i in [ \
  aux_part = App.activeDocument().addObject('PartDesign::Body','bd_spacer_00'+str(2+ix))
  aux_part.Placement.Base.x = ix * 25.4 * 6
  aux_part.Group += [aux_body ,]
- this_part_shelf.Group += [aux_part ,]
+ spacer_staging_shelf.Group += [aux_part ,]
  ix += 1
 
 ix = 0
@@ -65,7 +73,7 @@ for i in [ \
    + 0*float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("width")))
  aux_part.Placement.Base.y = ix * this_y
  aux_part.Group += [aux_body ,]
- this_part_shelf.Group += [aux_part ,]
+ skirt_staging_shelf.Group += [aux_part ,]
  Gui.activeDocument().show(aux_body.Name)
  ix += 1
 
