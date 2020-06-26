@@ -51,17 +51,18 @@ for i in [ \
 
 ix = 0
 for i in [ \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
-  App.ActiveDocument.lp_notch_for_joist,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.ch_spacer_000,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
+ Gui.activeDocument().show(aux_body.Name)
  aux_part = App.activeDocument().addObject('PartDesign::Body','bd_spacer_00'+str(2+ix))
  aux_part.Placement.Base.x = ix * 25.4 * 6
  aux_part.Group += [aux_body ,]

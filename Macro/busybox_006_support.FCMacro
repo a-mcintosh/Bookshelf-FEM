@@ -36,5 +36,6 @@ this_pad.UpToFace = None
 this_pad.Reversed = 1
 this_pad.Midplane = 0
 this_pad.Offset = 0.000000
+Gui.ActiveDocument.getObject(this_pad.Name).Transparency=20
 
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_007_support_body_addendum.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

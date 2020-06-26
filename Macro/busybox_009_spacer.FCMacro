@@ -102,9 +102,11 @@ this_notch_s2.Offset = -50.800000
 Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
 #
+# ----
+#
 this_linear = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_joist")
 FreeCAD.Console.PrintMessage("Internal name " + this_linear.Name + ".\n")
-this_linear.Originals = [this_notch_e, this_notch_o]
+this_linear.Originals = [this_notch_e, this_notch_o, ]
 this_linear.Direction = (App.activeDocument().sk_spacer_notch_003, ["V_Axis"])
 this_linear.setExpression('Length', u'sp_footer.length')
 this_linear.setExpression('Occurrences', u'sp_spacer.spacer_count')
@@ -112,6 +114,34 @@ this_linear.Reversed = 0
 this_body.Tip = this_linear
 Gui.activeDocument().show("lp_notch_for_joist")
 Gui.activeDocument().hide("pk_joist_notch")
+Gui.activeDocument().show(this_linear.Name)
+#
+# ----
+#
+FreeCAD.Console.PrintMessage("busybox_009_spacer, line 105\n")
+this_ch = this_body.newObject("PartDesign::Chamfer","ch_spacer_000")
+this_ch.Base = (this_linear,[ \
+  "Edge10", "Edge12", "Edge14", "Edge16", "Edge18", \
+  "Edge20", "Edge22", "Edge24", "Edge26", "Edge28", \
+  "Edge30", "Edge32", "Edge34", "Edge36", "Edge38", \
+  "Edge40", "Edge42", "Edge44", "Edge46", "Edge48", \
+  "Edge50", \
+  "Edge13", "Edge17", "Edge14", "Edge16", "Edge18", \
+  "Edge21", "Edge25", "Edge29", \
+  "Edge33", "Edge37",  \
+  "Edge41", "Edge45", "Edge49", \
+  "Edge53", "Edge55", "Edge57", "Edge59", "Edge61", \
+  "Edge63", "Edge65", "Edge67", "Edge69", "Edge71", \
+  "Edge73", "Edge75", "Edge77", "Edge79", "Edge81", \
+  "Edge83", "Edge85", "Edge87", "Edge89", "Edge91", \
+  "Edge54", "Edge62", "Edge70", "Edge78", "Edge86",  \
+  "Edge58", "Edge66", "Edge74", "Edge82", "Edge90", \
+  ])
+this_ch.Size = 1.270000
+Gui.activeDocument().show("ch_spacer_000")
+#
+
+Gui.ActiveDocument.getObject(this_ch.Name).Transparency=25
 App.ActiveDocument.recompute()
 #
 

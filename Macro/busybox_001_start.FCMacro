@@ -1,9 +1,9 @@
 #  --------------------------------------------------------
-#  -- Copyright (c) 2020-06-24 by Aubrey McIntosh, PhD   --
+#  -- Copyright © 2020-06-24 by Aubrey McIntosh, PhD   --
 #  -- Permission granted for use in educational settings --
 #  -- and personal study with this notice left intact.   --
 #  --------------------------------------------------------
-FreeCAD.Console.PrintMessage("\nCopyright (c) 2020-06-24 by Aubrey McIntosh, PhD\n\n")
+FreeCAD.Console.PrintMessage("\nCopyright © 2020-06-24 by Aubrey McIntosh, PhD\n\n")
 
 # -*- coding: utf-8 -*-
 
@@ -23,8 +23,8 @@ import PartDesign
 # -- Problems
 # -- 
 # ----------------
-Name = 'BusyBox_ver_1_3'
-App.newDocument(Name)
+Name = 'BusyBox_ver_1_4'
+App.newDocument(Name).saveAs(u"/home/amcintosh/Documents/FreeCAD/Busybox/Documents/" + Name + ".FCStd")
 FreeCAD.Console.PrintMessage(Name + "\n")
 FreeCAD.Console.PrintMessage("Execute the macros in their numbered sequence.\n")
 FreeCAD.Console.PrintMessage("Execute the wall macro two times.  You can execute the placement macro between times.\n")

@@ -90,6 +90,7 @@ this_lp.setExpression('Length', u'sp_joist.length')
 this_lp.setExpression('Occurrences', u'sp_joist.spacer_count')
 this_lp.Reversed = 0
 this_body.Tip = this_lp
+Gui.ActiveDocument.getObject(this_lp.Name).Transparency=25
 Gui.activeDocument().show(this_lp.Name)
 App.ActiveDocument.recompute()
 #Gui.activeDocument().resetEdit()

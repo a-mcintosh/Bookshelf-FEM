@@ -17,6 +17,7 @@ import PartDesign
 import PartDesignGui
 import Sketcher
 
+FreeCAD.Console.PrintMessage("Starting busybox_002_spreadsheets.\n")
 group_spreadsheets = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'group_spreadsheets')
 #
 # ----

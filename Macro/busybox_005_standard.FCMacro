@@ -112,6 +112,7 @@ Gui.activeDocument().hide("pd_standard_extendF")
 Gui.activeDocument().show(this_linearpattern.Name)
 
 Gui.activeDocument().resetEdit()
+Gui.ActiveDocument.getObject(this_ch.Name).Transparency = 75
 App.activeDocument().recompute()
 Gui.activeDocument().show(this_ch.Name)
 

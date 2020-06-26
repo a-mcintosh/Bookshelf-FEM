@@ -94,6 +94,7 @@ this_linearpattern.setExpression('Length', u'sp_footer.length')
 this_linearpattern.Reversed = 0
 this_body.Tip = this_linearpattern
 Gui.activeDocument().show(this_linearpattern.Name)
+Gui.ActiveDocument.getObject(this_linearpattern.Name).Transparency = 50
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_footer_linear.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 # Macro End: /home/amcintosh/.FreeCAD/Macro/footer_notches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_ver_10_5_footer.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
