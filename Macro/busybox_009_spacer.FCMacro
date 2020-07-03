@@ -56,6 +56,7 @@ this_notch_e.Midplane = 0
 this_notch_e.Offset = -50.800000
 Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
+App.ActiveDocument.recompute()
 #
 this_notch_o = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notchO")
 this_sketch = App.activeDocument().sk_spacer_notch_003
@@ -71,6 +72,7 @@ this_notch_o.Midplane = 0
 this_notch_o.Offset = -50.800000
 Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
+App.ActiveDocument.recompute()
 #
 this_notch_s1 = this_body.newObject("PartDesign::Pocket","pk_spacer_skirt_notch_001")
 this_sketch = App.activeDocument().sk_dovetail_bottom_001
@@ -84,6 +86,7 @@ this_notch_s1.Midplane = 0
 this_notch_s1.Offset = -50.800000
 Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
+App.ActiveDocument.recompute()
 #
 this_notch_s2 = this_body.newObject("PartDesign::Pocket","pk_spacer_skirt_notch_002")
 this_sketch = App.activeDocument().sk_dovetail_bottom_002
@@ -101,6 +104,7 @@ this_notch_s2.Midplane = 0
 this_notch_s2.Offset = -50.800000
 Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
+App.ActiveDocument.recompute()
 #
 # ----
 #
@@ -108,7 +112,7 @@ this_linear = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_jois
 FreeCAD.Console.PrintMessage("Internal name " + this_linear.Name + ".\n")
 this_linear.Originals = [this_notch_e, this_notch_o, ]
 this_linear.Direction = (App.activeDocument().sk_spacer_notch_003, ["V_Axis"])
-this_linear.setExpression('Length', u'sp_footer.length')
+this_linear.setExpression('Length', u'sp_footer.length-4 in ')
 this_linear.setExpression('Occurrences', u'sp_spacer.spacer_count')
 this_linear.Reversed = 0
 this_body.Tip = this_linear
@@ -116,10 +120,16 @@ Gui.activeDocument().show("lp_notch_for_joist")
 Gui.activeDocument().hide("pk_joist_notch")
 Gui.activeDocument().show(this_linear.Name)
 #
+
+App.ActiveDocument.recompute()
+#
+#
 # ----
 #
 FreeCAD.Console.PrintMessage("busybox_009_spacer, line 105\n")
+
 this_ch = this_body.newObject("PartDesign::Chamfer","ch_spacer_000")
+Gui.ActiveDocument.getObject(this_ch.Name).Transparency=25
 this_ch.Base = (this_linear,[ \
   "Edge10", "Edge12", "Edge14", "Edge16", "Edge18", \
   "Edge20", "Edge22", "Edge24", "Edge26", "Edge28", \
@@ -139,9 +149,4 @@ this_ch.Base = (this_linear,[ \
   ])
 this_ch.Size = 1.270000
 Gui.activeDocument().show("ch_spacer_000")
-#
-
-Gui.ActiveDocument.getObject(this_ch.Name).Transparency=25
-App.ActiveDocument.recompute()
-#
 

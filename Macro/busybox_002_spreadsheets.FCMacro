@@ -179,7 +179,7 @@ App.ActiveDocument.sp_spacer.set('B5', '0.125"')
 App.ActiveDocument.sp_spacer.setAlias('B5', 'notch_depth')
 #
 App.ActiveDocument.sp_spacer.set('A6', 'spacer count')
-App.ActiveDocument.sp_spacer.set('B6', '6')
+App.ActiveDocument.sp_spacer.set('B6', '5')
 App.ActiveDocument.sp_spacer.setAlias('B6', 'spacer_count')
 #
 # --------------------------------
