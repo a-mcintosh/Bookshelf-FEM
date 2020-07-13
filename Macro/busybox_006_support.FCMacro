@@ -23,9 +23,9 @@ for i in [ \
 # ----
 #
 
-this_sketch = App.activeDocument().sk_support_002
-#this_sketch.Support = (App.activeDocument().XZ_Plane, [''])
+this_sketch = aux_sketch	#ALERT  fragile code, remote vulnerability
 this_sketch.MapMode = 'FlatFace'
+this_body.Group += [this_sketch, ]
 this_pad = this_body.newObject("PartDesign::Pad","pd_support")
 this_pad.Profile = this_sketch
 this_pad.Length = 10.0

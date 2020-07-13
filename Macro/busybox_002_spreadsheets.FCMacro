@@ -23,28 +23,37 @@ group_spreadsheets = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'g
 # ----
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_global')
-App.ActiveDocument.sp_global.setDisplayUnit('B2', '')
-App.ActiveDocument.sp_global.setDisplayUnit('B3:B5', 'in')
+App.ActiveDocument.sp_global.setDisplayUnit('B2', 'in')
+App.ActiveDocument.sp_global.setDisplayUnit('B3:B4', '')
+App.ActiveDocument.sp_global.setDisplayUnit('B5', 'in')
 #
-App.ActiveDocument.sp_global.set('A2', 'level')  #like stories of a building
-App.ActiveDocument.sp_global.set('B2', '0')
-App.ActiveDocument.sp_global.setAlias('B2', 'level')
+App.ActiveDocument.sp_global.set('A2', 'first_shelf_elevation')
+App.ActiveDocument.sp_global.set('B2', '6"')
+App.ActiveDocument.sp_global.setAlias('B2', 'first_shelf_elevation')
 #
-App.ActiveDocument.sp_global.set('A3', 'elevation')
-App.ActiveDocument.sp_global.set('B3', '6"')
-App.ActiveDocument.sp_global.setAlias('B3', 'elevation')
+App.ActiveDocument.sp_global.set('A3', 'shelf_nr')  #like stories of a building
+App.ActiveDocument.sp_global.set('B3', '0')
+App.ActiveDocument.sp_global.setAlias('B3', 'shelf_nr')
+#
+App.ActiveDocument.sp_global.set('A4', 'standard_count')
+App.ActiveDocument.sp_global.set('B4', '6')
+App.ActiveDocument.sp_global.setAlias('B4', 'standard_count')
+#
+App.ActiveDocument.sp_global.set('A5', 'small_tool_dia')
+App.ActiveDocument.sp_global.set('B5', '0.125"')
+App.ActiveDocument.sp_global.setAlias('B5', 'small_tool_dia')
+#
+App.ActiveDocument.sp_global.set('A6', 'wood_stock_thickness')
+App.ActiveDocument.sp_global.set('B6', '19mm')
+App.ActiveDocument.sp_global.setAlias('B6', 'wood_stock_thickness')
 #
 # ---- footer
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_footer')
 App.ActiveDocument.sp_footer.setDisplayUnit('B3:B8', 'in')
 #
-App.ActiveDocument.sp_footer.set('A2', 'count')
-App.ActiveDocument.sp_footer.set('B2', '6')
-App.ActiveDocument.sp_footer.setAlias('B2', 'count')
-#
 App.ActiveDocument.sp_footer.set('A3', 'hight')
-App.ActiveDocument.sp_footer.set('B3', '1.5"')
+App.ActiveDocument.sp_footer.set('B3', '0.75"')
 App.ActiveDocument.sp_footer.setAlias('B3', 'height')
 #
 App.ActiveDocument.sp_footer.set('A4', 'width')
@@ -56,7 +65,7 @@ App.ActiveDocument.sp_footer.set('B5', '20"')
 App.ActiveDocument.sp_footer.setAlias('B5', 'length')
 #
 App.ActiveDocument.sp_footer.set('A6', 'notch depth')
-App.ActiveDocument.sp_footer.set('B6', '0.125"')
+App.ActiveDocument.sp_footer.set('B6', '0.1875"')
 App.ActiveDocument.sp_footer.setAlias('B6', 'notch_depth')
 #
 App.ActiveDocument.sp_footer.setDisplayUnit('B8:B9', 'in')
@@ -82,7 +91,7 @@ App.ActiveDocument.sp_standard.set('B3', '0.75"')
 App.ActiveDocument.sp_standard.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_standard.set('A4', 'height')
-App.ActiveDocument.sp_standard.set('B4', '84"')
+App.ActiveDocument.sp_standard.set('B4', '2290.7619 mm')	#was 84".  Changed to make part symmetric, adjusted joist height.
 App.ActiveDocument.sp_standard.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_standard.set('A5', 'notch depth')
@@ -94,7 +103,7 @@ App.ActiveDocument.sp_standard.set('B6', '13.5"')
 App.ActiveDocument.sp_standard.setAlias('B6', 'item_height')
 #
 App.ActiveDocument.sp_standard.set('A7', 'shelf_count')
-App.ActiveDocument.sp_standard.set('B7', '6')
+App.ActiveDocument.sp_standard.set('B7', '7')
 App.ActiveDocument.sp_standard.setAlias('B7', 'shelf_count')
 #
 App.ActiveDocument.recompute()
@@ -102,7 +111,7 @@ App.ActiveDocument.recompute()
 # --------  support
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_support')
-App.ActiveDocument.sp_support.setDisplayUnit('B2:B8', 'in')
+App.ActiveDocument.sp_support.setDisplayUnit('B2:B9', 'in')
 #
 App.ActiveDocument.sp_support.set('A2', 'length')
 App.ActiveDocument.sp_support.set('B2', '20"')
@@ -113,7 +122,7 @@ App.ActiveDocument.sp_support.set('B3', '1.5"')
 App.ActiveDocument.sp_support.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_support.set('A4', 'height')
-App.ActiveDocument.sp_support.set('B4', '1.5"')
+App.ActiveDocument.sp_support.set('B4', '0.75"')
 App.ActiveDocument.sp_support.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_support.set('A5', 'key_height')
@@ -132,6 +141,10 @@ App.ActiveDocument.sp_support.set('A8', 'recess')
 App.ActiveDocument.sp_support.set('B8', '0.375"')
 App.ActiveDocument.sp_support.setAlias('B8', 'recess')
 #
+App.ActiveDocument.sp_support.set('A9', 'face_size')
+App.ActiveDocument.sp_support.set('B9', '0.375"')
+App.ActiveDocument.sp_support.setAlias('B9', 'face_size')
+#
 # --------  joist
 #
 group_spreadsheets.newObject('Spreadsheet::Sheet','sp_joist')
@@ -146,7 +159,7 @@ App.ActiveDocument.sp_joist.set('B3', '0.75"')
 App.ActiveDocument.sp_joist.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_joist.set('A4', 'height')
-App.ActiveDocument.sp_joist.set('B4', '1.5"')
+App.ActiveDocument.sp_joist.set('B4', '0.75"')
 App.ActiveDocument.sp_joist.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_joist.set('A5', 'notch depth')

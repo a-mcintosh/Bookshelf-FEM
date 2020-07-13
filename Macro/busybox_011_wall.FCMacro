@@ -47,7 +47,7 @@ this_rot = App.Rotation(App.Vector(0, 1, 0), 180)
 aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
 aux_part.setExpression('Placement.Base.x', u'-sp_standard.length')
 aux_part.setExpression('Placement.Base.z', \
-  u'sp_standard.height-(sp_global.elevation-sp_joist.height-sp_footer.height+sp_footer.notch_depth)')
+  u'sp_standard.height-(sp_global.first_shelf_elevation-sp_joist.height-sp_footer.height+sp_footer.notch_depth)')
 
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 

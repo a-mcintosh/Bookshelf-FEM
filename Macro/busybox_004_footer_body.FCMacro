@@ -34,7 +34,7 @@ this_pad.Offset = 0.000000
 #this_pad.Support = this_body.XZ_Plane, ['']
 #this_pad.MapMode = 'FlatFace'
 #
-#this_pad.setExpression('Placement.Base.z', u'(sp_global.elevation - sp_joist.height - sp_footer.height + sp_footer.notch_depth)')
+#this_pad.setExpression('Placement.Base.z', u'(sp_global.first_shelf_elevation - sp_joist.height - sp_footer.height + sp_footer.notch_depth)')
 #
 # --------
 #
@@ -69,30 +69,61 @@ this_notch.Midplane = 0
 this_notch.setExpression('Offset', u'sp_footer.notch_depth')
 #Gui.activeDocument().hide("pd_footer_fencepost_001")
 #Gui.activeDocument().resetEdit()
+#
+# --------  Make the main tenon body
+#
+this_pad = this_body.newObject("PartDesign::Pad","pd_dowel_001")
+stock_sketch = App.ActiveDocument.sk_dowel_000
+aux_sketch = App.ActiveDocument.copyObject(stock_sketch)
+Gui.activeDocument().hide(stock_sketch.Name)
+Gui.activeDocument().hide(aux_sketch.Name)
+this_body.Group += [aux_sketch ,]
+this_pad.Profile = aux_sketch
+this_pad.Type = 3
+this_pad.UpToFace = App.activeDocument().pk_standard_notch_001, ["Face1"]
+this_pad.Length = 5.0
+Gui.activeDocument().hide(aux_sketch.Name)
+#
+# --------  Trim to fit.  Synthetic chamfer to match drill pocket.
+#
+this_pocket = this_body.newObject("PartDesign::Pocket","ch_dowel_001")
+stock_sketch = App.ActiveDocument.sk_tenon_detail_000
+aux_sketch = App.ActiveDocument.copyObject(stock_sketch)
+aux_sketch.setExpression('Constraints[0]', u'sp_footer.dowel_dia + 2 thou')
+aux_sketch.toggleConstruction(1) 
+aux_sketch.toggleConstruction(2) 
+aux_sketch.toggleConstruction(6) 
+aux_sketch.toggleConstruction(7) 
+#
+aux_sketch.toggleConstruction(9) 
+aux_sketch.toggleConstruction(10) 
+aux_sketch.toggleConstruction(11) 
+aux_sketch.toggleConstruction(12) 
+App.ActiveDocument.recompute()
+#
 
-#Gui.getDocument("shelves_ver_10_5").getObject("pd_footer_fencepost_001").Visibility=False
-#
-# --------
-#
-#
-this_pocket = this_body.newObject("PartDesign::Pocket","pk_dowel_001")
-aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_dowel_000)
+Gui.activeDocument().hide(stock_sketch.Name)
 Gui.activeDocument().hide(aux_sketch.Name)
 this_body.Group += [aux_sketch ,]
 this_pocket.Profile = aux_sketch
+this_pocket.Type = 3
+this_pocket.UpToFace = this_pad, ["Face13"]
 this_pocket.Length = 5.0
-Gui.activeDocument().show("pk_dowel_001")
+Gui.activeDocument().hide(aux_sketch.Name)
+App.ActiveDocument.recompute()
 #
 
 this_linearpattern = this_body.newObject("PartDesign::LinearPattern","lp_footer_001")
-this_linearpattern.Originals = [App.activeDocument().pk_dowel_001, this_notch,]
+#this_linearpattern.Originals = [this_notch, this_pad,]
+this_linearpattern.Originals = [this_notch, this_pad, this_pocket,]
 this_linearpattern.Direction = (App.activeDocument().sk_dowel_001, ["V_Axis"])
 this_linearpattern.Length = 457.2
 this_linearpattern.setExpression('Length', u'sp_footer.length')
-this_linearpattern.setExpression('Occurrences', u'sp_footer.count')
+this_linearpattern.setExpression('Occurrences', u'sp_global.standard_count')
 this_linearpattern.setExpression('Length', u'sp_footer.length')
 this_linearpattern.Reversed = 0
 this_body.Tip = this_linearpattern
+Gui.activeDocument().hide("sk_tenon_detail_000")
 Gui.activeDocument().show(this_linearpattern.Name)
 Gui.ActiveDocument.getObject(this_linearpattern.Name).Transparency = 50
 # Macro End: /home/amcintosh/.FreeCAD/Macro/shelves_footer_linear.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

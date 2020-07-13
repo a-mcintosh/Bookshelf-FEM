@@ -23,14 +23,14 @@ import PartDesign
 # -- Problems
 # -- 
 # ----------------
-Name = 'BusyBox_ver_1_4'
+Name = 'BusyBox_ver_1_5'
 App.newDocument(Name).saveAs(u"/home/amcintosh/Documents/FreeCAD/Busybox/Documents/" + Name + ".FCStd")
 FreeCAD.Console.PrintMessage(Name + "\n")
 FreeCAD.Console.PrintMessage("Execute the macros in their numbered sequence.\n")
 FreeCAD.Console.PrintMessage("Execute the wall macro two times.  You can execute the placement macro between times.\n")
-FreeCAD.Console.PrintMessage("You have to manage the variable 'level.'\n")
-FreeCAD.Console.PrintMessage("set level=-1 now\n")
-FreeCAD.Console.PrintMessage("set level += 1 before making each shelf.\n")
+FreeCAD.Console.PrintMessage("You have to manage the variable 'shelf_nr.'\n")
+FreeCAD.Console.PrintMessage("set shelf_nr=-1 now\n")
+FreeCAD.Console.PrintMessage("set shelf_nr += 1 before making each shelf.\n")
 FreeCAD.Console.PrintMessage("\n------------------------\n\n")
 
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_001_start.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

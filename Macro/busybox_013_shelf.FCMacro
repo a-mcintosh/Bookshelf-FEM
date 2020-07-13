@@ -10,19 +10,19 @@
 import FreeCAD
 
 #
-#level = int(App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("level")))
+#shelf_nr = int(App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("shelf_nr")))
 height1 = float(App.ActiveDocument.sp_standard.get(App.ActiveDocument.sp_standard.getCellFromAlias("item_height")))
 height2 = float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height")))
-FreeCAD.Console.PrintMessage(" busybox_012_shelf. level " + str(level) + "\n")
+FreeCAD.Console.PrintMessage(" busybox_012_shelf. shelf_nr " + str(shelf_nr) + "\n")
 #
 this_part_shelf = App.activeDocument().addObject('App::Part','Shelf_')
-this_part_shelf.Placement.Base.z = level*(height1 + height2)
+this_part_shelf.Placement.Base.z = shelf_nr*(height1 + height2)
 this_assembly = App.activeDocument().Shelf_assembly
 this_assembly.Group += [this_part_shelf, ]
 
-joist_staging_shelf = App.activeDocument().addObject('App::Part','explode_joist_00' + str(level))
-spacer_staging_shelf = App.activeDocument().addObject('App::Part','explode_spacer_00' + str(level))
-skirt_staging_shelf = App.activeDocument().addObject('App::Part','explode_skirt_00' + str(level))
+joist_staging_shelf = App.activeDocument().addObject('App::Part','explode_joist_00' + str(shelf_nr))
+spacer_staging_shelf = App.activeDocument().addObject('App::Part','explode_spacer_00' + str(shelf_nr))
+skirt_staging_shelf = App.activeDocument().addObject('App::Part','explode_skirt_00' + str(shelf_nr))
 
 this_part_shelf.Group += [ \
   joist_staging_shelf, spacer_staging_shelf, skirt_staging_shelf,
@@ -86,7 +86,7 @@ for i in [ \
 
 #  ----
 this_part_support = App.activeDocument().addObject('App::Part','Support_')
-this_part_support.Placement.Base.z = level*(height1 + height2)
+this_part_support.Placement.Base.z = shelf_nr*(height1 + height2)
 ix = 0
 for i in [ \
   App.ActiveDocument.pd_support,  \
@@ -108,8 +108,8 @@ aux_part.setExpression('Placement.Base.y', u'sp_footer.length+sp_joist.width')
 this_rot = App.Rotation(App.Vector(0, 0, 1), 180)
 aux_part.Placement.Rotation = this_rot.multiply(aux_part.Placement.Rotation)
 
-#The set stataement, following, produces errors.  As a workaround, set level=... from the console.
-#App.ActiveDocument.sp_global.set(App.ActiveDocument.sp_global.getCellFromAlias("level"), str(int(level+1)))
+#The set stataement, following, produces errors.  As a workaround, set shelf_nr=... from the console.
+#App.ActiveDocument.sp_global.set(App.ActiveDocument.sp_global.getCellFromAlias("shelf_nr"), str(int(shelf_nr+1)))
 
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/busybox_shelf.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 

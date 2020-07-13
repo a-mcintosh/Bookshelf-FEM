@@ -18,7 +18,7 @@ for i in [App.ActiveDocument.sk_joist_000, App.ActiveDocument.sk_spacer_body_000
  aux_sketch = App.ActiveDocument.copyObject(i)
  this_body.Group += [aux_sketch ,]
  Gui.activeDocument().hide(i.Name)
-# Gui.activeDocument().hide(aux_sketch.Name)
+ FreeCAD.Console.PrintMessage("\tNew sketch name: " + aux_sketch.Name + "\n")
 
 #
 # ----
@@ -33,8 +33,8 @@ Gui.activeDocument().hide(this_pad.Name)
 Gui.activeDocument().hide(this_sketch.Name)
 aux_pad = this_pad
 
-this_pocket = this_body.newObject("PartDesign::Pocket","pk_support_005")
-this_sketch = App.ActiveDocument.sk_support_005
+this_pocket = this_body.newObject("PartDesign::Pocket","pk_support_006")
+this_sketch = App.ActiveDocument.sk_support_006
 this_pocket.Profile = this_sketch
 this_pocket.Length = 5.0
 this_pocket.Length = 5.003800
@@ -48,22 +48,22 @@ this_pocket.Midplane = 0
 this_pocket.Offset = 0.000000
 
 App.ActiveDocument.recompute()	# -- workaround line
-this_obj_9 = App.ActiveDocument.sk_support_006
+this_obj_9 = App.ActiveDocument.sk_support_007
 this_obj_9.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
 
 this_rot = App.Rotation(App.Vector(0, 0, 1), 180)
 this_obj_9.Placement.Rotation = this_rot.multiply(this_obj_9.Placement.Rotation)
 
-this_support_pocket = this_body.newObject("PartDesign::Pocket","pk_support_006")
+this_support_pocket = this_body.newObject("PartDesign::Pocket","pk_support_007")
 this_support_pocket.Profile = this_obj_9
 this_support_pocket.Length = 5.0
-App.ActiveDocument.pk_support_006.Length = 5.003800
-App.ActiveDocument.pk_support_006.Length2 = 99.999800
-App.ActiveDocument.pk_support_006.Type = 'ThroughAll'
-App.ActiveDocument.pk_support_006.UpToFace = None
-App.ActiveDocument.pk_support_006.Reversed = 1
-App.ActiveDocument.pk_support_006.Midplane = 0
-App.ActiveDocument.pk_support_006.Offset = 0.000000
+this_support_pocket.Length = 5.003800
+this_support_pocket.Length2 = 99.999800
+this_support_pocket.Type = 'ThroughAll'
+this_support_pocket.UpToFace = None
+this_support_pocket.Reversed = 1
+this_support_pocket.Midplane = 0
+this_support_pocket.Offset = 0.000000
 
 Gui.activeDocument().hide(this_obj_9.Name)
 #App.activeDocument().sk_spacer_notch_002.MapMode = "Deactivated"

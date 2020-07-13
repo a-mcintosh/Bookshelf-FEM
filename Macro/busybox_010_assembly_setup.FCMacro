@@ -21,7 +21,7 @@ this_support_assembly = App.activeDocument().addObject('App::Part','Support_asse
 this_shelf_assembly = App.activeDocument().addObject('App::Part','Shelf_assembly')
 
 this_total_assembly = App.activeDocument().addObject('App::Part','Total_assembly')
-this_total_assembly.setExpression('Placement.Base.y', u'-2*(sp_footer.length+sp_joist.width)')
+this_total_assembly.setExpression('Placement.Base.y', u'2*(sp_footer.length+sp_joist.width)')
 this_total_assembly.Group += [
     App.activeDocument().Wall_assembly, \
     App.activeDocument().Shelf_assembly, \
