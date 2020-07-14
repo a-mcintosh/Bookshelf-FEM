@@ -292,8 +292,6 @@ this_sketch.setExpression('Constraints[10]', u'sp_joist.height')
 this_sketch.addConstraint(Sketcher.Constraint('PointOnObject',2,2,-2)) 
 #
 Gui.activeDocument().resetEdit()
-Gui.activeDocument().activeView().viewIsometric()
-Gui.SendMsgToActiveView("ViewFit")
 # Macro End: $HOME/Documents/FreeCAD/Busybox/busybox_003_sketches.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #
@@ -453,6 +451,23 @@ this_sketch.addConstraint(Sketcher.Constraint('PointOnObject',2,1,-2))
 this_sketch.addConstraint(Sketcher.Constraint('DistanceY',-1,1,1,2,offset)) 
 
 App.ActiveDocument.group_sketches.Group += [this_sketch, ]
+Gui.activeDocument().activeView().viewIsometric()
+Gui.SendMsgToActiveView("ViewFit")
+
+aux_height_item = (App.ActiveDocument.sp_standard.get(App.ActiveDocument.sp_standard.getCellFromAlias("item_height")))
+aux_height_joist = (App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height")))
+aux_support_face = (App.ActiveDocument.sp_support.get(App.ActiveDocument.sp_support.getCellFromAlias("face_size")))
+aux_shelf_count = int(App.ActiveDocument.sp_standard.get(App.ActiveDocument.sp_standard.getCellFromAlias("shelf_count")))
+aux_elevation = (App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("first_shelf_elevation")))
+aux_height_footer = (App.ActiveDocument.sp_footer.get(App.ActiveDocument.sp_footer.getCellFromAlias("height")))
+aux_notch_depth = (App.ActiveDocument.sp_footer.get(App.ActiveDocument.sp_footer.getCellFromAlias("notch_depth")))
+aux_extension_length = aux_elevation - aux_height_joist - aux_height_footer + aux_notch_depth
+aux_face_size = (App.ActiveDocument.sp_support.get(App.ActiveDocument.sp_support.getCellFromAlias("face_size")))
+length = (aux_shelf_count-1)*(aux_height_item+aux_height_joist)
+FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 200\n ---> pattern length:\t" + str(length) + "\n")
+FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 201\n ---> aux_extension_length:\t" + str(aux_extension_length) + "\n")
+FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 202\n ---> adjusted aux_extension_length:\t" + str(aux_extension_length+aux_face_size) + "\n")
+FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 203\n\n ---> spreadsheet length value:\t" + str(length + aux_extension_length - aux_face_size) + "\n\n")
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_dovetail_2.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
 

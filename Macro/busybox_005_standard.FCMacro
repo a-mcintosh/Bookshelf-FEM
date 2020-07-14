@@ -118,24 +118,10 @@ this_linearpattern = this_body.newObject("PartDesign::LinearPattern","lp_support
 this_linearpattern.Originals = [this_pocket,]
 this_linearpattern.Direction = (App.activeDocument().sk_support_001, ["V_Axis"])
 #
-aux_height_item = (App.ActiveDocument.sp_standard.get(App.ActiveDocument.sp_standard.getCellFromAlias("item_height")))
-aux_height_joist = (App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height")))
-aux_support_face = (App.ActiveDocument.sp_support.get(App.ActiveDocument.sp_support.getCellFromAlias("face_size")))
-aux_shelf_count = int(App.ActiveDocument.sp_standard.get(App.ActiveDocument.sp_standard.getCellFromAlias("shelf_count")))
-length = (aux_shelf_count-1)*(aux_height_item+aux_height_joist)
-FreeCAD.Console.PrintMessage("busybox_005_standard, line 124\n ---> pattern length:\t" + str(length) + "\n")
-aux_elevation = (App.ActiveDocument.sp_global.get(App.ActiveDocument.sp_global.getCellFromAlias("first_shelf_elevation")))
-aux_height_footer = (App.ActiveDocument.sp_footer.get(App.ActiveDocument.sp_footer.getCellFromAlias("height")))
-aux_notch_depth = (App.ActiveDocument.sp_footer.get(App.ActiveDocument.sp_footer.getCellFromAlias("notch_depth")))
-aux_extension_length = aux_elevation - aux_height_joist - aux_height_footer + aux_notch_depth
-
-FreeCAD.Console.PrintMessage("busybox_005_standard, line 130\n ---> aux_extension_length:\t" + str(aux_extension_length) + "\n")
-aux_face_size = (App.ActiveDocument.sp_support.get(App.ActiveDocument.sp_support.getCellFromAlias("face_size")))
-FreeCAD.Console.PrintMessage("busybox_005_standard, line 132\n ---> adjusted aux_extension_length:\t" + str(aux_extension_length+aux_face_size) + "\n")
 
 #
 this_linearpattern.setExpression('Length', u'(sp_standard.shelf_count-1)*(sp_standard.item_height+sp_joist.height)')
-FreeCAD.Console.PrintMessage("busybox_005_standard, line 119" + "\n")
+FreeCAD.Console.PrintMessage("busybox_005_standard, line 140" + "\n")
 this_linearpattern.Occurrences = 12
 this_linearpattern.setExpression('Occurrences', u'sp_standard.shelf_count')
 this_linearpattern.Reversed = 0
@@ -148,8 +134,8 @@ Gui.activeDocument().hide("pk_support_notch")
 #
 FreeCAD.Console.PrintMessage("busybox_005_standard, line 105\n")
 this_ch = this_body.newObject("PartDesign::Chamfer","ch_standard")
-this_ch.Base = (this_linearpattern,["Edge48", "Edge54", \
-  "Edge36", "Edge42",])
+this_ch.Base = (this_linearpattern,["Edge54", "Edge60", \
+  "Edge42", "Edge48",])
 Gui.activeDocument().hide(this_pocket.Name)
 this_ch.Size = 1.270000
 Gui.activeDocument().hide("pd_standard_extendF")

@@ -14,7 +14,7 @@ import Sketcher
 
 Gui.ActiveDocument.ActiveView.setCamera("#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1024.5903 -1290.296 1165.134\n  orientation 0.82849485 0.2586773 0.49667153  1.1214463\n  nearDistance 195.85522\n  farDistance 2455.8027\n  aspectRatio 1\n  focalDistance 1343.21\n  height 243.7066\n\n}\n")
 FreeCAD.Console.PrintMessage("Starting busybox_004_footer.\n")
-part_bodies = App.ActiveDocument.addObject('App::DocumentObjectGroup', 'prototypes_of_bodies_' + str(1))
+part_bodies = App.ActiveDocument.addObject('App::Part', 'prototypes_of_bodies_' + str(1))
 this_body = part_bodies.newObject("PartDesign::Body","bd_footer_00" + str(1))
 
 this_pad = this_body.newObject("PartDesign::Pad","pd_footer_00" + str(1))

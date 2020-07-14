@@ -28,7 +28,7 @@ App.ActiveDocument.sp_global.setDisplayUnit('B3:B4', '')
 App.ActiveDocument.sp_global.setDisplayUnit('B5', 'in')
 #
 App.ActiveDocument.sp_global.set('A2', 'first_shelf_elevation')
-App.ActiveDocument.sp_global.set('B2', '6"')
+App.ActiveDocument.sp_global.set('B2', '5"')
 App.ActiveDocument.sp_global.setAlias('B2', 'first_shelf_elevation')
 #
 App.ActiveDocument.sp_global.set('A3', 'shelf_nr')  #like stories of a building
@@ -91,7 +91,7 @@ App.ActiveDocument.sp_standard.set('B3', '0.75"')
 App.ActiveDocument.sp_standard.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_standard.set('A4', 'height')
-App.ActiveDocument.sp_standard.set('B4', '2290.7619 mm')	#was 84".  Changed to make part symmetric, adjusted joist height.
+App.ActiveDocument.sp_standard.set('B4', '2252.66 mm')	#was 84".  Changed to make part symmetric, adjusted joist height.
 App.ActiveDocument.sp_standard.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_standard.set('A5', 'notch depth')
@@ -122,7 +122,7 @@ App.ActiveDocument.sp_support.set('B3', '1.5"')
 App.ActiveDocument.sp_support.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_support.set('A4', 'height')
-App.ActiveDocument.sp_support.set('B4', '0.75"')
+App.ActiveDocument.sp_support.set('B4', '1.00"')
 App.ActiveDocument.sp_support.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_support.set('A5', 'key_height')
@@ -142,7 +142,7 @@ App.ActiveDocument.sp_support.set('B8', '0.375"')
 App.ActiveDocument.sp_support.setAlias('B8', 'recess')
 #
 App.ActiveDocument.sp_support.set('A9', 'face_size')
-App.ActiveDocument.sp_support.set('B9', '0.375"')
+App.ActiveDocument.sp_support.set('B9', '0.5"')
 App.ActiveDocument.sp_support.setAlias('B9', 'face_size')
 #
 # --------  joist

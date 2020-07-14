@@ -27,5 +27,4 @@ this_total_assembly.Group += [
     App.activeDocument().Shelf_assembly, \
     App.activeDocument().Support_assembly, \
     ]
-    
 

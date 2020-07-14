@@ -4,6 +4,7 @@
 #  -- and personal study with this notice left intact.   --
 #  --------------------------------------------------------
 FreeCAD.Console.PrintMessage("\nCopyright © 2020-06-24 by Aubrey McIntosh, PhD\n\n")
+Name = 'Shelves_ver_2_1'
 
 # -*- coding: utf-8 -*-
 
@@ -15,15 +16,13 @@ import Sketcher
 import PartDesign
 
 # ----------------
-# -- Busybox
+# -- Shelves
 # -- Goals:
-# -- Global sketch used in 3 bodies.
-# -- An example use for Rotation
+# -- Localize concept to AustinCustomCNC facility
 # --
 # -- Problems
 # -- 
 # ----------------
-Name = 'BusyBox_ver_1_5'
 App.newDocument(Name).saveAs(u"/home/amcintosh/Documents/FreeCAD/Busybox/Documents/" + Name + ".FCStd")
 FreeCAD.Console.PrintMessage(Name + "\n")
 FreeCAD.Console.PrintMessage("Execute the macros in their numbered sequence.\n")
