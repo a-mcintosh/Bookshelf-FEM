@@ -12,8 +12,9 @@ FreeCAD.Console.PrintMessage("Starting busybox_007_joist.\n")
 part_bodies = App.ActiveDocument.prototypes_of_bodies_1
 this_body = part_bodies.newObject("PartDesign::Body","bd_joist_00" + str(1))
 
-for i in [App.ActiveDocument.sk_joist_000, App.ActiveDocument.sk_spacer_notch_000, \
-  App.ActiveDocument.sk_support_000, App.ActiveDocument.sk_support_000, ]:
+for i in [App.ActiveDocument.sk_joist_000,  \
+  App.ActiveDocument.sk_support_000, App.ActiveDocument.sk_support_000, \
+  App.ActiveDocument.sk_spacer_notchH_000, ]:
  aux_sketch = App.ActiveDocument.copyObject(i)
  FreeCAD.Console.PrintMessage("\tNew sketch name: " + aux_sketch.Name + "\n")
  this_body.Group += [aux_sketch ,]
@@ -98,23 +99,23 @@ import FreeCAD
 import Sketcher
 
 FreeCAD.Console.PrintMessage("busybox_007_joist, line 84\n")
-App.activeDocument().sk_spacer_notch_001.Placement = App.Placement(App.Vector(0.000000,0.000000,25.4*1.250000),App.Rotation(0.000000,0.000000,0.000000,1.000000))
-App.activeDocument().sk_spacer_notch_001.MapMode = "Deactivated"
+#App.activeDocument().sk_spacer_notchH_001.Placement = App.Placement(App.Vector(0.000000,0.000000,25.4*1.250000),App.Rotation(0.000000,0.000000,0.000000,1.000000))
+App.activeDocument().sk_spacer_notchH_001.MapMode = "Deactivated"
 #
 this_pocket = this_body.newObject("PartDesign::Pocket","pk_notch_for_spacer")
-this_sketch = App.activeDocument().sk_spacer_notch_001
+this_sketch = App.activeDocument().sk_spacer_notchH_001
 App.activeDocument().pk_notch_for_spacer.Profile = this_sketch
 App.activeDocument().pk_notch_for_spacer.Length = 5.0
 Gui.activeDocument().hide(this_sketch.Name)
 App.ActiveDocument.pk_notch_for_spacer.Length = 0.000000
 App.ActiveDocument.pk_notch_for_spacer.Length2 = 99.999800
 App.ActiveDocument.pk_notch_for_spacer.Type = 'ThroughAll'
-App.ActiveDocument.pk_notch_for_spacer.UpToFace = (this_support_pocket, ["Face8"])
-App.ActiveDocument.pk_notch_for_spacer.Reversed = 1
+App.ActiveDocument.pk_notch_for_spacer.UpToFace = (this_support_pocket, ["Face3"])
+App.ActiveDocument.pk_notch_for_spacer.Reversed = 0
 App.ActiveDocument.pk_notch_for_spacer.Midplane = 0
 App.ActiveDocument.pk_notch_for_spacer.Offset = -50.800000
 Gui.activeDocument().hide(this_support_pocket.Name)
-Gui.activeDocument().hide("sk_spacer_notch_001")
+Gui.activeDocument().hide("sk_spacer_notchH_001")
 #Gui.activeDocument().resetEdit()
 Gui.activeDocument().hide(this_pocket.Name)
 
@@ -126,7 +127,7 @@ Gui.activeDocument().hide(this_pocket.Name)
 
 this_lp = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_spacer")
 this_lp.Originals = [App.activeDocument().pk_notch_for_spacer,]
-this_lp.Direction = (App.activeDocument().sk_spacer_notch_001, ["H_Axis"])
+this_lp.Direction = (App.activeDocument().sk_spacer_notchH_001, ["H_Axis"])
 this_lp.setExpression('Length', u'sp_joist.length')
 this_lp.setExpression('Occurrences', u'sp_joist.spacer_count')
 this_lp.Reversed = 0
