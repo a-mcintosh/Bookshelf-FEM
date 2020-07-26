@@ -69,12 +69,15 @@ Gui.activeDocument().hide(this_obj_9.Name)
 #App.activeDocument().sk_spacer_notch_002.MapMode = "Deactivated"
 #
 this_plane = App.activeDocument().bd_skirt_001.newObject('PartDesign::Plane','DatumPlane')
-this_plane.Support = [(App.getDocument('Shelves_ver_2_2_temp').sk_skirt_path_000,'Edge1')]
+this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_skirt_path_000)
+this_body.Group += [this_sketch, ]
+this_plane.Support = [(this_sketch,'Edge1')]
 this_plane.MapMode = 'NormalToEdge'
 #
 #  --  sk_spacer_notchH_001
 #
 this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
+this_body.Group += [this_sketch, ]
 this_sketch.Support = (this_plane, [''])
 this_sketch.MapMode = 'FlatFace'
 this_sketch.setExpression('Constraints[13]', u'0')
@@ -86,7 +89,9 @@ this_sketch.setExpression('Constraints[13]', u'0')
 this_pipe = App.activeDocument().bd_skirt_001.newObject("PartDesign::SubtractivePipe","SubtractivePipe")
 this_body.Group += [this_sketch,]
 this_pipe.Profile = this_sketch
-this_pipe.Spine = App.ActiveDocument.sk_skirt_path_000
+aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_skirt_path_000)
+this_body.Group += [aux_sketch, ]
+this_pipe.Spine = aux_sketch
 Gui.activeDocument().hide(this_plane.Name)
 Gui.activeDocument().hide(App.ActiveDocument.sk_skirt_path_000.Name)
 #
