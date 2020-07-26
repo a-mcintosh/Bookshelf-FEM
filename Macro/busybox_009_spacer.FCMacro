@@ -44,13 +44,13 @@ this_pad.Midplane = 0
 this_pad.Offset = 0.000000
 #
 this_notch_e = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notchE")
-this_sketch = App.activeDocument().sk_spacer_notch_002
+this_sketch = App.activeDocument().sk_spacer_notch_001
 this_notch_e.Profile = this_sketch
 this_notch_e.Length = 20.0
 this_notch_e.Length = 0.000000
 this_notch_e.Length2 = 99.999800
 this_notch_e.Type = 'ThroughAll'
-#this_notch_e.UpToFace = (App.activeDocument().pk_support_002, ["Face8"])
+#this_notch_e.UpToFace = (App.activeDocument().pk_support_001, ["Face8"])
 this_notch_e.Reversed = 0
 this_notch_e.Midplane = 0
 this_notch_e.Offset = -50.800000
@@ -59,14 +59,14 @@ Gui.activeDocument().hide(this_pad.Name)
 App.ActiveDocument.recompute()
 #
 this_notch_o = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notchO")
-this_sketch = App.activeDocument().sk_spacer_notch_003
+this_sketch = App.activeDocument().sk_spacer_notch_002
 this_sketch.Placement.Base.y += 25.4 * 2.5
 this_notch_o.Profile = this_sketch
 this_notch_o.Length = 20.0
 this_notch_o.Length = 0.000000
 this_notch_o.Length2 = 99.999800
 this_notch_o.Type = 'ThroughAll'
-#this_notch_o.UpToFace = (App.activeDocument().pk_support_003, ["Face8"])
+#this_notch_o.UpToFace = (App.activeDocument().pk_support_002, ["Face8"])
 this_notch_o.Reversed = 0
 this_notch_o.Midplane = 0
 this_notch_o.Offset = -50.800000
@@ -111,7 +111,7 @@ App.ActiveDocument.recompute()
 this_linear = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_joist")
 FreeCAD.Console.PrintMessage("Internal name " + this_linear.Name + ".\n")
 this_linear.Originals = [this_notch_e, this_notch_o, ]
-this_linear.Direction = (App.activeDocument().sk_spacer_notch_003, ["V_Axis"])
+this_linear.Direction = (App.activeDocument().sk_spacer_notch_002, ["V_Axis"])
 this_linear.setExpression('Length', u'sp_footer.length-4 in ')
 this_linear.setExpression('Occurrences', u'sp_spacer.spacer_count')
 this_linear.Reversed = 0

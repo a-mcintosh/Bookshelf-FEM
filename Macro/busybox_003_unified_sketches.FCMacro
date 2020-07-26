@@ -496,26 +496,24 @@ this_sketch.addConstraint(Sketcher.Constraint('Coincident',6,2,1,1))
 this_sketch.addConstraint(Sketcher.Constraint('Diameter',6,3.175000)) 
 this_sketch.addConstraint(Sketcher.Constraint('Equal',6,7)) 
 this_sketch.addConstraint(Sketcher.Constraint('DistanceY',5,2,2,2,3.175000)) 
-this_sketch.addConstraint(Sketcher.Constraint('DistanceY',-1,1,3,1,19.050000)) 
 this_sketch.delGeometry(0)
 this_sketch.addConstraint(Sketcher.Constraint('DistanceX',2,1,1,2,19.050000)) 
+this_sketch.addConstraint(Sketcher.Constraint('DistanceY',-1,1,4,1,15.875000)) 
 this_sketch.addConstraint(Sketcher.Constraint('Tangent',6,1,3,2)) 
 this_sketch.addConstraint(Sketcher.Constraint('Tangent',6,2,4,1)) 
 this_sketch.addConstraint(Sketcher.Constraint('Tangent',5,1,4,2)) 
 this_sketch.addConstraint(Sketcher.Constraint('TangentViaPoint',5,1,1,1)) 
-this_sketch.setExpression('Constraints[12]', u'sp_joist.height')
-this_sketch.setExpression('Constraints[13]', u'sp_spacer.width')
-this_sketch.setExpression('Constraints[11]', u'sp_spacer.notch_depth')
 this_sketch.setExpression('Constraints[9]', u'sp_global.small_tool_dia')
-App.getDocument('Shelves_ver_2_2_temp').sk_spacer_notchH_000.setExpression('Constraints[11]', u'2 * sp_spacer.notch_depth')
-App.getDocument('Shelves_ver_2_2_temp').sk_spacer_notchH_000.setExpression('Constraints[12]', u'sp_joist.height + sp_spacer.notch_depth')
+this_sketch.setExpression('Constraints[11]', u'2 * sp_spacer.notch_depth')
+this_sketch.setExpression('Constraints[12]', u'sp_spacer.width')
+this_sketch.setExpression('Constraints[13]', u'sp_joist.height - sp_spacer.notch_depth')
 App.ActiveDocument.getObject('group_sketches').Group += [this_sketch,]
 #
 #  --  sk_skirt_path_000
 #
 this_sketch = App.activeDocument().addObject('Sketcher::SketchObject','sk_skirt_path_000')
 this_sketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(0.500000,0.500000,0.500000,0.500000))
-this_sketch.addGeometry(Part.LineSegment(App.Vector(19.050000,15.875000,0),App.Vector(0.000000,12.700000,0)),False)
+this_sketch.addGeometry(Part.LineSegment(App.Vector(0.000000,12.700000,0),App.Vector(19.050000,15.875000,0)),False)
 this_sketch.addConstraint(Sketcher.Constraint('PointOnObject',0,2,-2)) 
 this_sketch.addGeometry(Part.LineSegment(App.Vector(19.050000,15.875000,0),App.Vector(29.368750,17.462500,0)),False)
 this_sketch.addConstraint(Sketcher.Constraint('Coincident',1,1,0,1)) 
@@ -529,11 +527,6 @@ this_sketch.setExpression('Constraints[5]', u'sp_joist.width / 2')
 this_sketch.addConstraint(Sketcher.Constraint('DistanceX',-1,1,0,1,13.711896)) 
 this_sketch.setExpression('Constraints[6]', u'sp_joist.width')
 App.ActiveDocument.getObject('group_sketches').Group += [this_sketch,]
-#
-#  --  sk_skirt_path_000
-#
-this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
-this_sketch.Placement = App.Placement(App.Vector(0.000000,0.000000,0.000000),App.Rotation(-0.707107,0.000000,0.000000,-0.707107))
 # Macro End: /home/amcintosh/Documents/FreeCAD/Busybox/Macro/aa_dovetail_2.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
 
 

@@ -4,7 +4,10 @@
 #  -- and personal study with this notice left intact.   --
 #  --------------------------------------------------------
 
-FreeCAD.Console.PrintMessage("busybox_010_assembly, line 105\n")
+import shelf_nr
+shelf_nr.set_shelf_nr(0)
+
+FreeCAD.Console.PrintMessage("busybox_010_assembly, line 105; shelf_nr " + str(shelf_nr.get_shelf_nr()) + "\n")
 Gui.ActiveDocument.ActiveView.setCamera('#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1024.5903 -1290.296 1165.134\n  orientation 0.82849485 0.2586773 0.49667153  1.1214463\n  nearDistance 195.85522\n  farDistance 2455.8027\n  aspectRatio 1\n  focalDistance 1343.21\n  height 243.7066\n\n}\n')
 #
 #  ----
@@ -14,7 +17,7 @@ Gui.ActiveDocument.getObject("ch_standard").ShapeColor=(0.8818247318267822, 0.40
 Gui.ActiveDocument.getObject("pd_support").ShapeColor= (51/255, 26/255, 7/255)
 Gui.ActiveDocument.getObject("lp_notch_for_spacer").ShapeColor=(240/255, 230/255, 140/255)
 Gui.ActiveDocument.getObject("lp_notch_for_spacer_002").ShapeColor=(0.6270631551742554, 0.3856086730957031, 0.053490329533815384, 0.0)
-Gui.ActiveDocument.getObject("ch_spacer_000").ShapeColor=(0.098, 0.859, 0.631)
+#Gui.ActiveDocument.getObject("ch_spacer_000").ShapeColor=(0.098, 0.859, 0.631)
 
 this_wall_assembly = App.activeDocument().addObject('App::Part','Wall_assembly')
 this_support_assembly = App.activeDocument().addObject('App::Part','Support_assembly')
@@ -27,4 +30,5 @@ this_total_assembly.Group += [
     App.activeDocument().Shelf_assembly, \
     App.activeDocument().Support_assembly, \
     ]
+
 

@@ -68,23 +68,32 @@ this_support_pocket.Offset = 0.000000
 Gui.activeDocument().hide(this_obj_9.Name)
 #App.activeDocument().sk_spacer_notch_002.MapMode = "Deactivated"
 #
-this_pocket = App.activeDocument().bd_skirt_001.newObject("PartDesign::Pocket","pk_notch_for_spacer_002")
-this_pocket.Profile = App.activeDocument().sk_dovetail_top_001
-this_pocket.Length = 5.0
-App.ActiveDocument.recompute()
-this_pocket.Length = 5.003800
-this_pocket.Length2 = 99.999800
-this_pocket.Type = 0
-this_pocket.setExpression('Length', u'sp_spacer.width')
-this_pocket.UpToFace = None
-this_pocket.Reversed = 1
-this_pocket.Midplane = 0
-this_pocket.Offset = 0.000000
-Gui.activeDocument().hide("sk_spacer_body_001")
-Gui.activeDocument().hide(App.activeDocument().sk_dovetail_top_001.Name)
-
+this_plane = App.activeDocument().bd_skirt_001.newObject('PartDesign::Plane','DatumPlane')
+this_plane.Support = [(App.getDocument('Shelves_ver_2_2_temp').sk_skirt_path_000,'Edge1')]
+this_plane.MapMode = 'NormalToEdge'
+#
+#  --  sk_spacer_notchH_001
+#
+this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
+this_sketch.Support = (this_plane, [''])
+this_sketch.MapMode = 'FlatFace'
+this_sketch.setExpression('Constraints[13]', u'0')
+#this_sketch.Placement = App.Placement(App.Vector(25.4,0,19.05),App.Rotation(App.Vector(-1,0,0),-99.462))
+#this_sketch.Placement.Rotation = App.Rotation(App.Vector(-1,0,0),-99.462)
+#
+#  --  SubtractivePipe
+#
+this_pipe = App.activeDocument().bd_skirt_001.newObject("PartDesign::SubtractivePipe","SubtractivePipe")
+this_body.Group += [this_sketch,]
+this_pipe.Profile = this_sketch
+this_pipe.Spine = App.ActiveDocument.sk_skirt_path_000
+Gui.activeDocument().hide(this_plane.Name)
+Gui.activeDocument().hide(App.ActiveDocument.sk_skirt_path_000.Name)
+#
+#
+#
 this_lp = this_body.newObject("PartDesign::LinearPattern","lp_notch_for_spacer_002")
-this_lp.Originals = [App.activeDocument().pk_notch_for_spacer_002,]
+this_lp.Originals = [App.activeDocument().SubtractivePipe,]
 this_lp.Direction = (App.activeDocument().sk_spacer_body_001, ["H_Axis"])
 this_lp.setExpression('Length', u'sp_joist.length')
 this_lp.setExpression('Occurrences', u'sp_joist.spacer_count')
