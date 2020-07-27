@@ -8,7 +8,7 @@ import shelf_nr
 shelf_nr.set_shelf_nr(0)
 
 FreeCAD.Console.PrintMessage("busybox_010_assembly, line 105; shelf_nr " + str(shelf_nr.get_shelf_nr()) + "\n")
-Gui.ActiveDocument.ActiveView.setCamera('#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1024.5903 -1290.296 1165.134\n  orientation 0.82849485 0.2586773 0.49667153  1.1214463\n  nearDistance 195.85522\n  farDistance 2455.8027\n  aspectRatio 1\n  focalDistance 1343.21\n  height 243.7066\n\n}\n')
+Gui.ActiveDocument.ActiveView.setCamera('#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1321.6816 221.37732 1544.3434\n  orientation 0.89191508 0.26466164 0.36666301  1.3355073\n  nearDistance 439.92169\n  farDistance 2327.0491\n  aspectRatio 1\n  focalDistance 1382.543\n  height 2765.0859\n\n}\n')
 #
 #  ----
 #

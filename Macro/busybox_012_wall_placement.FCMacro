@@ -4,8 +4,6 @@
 #  -- and personal study with this notice left intact.   --
 #  --------------------------------------------------------
 
-Gui.activeDocument().activeView().setCamera('#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1151.9319 -1261.8505 1095.1866\n  orientation 0.82849473 0.25867727 0.49667147  1.1214463\n  nearDistance -533.47455\n  farDistance 2455.8081\n  aspectRatio 1\n  focalDistance 1343.21\n  height 1800.7625\n\n}\n')
-
 aux_part = App.activeDocument().Wall_
 aux_part.setExpression('Placement.Base.x', u'sp_joist.length+sp_spacer.width')
 aux_part.setExpression('Placement.Base.y', u'sp_footer.length+sp_joist.width')
