@@ -17,7 +17,8 @@ this_body = part_bodies.newObject("PartDesign::Body","bd_spacer_00" + str(1))
 
 for i in [App.ActiveDocument.sk_spacer_body_000, \
   App.ActiveDocument.sk_spacer_notch_000, App.ActiveDocument.sk_spacer_notch_000,  \
-  App.ActiveDocument.sk_dovetail_bottom_000, App.ActiveDocument.sk_dovetail_bottom_000, ]:
+  App.ActiveDocument.sk_dovetail_bottom_000, App.ActiveDocument.sk_dovetail_bottom_000, \
+  App.ActiveDocument.sk_spacer_notchH_000]:
  aux_sketch = App.ActiveDocument.copyObject(i)
  this_body.Group += [aux_sketch ,]
  Gui.activeDocument().hide(i.Name)
@@ -43,30 +44,61 @@ this_pad.Reversed = 1
 this_pad.Midplane = 0
 this_pad.Offset = 0.000000
 #
-this_notch_e = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notchE")
-this_sketch = App.activeDocument().sk_spacer_notch_001
+this_plane = this_body.newObject('PartDesign::Plane','DatumPlane001')
+this_plane.AttachmentOffset = App.Placement(App.Vector(0,0, -19.0500000000),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
+this_plane.MapReversed = False
+FreeCAD.Console.PrintMessage( "line 50\n")
+this_plane.Support = [(this_pad,'Face5')]
+FreeCAD.Console.PrintMessage( "line 52\n")
+this_plane.MapMode = 'FlatFace'
+FreeCAD.Console.PrintMessage( "line 54\n")
+#
+App.activeDocument().bd_spacer_001.Tip = App.activeDocument().DatumPlane001
+this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
+App.activeDocument().bd_spacer_001.addObject(this_sketch)
+this_sketch.Support = (App.activeDocument().DatumPlane001, '')
+
+this_sketch.toggleConstruction(9) 
+this_sketch.toggleConstruction(7) 
+this_sketch.toggleConstruction(8) 
+this_sketch.toggleConstruction(3) 
+this_sketch.toggleConstruction(2) 
+this_sketch.toggleConstruction(1) 
+
+FreeCAD.Console.PrintMessage("The DatumPlane001 placement " + str(App.activeDocument().DatumPlane001.Placement) + "\n")
+App.ActiveDocument.recompute()
+this_sketch.Placement = App.activeDocument().DatumPlane001.Placement
+this_notch_e = App.activeDocument().bd_spacer_001.newObject("PartDesign::Pocket","pk_spacer_joist_notchE")
+Gui.ActiveDocument.getObject(this_notch_e.Name).Transparency=50
 this_notch_e.Profile = this_sketch
-this_notch_e.Length = 20.0
-this_notch_e.Length = 0.000000
+this_notch_e.Length = 25.4*0.75
 this_notch_e.Length2 = 99.999800
-this_notch_e.Type = 'ThroughAll'
-#this_notch_e.UpToFace = (App.activeDocument().pk_support_001, ["Face8"])
+this_notch_e.Type = 0
+this_notch_e.UpToFace = None
 this_notch_e.Reversed = 0
 this_notch_e.Midplane = 0
-this_notch_e.Offset = -50.800000
-Gui.activeDocument().hide(this_sketch.Name)
-Gui.activeDocument().hide(this_pad.Name)
+this_notch_e.Offset = 0.000000
+#
+this_plane = this_body.newObject('PartDesign::Plane','DatumPlane002')
+this_plane.AttachmentOffset = App.Placement(App.Vector(0,0, -25.4 * 3.25),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
+this_plane.MapReversed = False
+this_plane.Support = [(this_pad,'Face5')]
+this_plane.MapMode = 'FlatFace'
 App.ActiveDocument.recompute()
+FreeCAD.Console.PrintMessage("The DatumPlane002 placement " + str(App.activeDocument().DatumPlane002.Placement) + "\n")
 #
 this_notch_o = this_body.newObject("PartDesign::Pocket","pk_spacer_joist_notchO")
-this_sketch = App.activeDocument().sk_spacer_notch_002
-this_sketch.Placement.Base.y += 25.4 * 2.5
+this_sketch = App.ActiveDocument.copyObject(this_sketch)
+App.activeDocument().bd_spacer_001.addObject(this_sketch)
+this_sketch.Support = (App.activeDocument().DatumPlane002, '')
+this_sketch.Placement = this_plane.Placement
+App.ActiveDocument.recompute()
+FreeCAD.Console.PrintMessage("The sketch placement " + str(this_sketch.Placement) + "\n")
+
 this_notch_o.Profile = this_sketch
-this_notch_o.Length = 20.0
-this_notch_o.Length = 0.000000
+this_notch_o.Length = 25.4*0.75
 this_notch_o.Length2 = 99.999800
-this_notch_o.Type = 'ThroughAll'
-#this_notch_o.UpToFace = (App.activeDocument().pk_support_002, ["Face8"])
+this_notch_o.Type = 0
 this_notch_o.Reversed = 0
 this_notch_o.Midplane = 0
 this_notch_o.Offset = -50.800000
@@ -74,19 +106,32 @@ Gui.activeDocument().hide(this_sketch.Name)
 Gui.activeDocument().hide(this_pad.Name)
 App.ActiveDocument.recompute()
 #
-this_notch_s1 = this_body.newObject("PartDesign::Pocket","pk_spacer_skirt_notch_001")
-this_sketch = App.activeDocument().sk_dovetail_bottom_001
-this_notch_s1.Profile = this_sketch
-this_notch_s1.Length = 20.0
-this_notch_s1.Length = 0.000000
-this_notch_s1.Length2 = 99.999800
-this_notch_s1.Type = 'ThroughAll'
-this_notch_s1.Reversed = 1
-this_notch_s1.Midplane = 0
-this_notch_s1.Offset = -50.800000
-Gui.activeDocument().hide(this_sketch.Name)
-Gui.activeDocument().hide(this_pad.Name)
+#
+FreeCAD.Console.PrintMessage("line 110\n")
+this_plane = App.ActiveDocument.copyObject(App.ActiveDocument.DatumPlane)
+this_body.addObject(this_plane)
+this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
+#this_sketch.setExpression('Constraints[13]', u'0')
+this_body.addObject(this_sketch)
+this_sketch.Support = (this_plane, [''])
+this_sketch.MapMode = 'FlatFace'
+this_sketch.toggleConstruction(9) 
+this_sketch.toggleConstruction(7) 
+this_sketch.toggleConstruction(8) 
+this_sketch.toggleConstruction(3) 
+this_sketch.toggleConstruction(2) 
+this_sketch.toggleConstruction(1) 
 App.ActiveDocument.recompute()
+FreeCAD.Console.PrintMessage("Placement for sketch (line 116) " + this_sketch.Name + " " + str(this_sketch.Placement) + "\n")
+#
+#  --  SubtractivePipe
+#
+this_pipe = this_body.newObject("PartDesign::SubtractivePipe","SubtractivePipe")
+this_body.Group += [this_sketch,]
+this_pipe.Profile = this_sketch
+this_pipe.Spine = App.ActiveDocument.copyObject(App.ActiveDocument.sk_skirt_path_000)
+Gui.activeDocument().hide(this_plane.Name)
+#Gui.activeDocument().hide(App.ActiveDocument.sk_skirt_path_001.Name)
 #
 this_notch_s2 = this_body.newObject("PartDesign::Pocket","pk_spacer_skirt_notch_002")
 this_sketch = App.activeDocument().sk_dovetail_bottom_002

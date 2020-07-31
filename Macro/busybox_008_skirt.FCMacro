@@ -14,7 +14,8 @@ this_body = part_bodies.newObject("PartDesign::Body","bd_skirt_00" + str(1))
 
 for i in [App.ActiveDocument.sk_joist_000, App.ActiveDocument.sk_spacer_body_000, \
   App.ActiveDocument.sk_support_000, App.ActiveDocument.sk_support_000, \
-  App.ActiveDocument.sk_dovetail_top_000, ]:
+  App.ActiveDocument.sk_dovetail_top_000, \
+  App.ActiveDocument.sk_skirt_path_000, ]:
  aux_sketch = App.ActiveDocument.copyObject(i)
  this_body.Group += [aux_sketch ,]
  Gui.activeDocument().hide(i.Name)
@@ -69,7 +70,7 @@ Gui.activeDocument().hide(this_obj_9.Name)
 #App.activeDocument().sk_spacer_notch_002.MapMode = "Deactivated"
 #
 this_plane = App.activeDocument().bd_skirt_001.newObject('PartDesign::Plane','DatumPlane')
-this_plane.Support = [(App.getDocument('Shelves_ver_2_2_temp').sk_skirt_path_000,'Edge1')]
+this_plane.Support = [(App.activeDocument().sk_skirt_path_001,'Edge1')]
 this_plane.MapMode = 'NormalToEdge'
 #
 #  --  sk_spacer_notchH_001
@@ -78,17 +79,16 @@ this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_
 this_sketch.Support = (this_plane, [''])
 this_sketch.MapMode = 'FlatFace'
 this_sketch.setExpression('Constraints[13]', u'0')
-#this_sketch.Placement = App.Placement(App.Vector(25.4,0,19.05),App.Rotation(App.Vector(-1,0,0),-99.462))
-#this_sketch.Placement.Rotation = App.Rotation(App.Vector(-1,0,0),-99.462)
+FreeCAD.Console.PrintMessage("Placement for sketch " + this_sketch.Name + " " + str(this_sketch.Placement) + "\n")
 #
 #  --  SubtractivePipe
 #
 this_pipe = App.activeDocument().bd_skirt_001.newObject("PartDesign::SubtractivePipe","SubtractivePipe")
 this_body.Group += [this_sketch,]
 this_pipe.Profile = this_sketch
-this_pipe.Spine = App.ActiveDocument.sk_skirt_path_000
+this_pipe.Spine = App.ActiveDocument.sk_skirt_path_001
 Gui.activeDocument().hide(this_plane.Name)
-Gui.activeDocument().hide(App.ActiveDocument.sk_skirt_path_000.Name)
+Gui.activeDocument().hide(App.ActiveDocument.sk_skirt_path_001.Name)
 #
 #
 #

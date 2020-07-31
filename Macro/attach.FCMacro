@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/amcintosh/Documents/FreeCAD/Shelves/Macro/attach.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+import PartDesign
+import PartDesignGui
+import Sketcher
+
+FreeCAD.Console.PrintMessage("\tplacement " + App.activeDocument().DatumPlane001.Name + str(App.activeDocument().DatumPlane001.Placement) + "\n")
+App.activeDocument().bd_spacer_001.Tip = App.activeDocument().DatumPlane001
+this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
+FreeCAD.Console.PrintMessage("The new sketch name is " + this_sketch.Name + "\n")
+FreeCAD.Console.PrintMessage("\tplacement " + str(this_sketch.Placement) + "\n")
+App.activeDocument().bd_spacer_001.addObject(this_sketch)
+this_sketch.Support = (App.activeDocument().DatumPlane001, '')
+this_sketch.Placement = App.activeDocument().DatumPlane001.Placement
+
+this_sketch_1 = App.activeDocument().bd_spacer_001.newObject('Sketcher::SketchObject','Sketch')
+this_sketch_1.Support = (App.activeDocument().DatumPlane001, '')
+this_sketch_1.MapMode = 'FlatFace'
+this_sketch_1.addGeometry(Part.Circle(App.Vector(19,19,0),App.Vector(0,0,1),6.172657),False)
+FreeCAD.Console.PrintMessage("\tplacement " + this_sketch_1.Name+ str(this_sketch_1.Placement) + "\n")
+
+this_pocket = App.activeDocument().bd_spacer_001.newObject("PartDesign::Pocket","Pocket")
+this_pocket.Profile = this_sketch
+this_pocket.Length = 5.0
+this_pocket.Length = 25.4*0.75
+this_pocket.Length2 = 99.999800
+this_pocket.Type = 0
+this_pocket.UpToFace = None
+this_pocket.Reversed = 0
+this_pocket.Midplane = 0
+this_pocket.Offset = 0.000000
+
+App.activeDocument().bd_spacer_001.Tip = this_pocket
+FreeCAD.Console.PrintMessage("\tplacement " + this_sketch_0.Name + str(this_sketch_0.Placement) + "\n")
+# Macro End: /home/amcintosh/Documents/FreeCAD/Shelves/Macro/attach.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
