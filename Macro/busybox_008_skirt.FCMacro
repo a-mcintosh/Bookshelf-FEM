@@ -72,6 +72,7 @@ Gui.activeDocument().hide(this_obj_9.Name)
 this_plane = App.activeDocument().bd_skirt_001.newObject('PartDesign::Plane','DatumPlane')
 this_plane.Support = [(App.activeDocument().sk_skirt_path_001,'Edge1')]
 this_plane.MapMode = 'NormalToEdge'
+App.ActiveDocument.DatumPlane.AttachmentOffset = App.Placement(App.Vector(-19.0500000000, 0.0000000000, 0.0000000000),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
 #
 #  --  sk_spacer_notchH_001
 #
