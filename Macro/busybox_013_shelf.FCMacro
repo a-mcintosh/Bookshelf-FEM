@@ -52,15 +52,15 @@ for i in [ \
 
 ix = 0
 for i in [ \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
-  App.ActiveDocument.ch_spacer_000,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
+  App.ActiveDocument.sup_spacer_skirt_notch_002,  \
   ]:
  aux_body = App.ActiveDocument.copyObject(i)
  Gui.activeDocument().show(aux_body.Name)
