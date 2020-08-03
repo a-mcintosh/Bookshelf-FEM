@@ -27,7 +27,8 @@ App.newDocument(Name).saveAs(u"/home/amcintosh/Documents/FreeCAD/Shelves/Documen
 FreeCAD.Console.PrintMessage(Name + "\n")
 FreeCAD.Console.PrintMessage("Execute the macros in their numbered sequence.\n")
 FreeCAD.Console.PrintMessage("Execute the wall macro two times.  You can execute the placement macro between times.\n")
+FreeCAD.Console.PrintMessage("\n------------------------\n")
 FreeCAD.Console.PrintMessage("import shelf_nr now\n")
-FreeCAD.Console.PrintMessage("\n------------------------\n\n")
+FreeCAD.Console.PrintMessage("------------------------\n\n")
 
 # Macro End: $HOME/Documents/FreeCAD/Shelves/busybox_001_start.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
