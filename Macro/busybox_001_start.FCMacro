@@ -4,7 +4,7 @@
 #  -- and personal study with this notice left intact.   --
 #  --------------------------------------------------------
 FreeCAD.Console.PrintMessage("\nCopyright © 2020-06-24 by Aubrey McIntosh, PhD\n\n")
-Name = 'Shelves_ver_2_2_temp'
+Name = 'Shelves_ver_2_3_temp'
 
 # -*- coding: utf-8 -*-
 

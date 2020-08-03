@@ -464,10 +464,12 @@ aux_notch_depth = (App.ActiveDocument.sp_footer.get(App.ActiveDocument.sp_footer
 aux_extension_length = aux_elevation - aux_height_joist - aux_height_footer + aux_notch_depth
 aux_face_size = (App.ActiveDocument.sp_support.get(App.ActiveDocument.sp_support.getCellFromAlias("face_size")))
 length = (aux_shelf_count-1)*(aux_height_item+aux_height_joist)
-FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 200\n ---> pattern length:\t" + str(length) + "\n")
-FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 201\n ---> aux_extension_length:\t" + str(aux_extension_length) + "\n")
-FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 202\n ---> adjusted aux_extension_length:\t" + str(aux_extension_length+aux_face_size) + "\n")
-FreeCAD.Console.PrintMessage("busybox_002_spreadsheets, line 203\n\n ---> spreadsheet length value:\t" + str(length + aux_extension_length - aux_face_size) + "\n\n")
+FreeCAD.Console.PrintMessage("busybox_003_unified_sketches, line 467\n ---> pattern length:\t" + str(length) + "\n")
+FreeCAD.Console.PrintMessage("busybox_003_unified_sketches, line 468\n ---> aux_extension_length:\t" + str(aux_extension_length) + "\n")
+FreeCAD.Console.PrintMessage("busybox_003_unified_sketches, line 469\n ---> adjusted aux_extension_length:\t" + str(aux_extension_length+aux_face_size) + "\n")
+aux_length = length + aux_extension_length - aux_face_size
+FreeCAD.Console.PrintMessage("busybox_003_unified_sketches, line 470\n\n ---> spreadsheet length value:\t" + str(aux_length) + "\n\n")
+App.ActiveDocument.sp_standard.set('B4', str(aux_length))	#was 84".  Changed to make part symmetric, adjusted joist height.
 #
 #  --  sk_spacer_notchH_000
 #

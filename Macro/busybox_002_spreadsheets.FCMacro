@@ -91,7 +91,7 @@ App.ActiveDocument.sp_standard.set('B3', '0.75"')
 App.ActiveDocument.sp_standard.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_standard.set('A4', 'height')
-App.ActiveDocument.sp_standard.set('B4', '2252.66 mm')	#was 84".  Changed to make part symmetric, adjusted joist height.
+App.ActiveDocument.sp_standard.set('B4', '2252.66 mm')	#was 84".  Changed to make part symmetric, adjusted joist height.  Self modifies.
 App.ActiveDocument.sp_standard.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_standard.set('A5', 'notch depth')
@@ -159,7 +159,7 @@ App.ActiveDocument.sp_joist.set('B3', '0.75"')
 App.ActiveDocument.sp_joist.setAlias('B3', 'width')
 #
 App.ActiveDocument.sp_joist.set('A4', 'height')
-App.ActiveDocument.sp_joist.set('B4', '0.75"')
+App.ActiveDocument.sp_joist.set('B4', '1.00"')
 App.ActiveDocument.sp_joist.setAlias('B4', 'height')
 #
 App.ActiveDocument.sp_joist.set('A5', 'notch depth')

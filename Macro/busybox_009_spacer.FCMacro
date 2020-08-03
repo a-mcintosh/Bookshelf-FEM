@@ -44,20 +44,23 @@ this_pad.Midplane = 0
 this_pad.Offset = 0.000000
 Gui.activeDocument().hide(this_pad.Name)
 #
-this_plane = this_body.newObject('PartDesign::Plane','DatumPlane001')
-this_plane.Support = [(App.activeDocument().sk_skirt_path_002,'Edge1')]
+this_plane = this_body.newObject('PartDesign::Plane','DP_notchE')
+this_plane.Support = [(App.activeDocument().sk_skirt_path_004,'Edge1')]
 this_plane.MapMode = 'NormalToEdge'
-this_plane.AttachmentOffset = App.Placement(App.Vector(-19.0500000000, -15.875, 0.0),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
+aux_placement_y = float(0.0 \
+  + float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("height"))) \
+  - float(App.ActiveDocument.sp_spacer.get(App.ActiveDocument.sp_spacer.getCellFromAlias("notch_depth"))) )
+this_plane.AttachmentOffset = App.Placement(App.Vector(-19.0500000000, -aux_placement_y, 0.0),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
 this_plane.MapReversed = False
 Gui.activeDocument().hide(this_plane.Name)
 #
-App.activeDocument().bd_spacer_001.Tip = App.activeDocument().DatumPlane001
+App.activeDocument().bd_spacer_001.Tip = this_plane
 this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
 App.activeDocument().bd_spacer_001.addObject(this_sketch)
 FreeCAD.Console.PrintMessage("line 60, sketch " + this_sketch.Name + "\n")
 
 #
-this_sketch.Support = (App.activeDocument().DatumPlane001, '')
+this_sketch.Support = (this_plane, '')
 this_sketch.MapMode = "FlatFace"
 
 this_sketch.toggleConstruction(9) 
@@ -68,8 +71,7 @@ this_sketch.toggleConstruction(2)
 this_sketch.toggleConstruction(1) 
 
 App.ActiveDocument.recompute()
-FreeCAD.Console.PrintMessage("line 67; The DatumPlane001 placement " + str(App.activeDocument().DatumPlane001.Placement) + "\n")
-#this_sketch.Placement = App.activeDocument().DatumPlane001.Placement
+FreeCAD.Console.PrintMessage("line 67; The " + this_plane.Name +" placement " + str(this_plane.Placement) + "\n")
 this_notch_e = App.activeDocument().bd_spacer_001.newObject("PartDesign::Pocket","pk_spacer_joist_notchE")
 Gui.ActiveDocument.getObject(this_notch_e.Name).Transparency=50
 this_notch_e.Profile = this_sketch
@@ -124,11 +126,11 @@ Gui.activeDocument().hide(this_linear.Name)
 #
 #  --  pk_spacer_skirt_notch_001
 #
-this_plane = App.activeDocument().bd_spacer_001.newObject('PartDesign::Plane','DatumPlane')
-this_path = App.activeDocument().sk_skirt_path_002
+this_plane = App.activeDocument().bd_spacer_001.newObject('PartDesign::Plane','DP_notch_005')
+this_path = App.activeDocument().sk_skirt_path_004
 this_plane.Support = [(this_path,'Edge1'), (this_path,'Vertex1')]
 this_plane.MapMode = 'NormalToEdge'
-this_plane.AttachmentOffset = App.Placement(App.Vector(-19.0500000000, -15.875, 0.0),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
+this_plane.AttachmentOffset = App.Placement(App.Vector(-19.0500000000, -aux_placement_y, 0.0),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
 Gui.activeDocument().hide(this_plane.Name)
 #
 this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
@@ -143,7 +145,7 @@ this_sketch.toggleConstruction(1)
 this_body.addObject(this_sketch)
 this_sketch.Support = (this_plane, [''])
 #
-this_pipe = this_body.newObject("PartDesign::SubtractivePipe","sup_spacer_skirt_notch_002")
+this_pipe = this_body.newObject("PartDesign::SubtractivePipe","sup_spacer_skirt_notch_001")
 aux_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_skirt_path_002)
 this_body.addObject(aux_sketch)
 this_pipe.Profile = this_sketch
@@ -162,10 +164,10 @@ new_rot = aux_rot.multiply(old_rot)
 this_path.Placement.Rotation = new_rot
 this_path.Placement.Base.y += float(App.ActiveDocument.sp_footer.get(App.ActiveDocument.sp_footer.getCellFromAlias("length"))) \
   + float(App.ActiveDocument.sp_joist.get(App.ActiveDocument.sp_joist.getCellFromAlias("width")))
-this_plane = App.activeDocument().bd_spacer_001.newObject('PartDesign::Plane','DatumPlane')
-this_plane.Support = [(this_path,'Edge3'), (this_path,'Vertex4')]
+this_plane = App.activeDocument().bd_spacer_001.newObject('PartDesign::Plane','DP_notch006')
+this_plane.Support = [(this_path,'Edge3'), (this_path,'Vertex3')]
 this_plane.MapMode = 'NormalToEdge'
-this_plane.AttachmentOffset = App.Placement(App.Vector(0.0, -15.875, 0.0),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
+this_plane.AttachmentOffset = App.Placement(App.Vector(0.0, -aux_placement_y, 0.0),  App.Rotation(0.0000000000, 0.0000000000, 0.0000000000))
 App.ActiveDocument.recompute()
 #
 this_sketch = App.ActiveDocument.copyObject(App.ActiveDocument.sk_spacer_notchH_000)
